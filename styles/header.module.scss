@@ -1,0 +1,46 @@
+
+@mixin flex($a: space-around, $b: center) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    @content;
+}
+// @keyframes trans {
+//     0% {
+//     -webkit-transform: translateY(50px);
+//     transform: translateY(50px);
+//     opacity: 0;
+//     }
+//     100% {
+//     -webkit-transform: translateY(0);
+//     transform: translateY(0);
+//     opacity: 1;
+//     }
+// }
+@keyframes trans {
+    0% {
+        content: url('/img/logo0.png');
+    }
+    100% {
+        content: url('/img/logo1.png');
+    }
+}
+
+.header{
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 200px;
+    padding: 20px;
+    // border: 2px solid #f00;
+    @include flex(){}
+}
+.logo{
+    width: 300px;
+    height: auto;
+    background-size: cover;
+    background-position: 50% 50%;
+    animation: trans .4s infinite linear;
+}
+

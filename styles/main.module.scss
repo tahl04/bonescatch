@@ -1,0 +1,46 @@
+
+@mixin flex($a: space-around, $b: center) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    @content;
+}
+
+@keyframes trans0 {
+    0% {
+        content: url('/img/tree0.png');
+    }
+    100% {
+        content: url('/img/tree1.png');
+    }
+}
+
+.Mwrap{
+    @include flex (){
+        flex-direction: column;
+    }
+    width: 100%;
+    margin-top: 200px;
+    border: 2px solid #f0f;
+}
+.Mtop{
+    content: url('/img/list-head0.png');
+    width: 1400px;
+}
+.Mmid{
+    content: url('/img/list-body0.png');
+    width: 1400px;
+}
+.Mbot{
+    content: url('/img/list-footer0.png');
+    width: 1400px;
+}
+.leaf{
+    animation: trans0 .4s infinite linear;
+    content: url('/img/tree0.png');
+    width: 100px;
+    height: auto;
+    position: fixed;
+    top: 45%;
+    right: 0;
+}
