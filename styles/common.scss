@@ -26,6 +26,7 @@ ol, ul {
 }
 body{
     background-image: url('/img/bg2.png');
+    // overflow: hidden;
 }
 
 @mixin flex($a: space-around, $b: center) {

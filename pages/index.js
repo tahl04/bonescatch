@@ -1,11 +1,35 @@
 import axios from 'axios'
+import lo from '@/styles/login.module.scss'
+import { useRef, useEffect, useContext, useState } from 'react'
+import { useRouter } from 'next/router'
 export default function Home({ data }) {
 
-console.log(data)
+  const { pathname } = useRouter();
+  const fire0 = useRef();
+  const fire1 = useRef();
+  
+  useEffect(() => {
+  }, [pathname]);
 
   return (
     <>
-      <p>로그인</p>
+      <div className={lo.logWrap}>
+        <div className={lo.leftWrap}>
+          <img ref={fire0} className={lo.fireLeft}/>
+        </div>
+        <div className={lo.rightWrap}>
+          <img ref={fire1} className={lo.fireRight}/>
+        </div>
+        <div className={lo.logTop}>
+
+        </div>
+        <div className={lo.logBody}>
+
+        </div>
+        <div className={lo.logFoot}>
+
+        </div>
+      </div>
       
     </>
   )

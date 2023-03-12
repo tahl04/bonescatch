@@ -1,5 +1,6 @@
 import axios from "axios";
 import Header from "./Header";
+// import Lantern from "./Lantern";
 
 const { createContext, useState } = require("react");
 export const DataContext = createContext(null);
@@ -28,6 +29,7 @@ const MyContext = ({ children }) => {
     return (
         <DataContext.Provider value={{ data, dataFun }} >
             <Header/>
+            {/* <Lantern/> */}
             {children}
         </DataContext.Provider>
     )
