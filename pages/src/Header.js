@@ -17,7 +17,6 @@ function Header() {
     }
   }
   useEffect(() => {
-    audio.current.autoplay = true
   }, []);
 
   
@@ -31,7 +30,7 @@ const [a,setA] = useState(false);
 
 
         <div className={hd.music}>
-          <audio autoplay loop ref={audio} src="/audio/bonescatch-mix.mp3"></audio>
+          <audio loop ref={audio} src="/audio/bonescatch.mp3"></audio>
           <div 
             className={ `${hd.togglePlay} ${a && hd.active}`}
             onClick={togglePlay}

@@ -12,6 +12,7 @@ function Main({ data }) {
     const { pathname } = useRouter();
 
 
+    console.log(data)
     
     if (!data) return (<>돌 날카롭게 깎는중.....</>)
     return (
@@ -76,10 +77,10 @@ export async function getServerSideProps() {
     const data = res.data;
     
     data['POST'] = data['POST'].map(obj =>{
-      let buf = new Buffer(obj.DRAW);
-      let base64String = buf.toString('utf-8');
-      obj.DRAW = base64String;
-      return obj;
-  });  
+        let buf = new Buffer(obj.DRAW);
+        let base64String = buf.toString('utf-8');
+        obj.DRAW = base64String;
+        return obj;
+    });  
     return { props: { data } }
-  }
+}

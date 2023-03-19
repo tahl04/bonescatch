@@ -12,25 +12,24 @@ function Lantern() {
     let timer = null;
     
     useEffect(() => {
-        let torchWidth = torch.current.clientWidth;
-        let torchHeight = torch.current.clientHeight;
+        let torchWidth = torch.current.getBoundingClientRect().width;
+        let torchHeight = torch.current.getBoundingClientRect().height;
     
-        let lampHeight = lamp.current.clientHeight;
-        let lampWidth = lamp.current.clientWidth;
+        let lampHeight = lamp.current.getBoundingClientRect().height;
+        let lampWidth = lamp.current.getBoundingClientRect().width;
         
         const handleLampMove = (e) => {
             // console.log(e)
             const torchPosX = e.clientX - torchWidth;
             const torchPosY = e.clientY - torchHeight;
-
-            //resize 시 재할당
+            
             window.addEventListener("resize", () => {
                 clearTimeout(timer);
                 timer = setTimeout(function(){
-                    torchWidth = torch.current.clientWidth;
-                    torchHeight = torch.current.clientHeight;
-                    lampHeight = lamp.current.clientHeight;
-                    lampWidth = lamp.current.clientWidth;
+                    torchWidth = torch.current.getBoundingClientRect().width;
+                    torchHeight = torch.current.getBoundingClientRect().height;
+                    lampHeight = lamp.current.getBoundingClientRect().height;
+                    lampWidth = lamp.current.getBoundingClientRect().width;
                 }, delay);
             });
             torchLight.current.style.transform = `translate(${torchPosX}px, ${torchPosY}px)`;
@@ -46,19 +45,14 @@ function Lantern() {
 
 
 
-    // console.log(torch);
-    ////
 
 
-    ////
   return (
     <>
-    <nav className={l.lNav}>
         <div ref={torch} className={l.tWrap}>
             <div ref={torchLight} className={l.torch}/>
         <div ref={lamp} className={l.lamp}/>
         </div>
-    </nav>
     </>
   )
 }

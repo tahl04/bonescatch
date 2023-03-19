@@ -5,6 +5,10 @@ import Lantern from "./Lantern";
 const { createContext, useState } = require("react");
 export const DataContext = createContext(null);
 
+
+
+
+
 const MyContext = ({ children }) => {
     const [data, setData] = useState();
 
@@ -34,5 +38,7 @@ const MyContext = ({ children }) => {
         </DataContext.Provider>
     )
 }
+
+
 
 export default MyContext
