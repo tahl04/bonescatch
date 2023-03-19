@@ -1,0 +1,305 @@
+@mixin flex($a: space-around, $b: center) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    @content;
+}
+
+@keyframes m-trans0 {
+    50% {
+        background-image: url('/img/write-head1.png');
+    }
+}
+
+@keyframes m-trans1 {
+    50% {
+        background-image: url('/img/write-body1.png');
+    }
+}
+
+@keyframes m-trans2 {
+    50% {
+        background-image: url('/img/write-footer1.png');
+    }
+}
+
+//tool
+
+
+@keyframes t-0 {
+    50% {
+        content: url('/img/tool0-1.png')
+    }
+}
+@keyframes t-1 {
+    50% {
+        content: url('/img/tool1-1.png')
+    }
+}
+@keyframes t-2 {
+    50% {
+        content: url('/img/tool2-1.png')
+    }
+}
+@keyframes t-e {
+    50% {
+        content: url('/img/tool-empty1.png')
+    }
+}
+
+
+//color
+
+
+@keyframes c-black {
+    50% {
+        content: url('/img/color-black1.png');
+    }
+}
+@keyframes c-blue {
+    50% {
+        content: url('/img/color-blue1.png');
+    }
+}
+@keyframes c-red {
+    50% {
+        content: url('/img/color-red1.png');
+    }
+}
+@keyframes c-green {
+    50% {
+        content: url('/img/color-green1.png');
+    }
+}
+@keyframes c-yellow {
+    50% {
+        content: url('/img/color-yellow1.png');
+    }
+}
+@keyframes c-orange {
+    50% {
+        content: url('/img/color-orange1.png');
+    }
+}
+@keyframes c-puple {
+    50% {
+        content: url('/img/color-puple1.png');
+    }
+}
+@keyframes c-e {
+    50% {
+        content: url('/img/color-empty1.png')
+    }
+}
+
+
+$c_width : 900px;
+$w_head : calc($c_width / 16.428);
+$w_body : calc($c_width / 1.408);
+$w-foot : calc($c_width / 4.36);
+
+
+
+@mixin top() {
+    width: $c_width;
+    height: $w_head;
+    background-size: cover;
+    margin-top: 65px;
+    background-image: url('/img/write-head0.png');
+    animation: m-trans0 1.2s step-end infinite;
+    @content;
+}
+@mixin body() {
+    width: $c_width;
+    height: $w_body;
+    background-size: cover;
+    background-image: url('/img/write-body0.png');
+    animation: m-trans1 1.7s step-end infinite;
+    @content;
+}
+@mixin foot() {
+    width: $c_width;
+    height: $w_foot;
+    background-size: cover;
+    background-image: url('/img/write-footer0.png');
+    animation: m-trans2 1.5s step-end infinite;
+    @content;
+}
+
+
+
+
+
+
+
+
+.wrap{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.drawBox{
+    // position: relative;
+    padding-left: 200px;
+    @include flex(center, flex-start){
+        flex-direction: column;
+    }
+    .top{
+        @include top(){}
+    }
+    .body{
+        padding: 70px 0 0 35px;
+        @include body(){}
+        @include flex(center,flex-start){
+            flex-direction: column;
+        }
+        h2{
+            font-size: 40px;
+            padding-left: 100px;
+        }
+        nav{
+            padding-top: 20px;
+            @include flex(){}
+            // border: 1px solid #f00;
+            .canWrap{
+                @include flex(){
+                    flex-direction: column;
+                }
+                .paint{
+                    position: relative;
+                    border: 4px solid rgba(73, 46, 20, .3);
+                }
+                .edit{
+                    @include flex(){}
+                    button{
+                        border: 2px solid rgba(73, 46, 20, .7);
+                        background: transparent;
+                        position: relative;
+                    }
+                }
+            }
+            .tool{
+                @include flex(){
+                    flex-direction: column;
+                }
+                // border: 1px solid #f0f;
+                .toolBtn{
+                    position: relative;
+                    border: none;
+                    background: transparent;
+                    width: 200px;
+                    cursor: pointer;
+                    // height: 20px;
+                    img{
+                        width: 100%;
+                        height: auto;
+                    }
+                    .toolOne{
+                        content: url('/img/tool0-0.png');
+                        animation: t-0 1.5s step-end infinite;
+                    }
+                    .toolTwo{
+                        content: url('/img/tool2-0.png');
+                        animation: t-2 1.5s step-end infinite;
+                    }
+                    .toolTre{
+                        content: url('/img/tool1-0.png');
+                        animation: t-1 1.5s step-end infinite;
+                    }
+                    .toolEmp{
+                        content: url('/img/tool-empty0.png');
+                        animation: t-e 1.5s step-end infinite;
+                    }
+                }
+            }
+        }
+    }
+    .pallet{
+        @include foot(){}
+        @include flex(){}
+        padding: 0 35px 25px 35px;
+        .color{
+            position: relative;
+            width: 200px;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            img{
+                width: 100%;
+                height: auto;
+            }
+            .colorBla{
+                content: url('/img/color-black0.png');
+                animation: c-black 1.5s step-end infinite;
+            }
+            .colorRed{
+                content: url('/img/color-red0.png');
+                animation: c-red 1.5s step-end infinite;
+            }
+            .colorGre{
+                content: url('/img/color-green0.png');
+                animation: c-green 1.5s step-end infinite;
+            }
+            .colorPup{
+                color: #aa34d8;
+                content: url('/img/color-puple0.png');
+                animation: c-puple 1.5s step-end infinite;
+            }
+            .colorBlu{
+                color: #3468d8;
+                content: url('/img/color-blue0.png');
+                animation: c-blue 1.5s step-end infinite;
+            }
+            .colorYel{
+                color: #e2d51c;
+                content: url('/img/color-Yellow0.png');
+                animation: c-yellow 1.5s step-end infinite;
+            }
+            .colorOra{
+                color: transparent;
+                content: url('/img/color-orange0.png');
+                animation: c-orange 1.5s step-end infinite;
+            }
+            .colorEmp{
+                color: transparent;
+                content: url('/img/color-empty0.png');
+                animation: c-e 1.5s step-end infinite;
+            }
+            ul{
+                position: absolute;
+                @include flex(){}
+                top: -100px;
+                left: 0;
+                width: 0;
+                height: 100px;
+                overflow: hidden;
+                li{
+                    width: 50px;
+                    height: 50px;
+                    background-color: #edefef;
+                    border: 1px solid #000;
+                }
+            }
+            &:hover{
+                ul{
+                    // transition: .5s;
+                    transition-delay: .3s;
+                    width: 900px;
+                    height: 100px;
+                    background-color: #fff;
+                    li{
+                        
+                    }
+                }
+            }
+        }
+    }
+}
+
+.textBox{
+    position: relative;
+    width: 200px;
+    height: 300px;
+    background-color: #fff;
+}
+

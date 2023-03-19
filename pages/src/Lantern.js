@@ -42,6 +42,7 @@ function Lantern() {
         torch.current.addEventListener("mousemove", handleLampMove);
         
     }, [pathname]);
+    console.log(pathname);
 
 
 

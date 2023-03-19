@@ -11,6 +11,7 @@ export default function Home({ data }) {
   useEffect(() => {
   }, [pathname]);
 
+  //className={lo.}
   return (
     <>
       <div className={lo.logWrap}>
@@ -24,7 +25,11 @@ export default function Home({ data }) {
 
         </div>
         <div className={lo.logBody}>
-
+          <form className={lo.form}>
+            <h1>로그인</h1>
+            <input type="text" placeholder='아이디' name="USER" autoComplete='off'/>
+            <input type="password" placeholder='비밀번호' name="USER"/>
+          </form>
         </div>
         <div className={lo.logFoot}>
 
@@ -49,3 +54,4 @@ export async function getServerSideProps() {
 // });  
   return { props: { data } }
 }
+
