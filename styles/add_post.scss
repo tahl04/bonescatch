@@ -1,0 +1,48 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.cancan{
+  // width: 500px;
+  // height: 200px;
+  border: 1px solid #000;
+}
+#settings {
+  .brushSetBtn{
+    margin: 5px;
+    border: none;
+    border-radius: 50%;
+    background-color: #000;
+    cursor: pointer;
+    &.s{
+      width: 20px;
+      height: 20px;
+    }
+    &.m{
+      width: 22px;
+      height: 22px;
+    }
+    &.l{
+      width: 24px;
+      height: 24px;
+    }
+    &.xl{
+      width: 26px;
+      height: 26px;
+    }
+  }
+}
+
+
+.paint {
+  border: 1px solid black;
+  background : #edefef; 
+}
+.colorBtn{
+  width: 50px;
+  height: 50px;
+  border: none;
+  border-radius: 50%;
+  margin: 10px;
+  cursor: pointer;
+}
