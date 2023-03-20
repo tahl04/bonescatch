@@ -20,8 +20,7 @@ const handler = async (req, res) => {
     try {
       let data = await executeQuery('select * from TBL_USER order by ID DESC', []);
       let datas = await executeQuery('select * from TBL_POST order by ID DESC', []);
-      let datass = await executeQuery('select * from TBL_COMMENT order by ID DESC', []);
-      res.json({USER:data,POST:datas,COMMENT:datass})
+      res.json({USER:data,POST:datas})
     } catch (err) {
     }
   }
@@ -38,11 +37,11 @@ const handler = async (req, res) => {
 
   
   const insertData = async () => {
-    let {ID,NAME,CODENAME,PASS,TRIBE} = body;
+    let {ID,NAME,CODENAME,PASS} = body;
 
     let data = await executeQuery(
-      'insert into TBL_USER (ID,NAME,CODENAME,PASS,TRIBE) value (?,?,?,?,?)',
-      [ID,NAME,CODENAME,PASS,TRIBE]
+      'insert into TBL_USER (ID,NAME,CODENAME,PASS) value (?,?,?,?)',
+      [ID,NAME,CODENAME,PASS]
     );
     
     let {USER,DRAW,STATE,TITLE} = body;
@@ -50,12 +49,7 @@ const handler = async (req, res) => {
       'insert into TBL_POST (ID,USER,DRAW,STATE,TITLE) value (?,?,?,?,?)',
       [ID,USER,DRAW,STATE,TITLE]
     );
-    let {DATE,CODE,COMMENT} = body;
-    let datass = await executeQuery(
-      'insert into TBL_POST (ID,USER,DATE,CODE,COMMENT) value (?,?,?,?,?)',
-      [ID,USER,DATE,CODE,COMMENT]
-    );
-    res.json({USER:data,POST:datas,COMMENT:datass})
+    res.json({USER:data,POST:datas})
   }
 
   switch (method) {
