@@ -33,7 +33,9 @@ function SignUp( { data } ) {
     function create(e) {
         e.preventDefault();
         if(!useCheckID){
-            IdSame('닉네임을 중복확인을 해주세요.');
+            alert('닉네임을 중복확인을 해주세요.');
+            CODEN.current.focus();
+
             return;
         }
         if(USERN.current.value === ""){
@@ -134,6 +136,7 @@ function SignUp( { data } ) {
 
 export async function getServerSideProps() {
     const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`)
+    // const res = await axios.get(`http://localhost:3000/api`)
     const data = res.data;
     
   //   data['POST'] = data['POST'].map(obj =>{

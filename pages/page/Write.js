@@ -289,7 +289,7 @@ const Write = () => {
 
     function create(e) {
         e.preventDefault();
-        dataFun('post', inputValue)
+        dataFun('post', inputValue);
         router.push('/');
     }
     return (
@@ -422,17 +422,14 @@ const Write = () => {
 
                 </div>
             </div>
-
-
-
-
-
-            
             {/* <button onClick={canvasSave}>캔버스 값 가져오기</button> */}
             {/* <button onClick={posting}>캔버스 값 가져오기</button> */}
             {/* <button onClick={reset}>리셋</button> */}
         </>
     )
 }
+
+
+
 
 export default Write

@@ -1,10 +1,43 @@
-header{
-    width: 100%;
-    height: 50px;
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+*{
+    box-sizing: border-box;
+    // font-family: 'DotGothic16', sans-serif;
+    font-family: 'Galmuri14';
+    font-weight: bold;
+    color: rgb(56, 39, 24);
 }
-nav{
+
+html, body, div, span, iframe,
+h1, h2, h3, h4, h5, h6, p,a, 
+img, ul, li, nav,video, figure, section{
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+img{
+    display: block;
+}
+
+a{
+    text-decoration: none;
+    color: #000;
+}
+ol, ul {
+	list-style: none;
+}
+body{
+    background-image: url('/img/bg2.png');
+}
+
+// .bg-wrap{
+//     width: 100vh;
+// }
+
+
+@mixin flex($a: space-around, $b: center) {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: #edefef;
+    justify-content: $a;
+    align-items: $b;
+    @content;
 }
