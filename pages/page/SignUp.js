@@ -66,7 +66,7 @@ function SignUp( { data } ) {
             IdSame('닉네임을 입력해주세요.');
             return
         }else{
-            data['USER'].map((obj,key)=>{
+            data['USER'].map(obj=>{
                 if(obj.CODENAME === inputValue.CODENAME){
                     IdSame('중복된 닉네임 입니다.');
                     setId(false);

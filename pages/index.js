@@ -2,6 +2,9 @@ import axios from 'axios'
 import lo from '@/styles/login.module.scss'
 import { useRef, useEffect, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
+import Link from 'next/link'
+
+
 export default function Home({ data }) {
 
   const { pathname } = useRouter();
@@ -10,7 +13,11 @@ export default function Home({ data }) {
   
   useEffect(() => {
   }, [pathname]);
+  console.log(data)
 
+  //className={lo.}
+  
+  if (!data) return (<>돌 날카롭게 깎는중.....</>)
   return (
     <>
       <div className={lo.logWrap}>
@@ -24,7 +31,16 @@ export default function Home({ data }) {
 
         </div>
         <div className={lo.logBody}>
-
+          <form className={lo.form}>
+            <h1>로그인</h1>
+            
+            <input type="text" placeholder='아이디' name="USER" autoComplete='off'/>
+            <input type="password" placeholder='비밀번호' name="USER"/>
+            <nav>
+              <Link className={lo.submitBtn} href="/page/SignUp">회원가입</Link>
+              <imput type='button' className={lo.submitBtn} placeholder='아이디'>로그인</imput>
+            </nav>
+          </form>
         </div>
         <div className={lo.logFoot}>
 
@@ -38,7 +54,7 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get(`/api`)
+  const res = await axios.get(`./api`)
   const data = res.data;
   
 //   data['POST'] = data['POST'].map(obj =>{
@@ -49,3 +65,4 @@ export async function getServerSideProps() {
 // });  
   return { props: { data } }
 }
+

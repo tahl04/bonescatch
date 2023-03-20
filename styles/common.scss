@@ -4,6 +4,8 @@
     box-sizing: border-box;
     // font-family: 'DotGothic16', sans-serif;
     font-family: 'Galmuri14';
+    font-weight: bold;
+    color: rgb(56, 39, 24);
 }
 
 html, body, div, span, iframe,
@@ -26,8 +28,12 @@ ol, ul {
 }
 body{
     background-image: url('/img/bg2.png');
-    // overflow: hidden;
 }
+
+// .bg-wrap{
+//     width: 100vh;
+// }
+
 
 @mixin flex($a: space-around, $b: center) {
     display: flex;
