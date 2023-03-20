@@ -23,6 +23,7 @@ const handler = async (req, res) => {
       let datass = await executeQuery('select * from TBL_COMMENT order by ID DESC', []);
       res.json({USER:data,POST:datas,COMMENT:datass})
     } catch (err) {
+      res.send(err)
     }
   }
 

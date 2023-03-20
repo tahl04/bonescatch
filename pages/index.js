@@ -54,9 +54,9 @@ export default function Home({ data }) {
 }
 
 export async function getServerSideProps() {
-  const res = await axios.get(`./api`)
+  const res = await axios.get('https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api')
   const data = res.data;
-  
+  console.log(data)
 //   data['POST'] = data['POST'].map(obj =>{
 //     let buf = new Buffer(obj.DRAW);
 //     let base64String = buf.toString('utf-8');

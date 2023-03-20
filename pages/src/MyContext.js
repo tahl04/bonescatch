@@ -16,7 +16,7 @@ const MyContext = ({ children }) => {
 
         let trans;
         if (type == 'get') {
-            await axios.get('./api').then(res => trans = res.data)
+            await axios.get('/api').then(res => trans = res.data)
         } else if (type == 'post') {
             // console.log(obj)
             trans = await axios.post('http://localhost:3000/api', obj)

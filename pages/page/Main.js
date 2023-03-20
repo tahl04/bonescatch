@@ -72,7 +72,7 @@ function Main({ data }) {
 
 export default Main
 export async function getServerSideProps() {
-    const res = await axios.get(`./api`)
+    const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`)
     const data = res.data;
     
     data['POST'] = data['POST'].map(obj =>{

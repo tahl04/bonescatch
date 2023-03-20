@@ -133,7 +133,7 @@ function SignUp( { data } ) {
 
 
 export async function getServerSideProps() {
-    const res = await axios.get(`http://localhost:3000/api`)
+    const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`)
     const data = res.data;
     
   //   data['POST'] = data['POST'].map(obj =>{
