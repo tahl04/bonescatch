@@ -58,10 +58,10 @@ const handler = async (req, res) => {
       'insert into TBL_POST (ID,USER,DRAW,STATE,TITLE) value (?,?,?,?,?)',
       [ID,USER,DRAW,STATE,TITLE]
     );
-    let {DATE,CODE,COMMENT} = body;
+    let {DATE,COUNT,COMMENT} = body;
     let datass = await executeQuery(
-      'insert into TBL_POST (ID,USER,DATE,CODE,COMMENT) value (?,?,?,?,?)',
-      [ID,USER,DATE,CODE,COMMENT]
+      'insert into TBL_COMMENT (ID,USER,DATE,COUNT,COMMENT) value (?,?,?,?,?)',
+      [ID,USER,DATE,COUNT,COMMENT]
     );
     res.json({USER:data,POST:datas,COMMENT:datass})
   }

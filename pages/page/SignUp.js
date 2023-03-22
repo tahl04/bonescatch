@@ -26,6 +26,7 @@ function SignUp( ) {
     const [bburi,setBburi] = useState(false);
     const [bada,setBada] = useState(false);
     const [bawi,setBawi] = useState(false);
+    const [bam,setBam] = useState(false);
     const [BuName,setBuName] = useState("");
     
     
@@ -38,19 +39,30 @@ function SignUp( ) {
                     setBburi(true);
                     setBada(false);
                     setBawi(false);
+                    setBam(false)
                     setBuName(" : 뿌리 풍뎅이");
                 }
                 if(key === 1){
                     setBburi(false);
                     setBada(true);
                     setBawi(false);
+                    setBam(false)
                     setBuName(" : 바다 집게");
                 }
                 if(key === 2){
                     setBburi(false);
                     setBada(false);
                     setBawi(true);
+                    setBam(false)
                     setBuName(" : 바위 맷돼지");
+                    
+                }
+                if(key === 3){
+                    setBburi(false);
+                    setBada(false);
+                    setBawi(false);
+                    setBam(true)
+                    setBuName(" : 밤 까마귀");
                     
                 }
             });
@@ -153,6 +165,7 @@ function SignUp( ) {
                     <img ref={el => (bujok.current[0] = el)} className={`${lo.bburi} ${bburi && lo.bburiActive}`}></img>
                     <img ref={el => (bujok.current[1] = el)} className={`${lo.bada} ${bada && lo.badaActive}`}></img>
                     <img ref={el => (bujok.current[2] = el)} className={`${lo.bawi} ${bawi && lo.bawiActive}`}></img>
+                    <img ref={el => (bujok.current[3] = el)} className={`${lo.bam} ${bam && lo.bamActive}`}></img>
                 </figcaption>
 
                 <nav>

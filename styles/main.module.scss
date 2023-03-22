@@ -11,6 +11,8 @@ $c_width : 845px;
 $l_head : calc($c_width / 14.75);
 $l_body : calc($c_width / 1.265);
 $l-foot : calc($c_width / 10.868);
+$l-underline-w : calc($c_width / 1.15);
+$l-underline-h : calc($l-underline-w / 29.5);
 
 
 
@@ -32,6 +34,11 @@ $l-foot : calc($c_width / 10.868);
 @keyframes m-trans3 {
     50% {
         background-image: url('/img/footer1.png');
+    }
+}
+@keyframes m-trans4 {
+    50% {
+        content: url('/img/underline1.png');
     }
 }
 
@@ -57,6 +64,14 @@ $l-foot : calc($c_width / 10.868);
     background-size: cover;
     background-image: url('/img/list-footer0.png');
     animation: m-trans2 1.5s step-end infinite;
+    @content;
+}
+@mixin underline() {
+    width: $l-underline-w;
+    height: $l-underline-h;
+    background-size: cover;
+    content: url('/img/underline0.png');
+    animation: m-trans4 1.5s step-end infinite;
     @content;
 }
 @mixin footer() {
@@ -90,12 +105,13 @@ $l-foot : calc($c_width / 10.868);
     @include flex(){
         flex-direction: column;
     }
-    img{
-        width: 70%;
-        height: auto;
-        border-radius: 8px;
-        border: 4px solid #000;
-    }
+    
+}
+.bonescatch{
+    width: 60%;
+    height: auto;
+    border-radius: 8px;
+    border: 4px solid #000;
 }
 .Mbot{
     @include foot(){};
@@ -115,4 +131,7 @@ $l-foot : calc($c_width / 10.868);
     background-color: #fff;
     z-index: 80;
     @include flex(){}
+}
+.underLine{
+    @include underline(){}
 }
