@@ -6,6 +6,7 @@ const { createContext, useState, useEffect } = require("react");
 export const DataContext = createContext(null);
 
 const MyContext = ({ children }) => {
+
   const [data, setData] = useState();
 
   async function dataFun(type, obj) {

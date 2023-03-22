@@ -57,6 +57,11 @@
         content: url('/img/bawi-false1.png');
     }
 }
+@keyframes bujok3 {
+    50% {
+        content: url('/img/bam-false1.png');
+    }
+}
 @keyframes bujok-true0 {
     50% {
         content: url('/img/bburi-true1.png');
@@ -70,6 +75,11 @@
 @keyframes bujok-true2 {
     50% {
         content: url('/img/bawi-true1.png');
+    }
+}
+@keyframes bujok-true3 {
+    50% {
+        content: url('/img/bam-true1.png');
     }
 }
 
@@ -295,6 +305,10 @@ $l-foot : calc($c_width / 10.868);
     content: url('/img/bawi-false0.png');
     animation: bujok2 1.5s step-end infinite;
 }
+.bam{
+    content: url('/img/bam-false0.png');
+    animation: bujok3 1.5s step-end infinite;
+}
 
 
 .bburiActive{
@@ -309,4 +323,8 @@ $l-foot : calc($c_width / 10.868);
 .bawiActive{
     content: url('/img/bawi-true0.png');
     animation: bujok-true2 1.5s step-end infinite;
+}
+.bamActive{
+    content: url('/img/bam-true0.png');
+    animation: bujok-true3 1.5s step-end infinite;
 }

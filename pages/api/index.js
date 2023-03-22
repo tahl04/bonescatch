@@ -34,14 +34,23 @@ const handler = async (req, res) => {
   const insertData = async () => {
     let { ID, NAME, CODENAME, PASS, TRIBE } = body;
 
-    let data = await executeQuery("insert into TBL_USER (ID,NAME,CODENAME,PASS,TRIBE) value (?,?,?,?,?)", [ID, NAME, CODENAME, PASS, TRIBE]);
-
-    let { USER, DRAW, STATE, TITLE } = body;
-    let datas = await executeQuery("insert into TBL_POST (ID,USER,DRAW,STATE,TITLE) value (?,?,?,?,?)", [ID, USER, DRAW, STATE, TITLE]);
-    let { DATE, CODE, COMMENT } = body;
-    let datass = await executeQuery("insert into TBL_POST (ID,USER,DATE,CODE,COMMENT) value (?,?,?,?,?)", [ID, USER, DATE, CODE, COMMENT]);
-    res.json({ USER: data, POST: datas, COMMENT: datass });
-  };
+    let data = await executeQuery(
+      'insert into TBL_USER (ID,NAME,CODENAME,PASS,TRIBE) value (?,?,?,?,?)',
+      [ID,NAME,CODENAME,PASS,TRIBE]
+    );
+    
+    let {USER,DRAW,STATE,TITLE} = body;
+    let datas = await executeQuery(
+      'insert into TBL_POST (ID,USER,DRAW,STATE,TITLE) value (?,?,?,?,?)',
+      [ID,USER,DRAW,STATE,TITLE]
+    );
+    let {DATE,COUNT,COMMENT} = body;
+    let datass = await executeQuery(
+      'insert into TBL_COMMENT (ID,USER,DATE,COUNT,COMMENT) value (?,?,?,?,?)',
+      [ID,USER,DATE,COUNT,COMMENT]
+    );
+    res.json({USER:data,POST:datas,COMMENT:datass})
+  }
 
   switch (method) {
     case "GET":

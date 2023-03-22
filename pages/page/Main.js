@@ -40,7 +40,8 @@ function Main() {
                             ? <p>{res.TITLE}</p>
                             : <p>글자 수 : {res.TITLE.length}</p>
                         }
-                        <img src={res.DRAW}></img>
+                        <img src={res.DRAW} className={m.bonescatch}></img>
+                        <img className={m.underLine}></img>
                     </div>
                     })
                 }
