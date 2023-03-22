@@ -47,14 +47,14 @@ function Lantern() {
 
 
 
-  return (
-    <>
-        <div ref={torch} className={l.tWrap}>
-            <div ref={torchLight} className={l.torch}/>
-        <div ref={lamp} className={l.lamp}/>
-        </div>
-    </>
-  )
+    return (
+        <>
+            <div ref={torch} className={l.tWrap}>
+                <div ref={torchLight} className={l.torch}/>
+            <div ref={lamp} className={l.lamp}/>
+            </div>
+        </>
+    )
 }
 
 export default Lantern

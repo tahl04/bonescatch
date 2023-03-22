@@ -2,7 +2,7 @@ import axios from "axios";
 import Header from "./Header";
 import Lantern from "./Lantern";
 
-const { createContext, useState } = require("react");
+const { createContext, useState, useEffect } = require("react");
 export const DataContext = createContext(null);
 
 
@@ -11,6 +11,7 @@ export const DataContext = createContext(null);
 
 const MyContext = ({ children }) => {
     const [data, setData] = useState();
+    const [aa,AA] = useState(false);
 
     async function dataFun(type, obj) {
 
@@ -18,7 +19,7 @@ const MyContext = ({ children }) => {
         if (type == 'get') {
             await axios.get('/api').then(res => trans = res.data)
         } else if (type == 'post') {
-            // console.log(obj)
+            console.log(obj);
             trans = await axios.post('https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api', obj)
             // trans = await axios.post('http://localhost:3000/api', obj)
         } else if (type == 'put') {
@@ -29,6 +30,12 @@ const MyContext = ({ children }) => {
         // setData(trans)
         setData(trans)
     }
+    
+
+    
+useEffect(() => {
+    dataFun('get');
+}, []);
 
 
     return (
@@ -39,6 +46,7 @@ const MyContext = ({ children }) => {
         </DataContext.Provider>
     )
 }
+
 
 
 

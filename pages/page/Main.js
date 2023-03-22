@@ -1,17 +1,20 @@
 // import React,{ useRef, useEffect, useContext, useState } from 'react'
-import React from 'react'
+// import axios from 'axios'
+import React, { useContext } from 'react'
 import { useRouter } from 'next/router'
-import axios from 'axios'
 import m from '@/styles/main.module.scss'
 import Link from 'next/link'
+import { DataContext } from '../src/MyContext'
 
 
-function Main({ data }) {
-
+function Main() {
     const { pathname } = useRouter();
+    const {aa,data} = useContext(DataContext);
+
+    console.log(aa)
 
 
-    console.log(data)
+    console.log(data);
     
     if (!data) return (<>돌 날카롭게 깎는중.....</>)
     return (
@@ -21,6 +24,8 @@ function Main({ data }) {
             <Link className={m.Write} href='/page/Write'>
                 글 작성하러가기
             </Link>
+
+            
             <div className={m.Mwrap}>
                 <div className={m.Mtop}></div>
                 <div className={m.Mbot}></div>
@@ -45,42 +50,24 @@ function Main({ data }) {
             <div className={m.footer}></div>
 
 
-
-        {/* {
-            data['USER'].map((res) => {
-            return <div key={res.ID}>
-                <p > {res.ID} </p>
-                <p > {res.CODENAME} </p>
-                <p > {res.NAME} </p>
-            </div>
-            })
-        }
-        {
-            data['POST'].map((res, key) => {
-            return <div key={res.ID}>
-                <p > {res.ID} </p>
-                <p > {res.STATE} </p>
-                <p > {res.TITLE} </p>
-                <p > {res.USER} </p>
-                <img ref={el => (post.current[key] = el)} src={res.DRAW}></img>
-            </div>
-            })
-        } */}
         </>
     )
 }
 
 export default Main
-export async function getServerSideProps() {
-    const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`)
-    // const res = await axios.get(`http://localhost:3000/api`)
-    const data = res.data;
+
+// export async function getServerSideProps() {
+// export async function getStaticProps() {
+//     // const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`);
+//     const res = await axios.get(`http://localhost:3000/api`);
+//     const data = res.data;
     
-    data['POST'] = data['POST'].map(obj =>{
-        let buf = new Buffer(obj.DRAW);
-        let base64String = buf.toString('utf-8');
-        obj.DRAW = base64String;
-        return obj;
-    });  
-    return { props: { data } }
-}
+//     //db에 저장된 이미지코드를 src화 시키는 작업
+//     data['POST'] = data['POST'].map(obj =>{
+//         let buf = new Buffer(obj.DRAW);
+//         let base64String = buf.toString('utf-8');
+//         obj.DRAW = base64String;
+//         return obj;
+//     });  
+//     return { props: { data } }
+// }

@@ -33,6 +33,7 @@ const Write = () => {
     const useColors = useRef([]);
     const brushSize = useRef([]);
     const backBtn = useRef([]);
+    const allDel = useRef([]);
     const selectParts = useRef([]);
     // const [useColor, setColor] = useState();
     
@@ -101,16 +102,47 @@ const Write = () => {
         })
             ctx.strokeStyle = strokeCol;
     
+
+            //뒤로가기 버튼
+            //keycode 17 90
+
+            document.addEventListener('keydown', function(e){
+                const keyCode = e.keyCode;
+                // console.log('pushed key ' + e.key);
+            
+                if(keyCode == 17){
+                    
+                    console.log("gd");
+                    // if(keyCode == 90){
+                    //     console.log("gdasdsad");
+                    // }
+                } 
+                // else if(keyCode == 9){ 
+                //     // Tab key
+                // //   document.dispatchEvent(new KeyboardEvent('keydown', {key: 't'}));
+                //   // document.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
+                // }
+            })
             backBtn.current.addEventListener('click',()=>{
-                const context = canvasw.current.getContext("2d");
+                // const context = canvasw.current.getContext("2d");
                 if(index <=0){
                     clear_canvas();
                 }else{
                     index -= 1;
                     restore_array.pop();
-                    context.putImageData(restore_array[index],0,0);
+                    ctx.putImageData(restore_array[index],0,0);
                 }
             })
+
+            //지우기 버튼
+            allDel.current.addEventListener('click',()=>{
+                // const context = canvasw.current.getContext("2d");
+                ctx.fillStyle = start_background_color;
+                ctx.clearRect(0,0,canvas.width, canvas.height);
+                ctx.fillRect(0,0,canvas.width, canvas.height);
+                restore_array=[];
+                index =-1;
+            });
         
         canvas.addEventListener('mousedown', function(e) {
             index += 1;
@@ -148,18 +180,6 @@ const Write = () => {
         restore_array=[];
         index =-1;
     }
-    //뒤로 가기
-    // function undo_last(){
-    //     const context = canvasw.current.getContext("2d");
-    //     if(index <=0){
-    //         clear_canvas();
-    //     }else{
-    //         index -= 1;
-    //         restore_array.pop();
-    //         context.putImageData(restore_array[index],0,0);
-    //     }
-    // }
-
     //완료 버튼 누를 시
     const canvasSave = ()=>{
         //캔버스에서 그리던 그림을 data화 시켜서 옮기는 과정
@@ -311,7 +331,8 @@ const Write = () => {
                                     <button onClick={saveImage}>캔버스 값 가져오기</button>
                                     {/* <button onClick={undo_last} type="button">되돌리기</button> */}
                                     <button ref={backBtn} type="button">되돌리기</button>
-                                    <button onClick={clear_canvas} type="button">지우기</button>
+                                    {/* <button ref={allDel} onClick={clear_canvas} type="button">지우기</button> */}
+                                    <button ref={allDel} type="button">지우기</button>
                                 </div>
                             </div>
                         </nav>

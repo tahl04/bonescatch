@@ -21,6 +21,13 @@ const handler = async (req, res) => {
       let data = await executeQuery('select * from TBL_USER order by ID DESC', []);
       let datas = await executeQuery('select * from TBL_POST order by ID DESC', []);
       let datass = await executeQuery('select * from TBL_COMMENT order by ID DESC', []);
+      
+    datas.map(obj=>{
+      let buf = new Buffer(obj.DRAW);
+        let base64String = buf.toString('utf-8');
+        obj.DRAW = base64String;
+        return obj;
+    })
       res.json({USER:data,POST:datas,COMMENT:datass})
     } catch (err) {
       res.send(err)

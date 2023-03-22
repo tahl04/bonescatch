@@ -4,24 +4,65 @@ import lo from '@/styles/login.module.scss'
 import React,{ useRef, useEffect, useContext, useState } from 'react'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
+import { DataContext } from '../src/MyContext'
 
-function SignUp( { data } ) {
+function SignUp( ) {
+    const {data} = useContext(DataContext);
     const { pathname } = useRouter();
+
+    
     const fire0 = useRef();
     const fire1 = useRef();
     const CODEN = useRef();
     const USERN = useRef();
     const PASSN = useRef();
+    const bujok = useRef([]);
     const initial = {CODENAME:''}
     const [inputValue, setValue] = useState(initial);
     // const switch = useRef();
     const [useCheckID,setId] = useState(false);
+
+
+    const [bburi,setBburi] = useState(false);
+    const [bada,setBada] = useState(false);
+    const [bawi,setBawi] = useState(false);
+    const [BuName,setBuName] = useState("");
     
     
     useEffect(() => {
+
+        
+        bujok.current.map((obj, key)=>{
+            obj.addEventListener('click',()=>{
+                if(key === 0){
+                    setBburi(true);
+                    setBada(false);
+                    setBawi(false);
+                    setBuName(" : 뿌리 풍뎅이");
+                }
+                if(key === 1){
+                    setBburi(false);
+                    setBada(true);
+                    setBawi(false);
+                    setBuName(" : 바다 집게");
+                }
+                if(key === 2){
+                    setBburi(false);
+                    setBada(false);
+                    setBawi(true);
+                    setBuName(" : 바위 맷돼지");
+                    
+                }
+            });
+        })
+
+
     }, [pathname]);
 
-    // console.log(data);
+
+
+
+    console.log(data);
     
     function valueChange(e) {
         let t = e.target;
@@ -107,16 +148,15 @@ function SignUp( { data } ) {
                 <input ref={USERN} onChange={valueChange} type="text" placeholder='아이디' name="USER" autoComplete='off'/>
                 <input ref={PASSN} onChange={valueChange} type="password" placeholder='비밀번호' name="PASS"/>
                 
-                <h3>부족 선택</h3>
+                <h3>부족 선택 {BuName}</h3>
                 <figcaption>
-                    <img></img>
-                    <img></img>
-                    <img></img>
-                    <img></img>
+                    <img ref={el => (bujok.current[0] = el)} className={`${lo.bburi} ${bburi && lo.bburiActive}`}></img>
+                    <img ref={el => (bujok.current[1] = el)} className={`${lo.bada} ${bada && lo.badaActive}`}></img>
+                    <img ref={el => (bujok.current[2] = el)} className={`${lo.bawi} ${bawi && lo.bawiActive}`}></img>
                 </figcaption>
 
                 <nav>
-                    <imput type='button' className={lo.submitBtn} onClick={create}>생성!</imput>
+                    <div className={lo.submitBtn} onClick={create}>생성!</div>
                     <Link href="/" className={lo.submitBtn}>취소!</Link>
                 </nav>
                 
@@ -133,20 +173,15 @@ function SignUp( { data } ) {
 
 }
 
+//오류의 잔해,,
 
-export async function getServerSideProps() {
-    const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`)
-    // const res = await axios.get(`http://localhost:3000/api`)
-    const data = res.data;
-    
-  //   data['POST'] = data['POST'].map(obj =>{
-  //     let buf = new Buffer(obj.DRAW);
-  //     let base64String = buf.toString('utf-8');
-  //     obj.DRAW = base64String;
-  //     return obj;
-  // });  
-    return { props: { data } }
-}
+
+// export async function getStaticProps() {
+//     // const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`);
+//     const res = await axios.get(`http://localhost:3000/api`);
+//     const data = res.data;
+//     return { props: { data } }
+// }
 
 
 export default SignUp

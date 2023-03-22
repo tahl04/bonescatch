@@ -1,12 +1,14 @@
 import axios from 'axios'
 import lo from '@/styles/login.module.scss'
 import { useRef, useEffect, useContext, useState } from 'react'
+import { DataContext } from './src/MyContext'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 
-export default function Home({ data }) {
+export default function Home() {
 
+  const {data} = useContext(DataContext);
   const { pathname } = useRouter();
   const fire0 = useRef();
   const fire1 = useRef();
@@ -53,11 +55,12 @@ export default function Home({ data }) {
 
 }
 
-export async function getServerSideProps() {
-  const res = await axios.get('https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api')
-  // const res = await axios.get('http://localhost:3000/api')
-  const data = res.data;
-  console.log(data)
-  return { props: { data } }
-}
+// export async function getServerSideProps() {
+// export async function getStaticProps() {
+//   // const res = await axios.get('https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api')
+//   const res = await axios.get('http://localhost:3000/api')
+//   const data = res.data;
+//   console.log(data)
+//   return { props: { data } }
+// }
 
