@@ -1,109 +1,63 @@
 import axios from "axios";
 // import React from 'react'
 
-import lo from '@/styles/login.module.scss'
-import React,{ useRef, useEffect, useContext, useState } from 'react'
-import { useRouter } from 'next/router'
-import Link from 'next/link'
-import { DataContext } from '../src/MyContext'
+import lo from "@/styles/login.module.scss";
+import React, { useRef, useEffect, useContext, useState } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { DataContext } from "../src/MyContext";
 
-function SignUp( ) {
-    const {data} = useContext(DataContext);
-    const { pathname } = useRouter();
+function SignUp() {
+  const { pathname } = useRouter();
   const [accountresult, setAccountresult] = useState({ nick: "", id: "", tri: "" });
 
-    
-    const fire0 = useRef();
-    const fire1 = useRef();
-    const CODEN = useRef();
-    const USERN = useRef();
-    const PASSN = useRef();
-    const bujok = useRef([]);
+  const fire0 = useRef();
+  const fire1 = useRef();
+  const CODEN = useRef();
+  const USERN = useRef();
+  const PASSN = useRef();
+  const bujok = useRef([]);
   const initial = { CODENAME: "", USER: "", PASS: "", TRIBE: "" };
-    const [inputValue, setValue] = useState(initial);
-    // const switch = useRef();
-    const [useCheckID,setId] = useState(false);
+  const [inputValue, setValue] = useState(initial);
+  // const switch = useRef();
+  const [useCheckID, setId] = useState(false);
 
+  const [bburi, setBburi] = useState(false);
+  const [bada, setBada] = useState(false);
+  const [bawi, setBawi] = useState(false);
+  const [bam, setBam] = useState(false);
+  const [BuName, setBuName] = useState("");
 
-    const [bburi,setBburi] = useState(false);
-    const [bada,setBada] = useState(false);
-    const [bawi,setBawi] = useState(false);
-    const [bam,setBam] = useState(false);
-    const [BuName,setBuName] = useState("");
-    
-    
-    useEffect(() => {
-
-        
-        bujok.current.map((obj, key)=>{
-            obj.addEventListener('click',()=>{
-                if(key === 0){
-                    setBburi(true);
-                    setBada(false);
-                    setBawi(false);
-                    setBam(false)
-                    setBuName(" : 뿌리 풍뎅이");
-                }
-                if(key === 1){
-                    setBburi(false);
-                    setBada(true);
-                    setBawi(false);
-                    setBam(false)
-                    setBuName(" : 바다 집게");
-                }
-                if(key === 2){
-                    setBburi(false);
-                    setBada(false);
-                    setBawi(true);
-                    setBam(false)
-                    setBuName(" : 바위 맷돼지");
-                    
-                }
-                if(key === 3){
-                    setBburi(false);
-                    setBada(false);
-                    setBawi(false);
-                    setBam(true)
-                    setBuName(" : 밤 까마귀");
-                    
-                }
-            });
-        })
-
-
-    }, [pathname]);
-
-
-
-
-    console.log(data);
-    
-    function valueChange(e) {
-        let t = e.target;
-        setValue({ ...inputValue, [t.name]: t.value });
-        console.log(inputValue);
-    }
-
-
-    function create(e) {
-        e.preventDefault();
-        if(!useCheckID){
-            alert('닉네임을 중복확인을 해주세요.');
-            CODEN.current.focus();
-
-            return;
+  useEffect(() => {
+    bujok.current.map((obj, key) => {
+      obj.addEventListener("click", () => {
+        if (key === 0) {
+          setBburi(true);
+          setBada(false);
+          setBawi(false);
+          setBam(false);
+          setBuName(" : 뿌리 풍뎅이");
         }
         if (key === 1) {
           setBburi(false);
           setBada(true);
           setBawi(false);
+          setBam(false);
           setBuName(" : 바다 집게");
         }
         if (key === 2) {
           setBburi(false);
           setBada(false);
           setBawi(true);
+          setBam(false);
           setBuName(" : 바위 맷돼지");
+        }
+        if (key === 3) {
+          setBburi(false);
+          setBada(false);
+          setBawi(false);
+          setBam(true);
+          setBuName(" : 밤 까마귀");
         }
       });
     });
@@ -144,7 +98,8 @@ function SignUp( ) {
         })
         .then((res) => {
           if (res.data.message === "error") {
-            setAccountresult({ ...accountresult, nick: res.data.nick, id: res.data.id });
+            console.log(res.data.data);
+            setAccountresult({ ...accountresult, nick: res.data.data.nick, id: res.data.data.id });
           } else if (res.data.message === "CreateUser") {
             //  로그인페이지로이동
             console.log("to sign in");
@@ -188,7 +143,11 @@ function SignUp( ) {
                 className={`${lo.bawi} ${bawi && lo.bawiActive}`}
                 onClick={() => setValue({ ...inputValue, TRIBE: 2 })}
               ></img>
-                    <img ref={el => (bujok.current[3] = el)} className={`${lo.bam} ${bam && lo.bamActive}`} onClick={()=>setValue({...inputValue,TRIBE:3})}></img>
+              <img
+                ref={(el) => (bujok.current[3] = el)}
+                className={`${lo.bam} ${bam && lo.bamActive}`}
+                onClick={() => setValue({ ...inputValue, TRIBE: 3 })}
+              ></img>
             </figcaption>
             <p>{accountresult && accountresult.tri}</p>
 

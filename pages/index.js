@@ -34,9 +34,9 @@ export default function Home() {
               <Link className={lo.submitBtn} href="/page/SignUp">
                 회원가입
               </Link>
-              <imput type="button" className={lo.submitBtn} placeholder="아이디">
+              <div type="button" className={lo.submitBtn} placeholder="아이디">
                 로그인
-              </imput>
+              </div>
             </nav>
           </form>
         </div>
