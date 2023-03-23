@@ -11,7 +11,7 @@ $c_width : 845px;
 $l_head : calc($c_width / 14.75);
 $l_body : calc($c_width / 1.265);
 $l-foot : calc($c_width / 10.868);
-$l-underline-w : calc($c_width / 1.15);
+$l-underline-w : calc($c_width / 1.65);
 $l-underline-h : calc($l-underline-w / 29.5);
 
 
@@ -134,4 +134,9 @@ $l-underline-h : calc($l-underline-w / 29.5);
 }
 .underLine{
     @include underline(){}
+}
+
+.linkDetail{
+    position: relative;
+    border: 3px solid rgb(255, 255, 255);
 }

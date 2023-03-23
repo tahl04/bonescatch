@@ -1,0 +1,176 @@
+@mixin flex($a: space-around, $b: center) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    @content;
+}
+
+
+
+@keyframes po-trans0 {
+    50% {
+        background-image: url('/img/list-head1.png');
+    }
+}
+@keyframes po-trans1 {
+    50% {
+        background-image: url('/img/list-body7.png');
+    }
+}
+@keyframes po-trans2 {
+    50% {
+        background-image: url('/img/list-footer1.png');
+    }
+}
+
+@keyframes po-trans3 {
+    50% {
+        background-image: url('/img/palette1.png');
+    }
+}
+
+$c_width : 840px;
+$c_b_width : calc($c_width / 2);
+$l_head : calc($c_width / 14.75);
+$l_body : calc($c_width / 5.067);
+$l_body_main : calc($c_width / 1.746);
+$l-foot : calc($c_width / 10.868);
+
+$po_width : 800px;
+$po_head : calc($po_width / 14.75);
+$po_body : calc($po_width / 5.067);
+$po_body_main : calc($po_width / 1.746);
+$po-foot : calc($po_width / 10.868);
+
+
+
+
+// $topBot : $l_head + $l-foot;
+// $b_height1 : $topBot + $l_body_main;
+// $b_height0 : $topBot + $l_body;
+// $c_b_height1 : $b_height1 / 2;
+// $c_b_height0 : $b_height0 / 2;
+
+
+$w-select-w : calc($c_width);
+$w-select-h : calc($w-select-w / 5.657);
+
+
+
+
+
+@mixin top($a:$c_width, $b:$l_head) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-head0.png');
+    animation: po-trans0 1.2s step-end infinite;
+    @content;
+}
+@mixin body($a:$c_width, $b:$l_body) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-body2.png');
+    animation: po-trans1-1 1.7s step-end infinite;
+    @content;
+}
+@mixin body_s($a:$c_width, $b:$l_body_main) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-body6.png');
+    animation: po-trans1 1.7s step-end infinite;
+    @content;
+}
+@mixin foot($a:$c_width, $b:$l_foot) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-footer0.png');
+    animation: po-trans2 1.5s step-end infinite;
+    @content;
+}
+
+@mixin select($a : $w-select-w, $b : $w-select-h) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/palette0.png');
+    animation: m-trans3 1.5s step-end infinite;
+    @content;
+}
+
+
+
+.postWrap{
+    width: 100%;
+    overflow: hidden;
+    // border: 8px solid #f00;
+}
+
+.boxWrap{
+    padding-top: 200px;
+    // position: absolute;
+    // top: calc(50% - $c_b_height1);
+    // left: calc(50% - $c_b_width);
+    @include flex(center){
+        flex-direction: column;
+    }
+}
+.boxTop{
+    @include top(){}
+    @include flex(){}
+}
+.boxMid{
+    padding-top: 20px;
+    @include flex(){
+        flex-direction: column;
+    }
+    @include body_s(){}
+    h3{
+        @include flex(){}
+        h2{
+            padding: 0 20px;
+        }
+    }
+}
+.boxBot{
+
+    @include foot(){}
+}
+.boxTop1{
+    @include top($po_width, $po_head){}
+    @include flex(){}
+}
+.boxMid1{
+    @include body_s($po_width, $po_body_main){}
+}
+.boxBot1{
+
+    @include foot($po_width, $po_foot){}
+}
+.bonescatch{
+    width: 60%;
+    border: 3px solid #000;
+}
+.codeNameBox{
+    width: 350px;
+    height: 100px;
+    background-color: #fff;
+    margin-bottom: 35px;
+    // border: 1px solid #f00;
+    // transform: translateY(-10px);
+    @include flex(){
+
+    }
+    h1{
+        font-size: 30px;
+    }
+}
+.titleState{
+    @include select(){}
+    form{
+        position: relative;
+    }
+}

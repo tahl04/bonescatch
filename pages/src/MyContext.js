@@ -23,9 +23,10 @@ const MyContext = ({ children }) => {
     }
     setData(trans);
   }
+  
 
   useEffect(() => {
-    dataFun("get", data);
+    dataFun("get");
   }, []);
 
 

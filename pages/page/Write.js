@@ -36,7 +36,7 @@ const Write = () => {
   let index = -1;
   let restore_array = [];
   //디비
-  const { dataFun } = useContext(DataContext);
+  const { dataFun,who } = useContext(DataContext);
   const router = useRouter();
   const initial = { USER: "", DRAW: "", TITLE: "", STATE: "" };
   const [inputValue, setValue] = useState(initial);
@@ -289,13 +289,14 @@ const Write = () => {
   //디비
   function valueChange(e) {
     let t = e.target;
-    setValue({ ...inputValue, [t.name]: t.value });
+    setValue({ ...inputValue, [t.name]: t.value , USER:who[0].ID, STATE:'활성화',USERCODE:who[0].CODENAME});
   }
 
-  function create(e) {
+  async function create(e) {
     e.preventDefault();
     dataFun("post", inputValue);
-    router.push("/");
+    await dataFun("get");
+    router.push("/page/Main");
   }
   return (
     <>
@@ -430,14 +431,14 @@ const Write = () => {
         <div className={wr.textBox}>
           <form onSubmit={create}>
             <p>
-              <input onChange={valueChange} type="text" placeholder="이름" name="USER" />
+              {/* <input onChange={valueChange} type="text" placeholder="이름" name="USER" /> */}
             </p>
             {/* <p><input onChange={valueChange} type="text" placeholder='사진경로' name="datazz" /></p> */}
             <p>
               <input onChange={valueChange} type="text" placeholder="제목" name="TITLE" />
             </p>
             <p>
-              <input onChange={valueChange} type="text" placeholder="상태" name="STATE" />
+              {/* <input onChange={valueChange} type="text" placeholder="상태" name="STATE" /> */}
             </p>
             {/* <p><input onChange={valueChange} type="text" placeholder='제목' name="TITLE" /></p> */}
             <p>

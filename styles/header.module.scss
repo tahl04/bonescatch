@@ -50,6 +50,7 @@
     @include flex(space-between){}
     .link{
         img{
+            cursor: pointer;
             // border: 2px solid #f00;
             width: 300px;
             height: auto;

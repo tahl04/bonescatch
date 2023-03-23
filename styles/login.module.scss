@@ -135,14 +135,56 @@
       right: -1000px;
   }
 }
+@keyframes box-move-open {
+  0% {
+    transform: translateY(-1000px);
+  }
+  25%{
+    transform: translateY(50px);
+  }
+  45%{
+    transform: translateY(-20px);
+  }
+  100% {transform: translateY(0px);
+  }
+}
+@keyframes box-move-close {
+  0% {transform: translateY(0px);
+  }
+  20%{
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(-1000px);
+  }
+}
+// @keyframes box-move-close {
+//   0% {
+//       right: -370px;
+      
+//       transform: rotate(-16deg);
+//   }
+//   100% {
+//       transform: rotate(16deg);
+//       right: -1000px;
+//   }
+// }
 
 
 
 $c_width : 840px;
+$c_b_width : calc($c_width / 2);
 $l_head : calc($c_width / 14.75);
 $l_body : calc($c_width / 5.067);
 $l_body_s : calc($c_width / 1.746);
 $l-foot : calc($c_width / 10.868);
+
+$topBot : $l_head + $l-foot;
+$b_height1 : $topBot + $l_body_s;
+$b_height0 : $topBot + $l_body;
+$c_b_height1 : $b_height1 / 2;
+$c_b_height0 : $b_height0 / 2;
+
 
 
 
@@ -188,9 +230,39 @@ $l-foot : calc($c_width / 10.868);
   // background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 82%);
   overflow: hidden;
   z-index: 8;
+  
+}
+.dolBox0{
+  position: absolute;
+  top: calc(50% - $c_b_height0);
+  left: calc(50% - $c_b_width);
   @include flex(center){
       flex-direction: column;
   }
+}
+.dolBox1{
+  position: absolute;
+  top: calc(50% - $c_b_height1);
+  left: calc(50% - $c_b_width);
+  @include flex(center){
+      flex-direction: column;
+  }
+}
+.dolBoxOpen0{
+  transform: translateY(-1000px);
+  animation: box-move-open 1.8s forwards;
+}
+.dolBoxOpen1{
+  transform: translateY(-1000px);
+  animation: box-move-open 1.8s forwards;
+}
+.dolBoxClose0{
+  transform: translateY(-1000px);
+  animation: box-move-close .7s forwards;
+}
+.dolBoxClose1{
+  transform: translateY(-1000px);
+  animation: box-move-close .7s forwards;
 }
 
 .logTop{
@@ -209,21 +281,25 @@ $l-foot : calc($c_width / 10.868);
 }
 
 .leftWrap{
+  z-index: 8;
   position: fixed;
   top: 10%;
   left: -1000px;
   transform: rotate(16deg);
   transition: .3s;
   animation: lo-move0 1.5s forwards;
+  animation-delay: .5s;
   
 }
 .rightWrap{
+  z-index: 8;
   position: fixed;
   top: 10%;
   right: -1000px;
   transform: rotate(-16deg);
   transition: .3s;
   animation: lo-move1 1.5s forwards;
+  animation-delay: .5s;
 }
 
 .leftWrapClose{
@@ -301,10 +377,6 @@ $l-foot : calc($c_width / 10.868);
           height: 100px;
       }
   }
-  nav{
-      width: 100%;
-      @include flex(flex-end){}
-  }
   button{
       font-size: 16px;
       position: relative;
@@ -320,11 +392,16 @@ $l-foot : calc($c_width / 10.868);
       @include flex(){}
   }
 }
-
+.navDiv{
+    width: 100%;
+    @include flex(flex-end){}
+}
 .submitBtn{
   font-size: 16px;
   position: relative;
   margin: 12px 0 0 10px;
+  padding: 0;
+  margin: 0 15px;
   width: 120px;
   height: 30px;
   cursor: pointer;
@@ -332,7 +409,7 @@ $l-foot : calc($c_width / 10.868);
   font-weight: normal;
   background-color: #745424;
   border-radius: 4px;
-  border: 3px solid rgba(61, 34, 16, .5);
+  border: 3px solid rgb(61, 34, 16);
   @include flex(){}
 }
 .bburi{

@@ -24,18 +24,34 @@ const handler = async (req, res) => {
         obj.DRAW = base64String;
         return obj;
       });
-
       res.json({ USER: data, POST: datas, COMMENT: datass });
     } catch (err) {
       res.send(err);
     }
   };
 
+  const insertData = async () => {
+    
+    let {ID, USER, DRAW, STATE, TITLE, COUNT, COMMENT, DATE, USERCODE} = body;
+    let datas = await executeQuery(
+      'insert into TBL_POST (ID,USER,DRAW,STATE,TITLE,USERCODE) value (?,?,?,?,?,?)',
+      [ID,USER,DRAW,STATE,TITLE,USERCODE]
+    );
+    // let datass = await executeQuery(
+    //   'insert into TBL_COMMENT (ID,DATE,USER,COUNT,COMMENT) value (?,?,?,?,?)',
+    //   [ID,DATE,USER,COUNT,COMMENT]
+    // );
+    res.json({...USER,...COMMENT, POST:datas})
+  }
+
+
+
   switch (method) {
     case "GET":
       seletData();
       break;
     case "POST":
+      insertData();
       break;
     default:
       return;

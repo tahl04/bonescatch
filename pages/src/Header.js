@@ -7,7 +7,7 @@ import { DataContext } from "./MyContext";
 
 function Header() {
   const audio = useRef();
-  const {pageChange, setClose} = useContext(DataContext);
+  const {who, pageChange, setClose, dataFun} = useContext(DataContext);
   const [audioPlay,setAudio] = useState(false);
   const router = useRouter();
 
@@ -28,11 +28,16 @@ function Header() {
     if(!pageChange){
       setClose(true);
       let closed;
-      closed = setTimeout(function(){
-        // setClose(!pageChange);
+      closed = setTimeout(async function(){
+        setClose(!pageChange);
+        await dataFun("get");
         router.push('/page/Main');
-      }, 700);
-    }else{
+      }, 1000);
+    }
+    // else if(!who){
+    //   console.log("진입 불가")
+    // }
+    else{
       router.push('/page/Main');
     }
   }

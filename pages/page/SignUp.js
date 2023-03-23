@@ -31,7 +31,6 @@ function SignUp() {
   const [BuName, setBuName] = useState("");
 
   useEffect(() => {
-    setClose(false);
     bujok.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {
@@ -64,6 +63,7 @@ function SignUp() {
         }
       });
     });
+    setClose(false);
   }, [pathname]);
 
   function valueChange(e) {
@@ -117,19 +117,22 @@ function SignUp() {
     closed = setTimeout(function(){
       // setClose(!pageChange);
       router.push('/');
-    }, 700);
+    }, 1000);
   }
 
 
   return (
     <>
+      <div className={pageChange ? lo.leftWrapClose : lo.leftWrap}>
+        <img ref={fire0} className={lo.fireLeft} />
+      </div>
+      <div className={pageChange ? lo.rightWrapClose : lo.rightWrap}>
+        <img ref={fire1} className={lo.fireRight} />
+      </div>
       <div className={lo.logWrap}>
-        <div className={pageChange ? lo.leftWrapClose : lo.leftWrap}>
-          <img ref={fire0} className={lo.fireLeft} />
-        </div>
-        <div className={pageChange ? lo.rightWrapClose : lo.rightWrap}>
-          <img ref={fire1} className={lo.fireRight} />
-        </div>
+
+    {/* <div className={lo.box}> */}
+    <div className={`${lo.dolBox1} ${pageChange ? lo.dolBoxClose1 : lo.dolBoxOpen1}`}>
         <div className={lo.logTop}></div>
         <div className={lo.logBodyS}>
           <form className={lo.form}>
@@ -165,17 +168,22 @@ function SignUp() {
             </figcaption>
             <p>{accountresult && accountresult.tri}</p>
 
-            <nav>
+            <div className={lo.navDiv}>
               <div className={lo.submitBtn} onClick={create}>
                 생성!
               </div>
               <div onClick={closeFire} className={lo.submitBtn}>
                 취소!
               </div>
-            </nav>
+            </div>
           </form>
         </div>
         <div className={lo.logFoot}></div>
+        </div>
+    {/* </div> */}
+        
+
+
       </div>
     </>
   );
