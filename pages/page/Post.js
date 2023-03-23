@@ -28,37 +28,15 @@ function Post() {
 
     //디비
     function valueChange(e) {
-        setCmCount(1);
         let t = e.target;
-        let arry = [];
-        data['COMMENT'].map((obj,key)=>{
-            if(obj.USER == who[0].ID){
-                arry.push(obj.COUNT);
-            }
-        })
-        if(arry.length === 3){
-            return alert("더이상 입력 할 수 없습니다");
-        }else if(arry.length === 2){
-            return setCmCount(3)
-        }else if(arry.length === 1){
-            return setCmCount(2)
-        }else if(arry.length === 0){
-            return setCmCount(1)
-        }
 
-        setValue({ ...inputValue, [t.name]: t.value ,COUNT:CmCount});
-        console.log(inputValue)
-    
-    }
-    async function create(e) {
-        e.preventDefault();
-        let t = e.target;
         let arry = [];
-        data['COMMENT'].map((obj,key)=>{
+        data['COMMENT'].forEach(obj => {
             if(obj.USER == who[0].ID){
                 arry.push(obj.COUNT);
             }
         })
+        console.log(arry);
         setCmCount(1);
         if(arry.length === 3){
             alert("더이상 입력 할 수 없습니다");
@@ -69,9 +47,13 @@ function Post() {
         }else if(arry.length === 0){
             setCmCount(1)
         }
-        
         setValue({COMMENT: commentVal.current.value, COUNT:CmCount, USER:who[0].ID});
-        console.log(inputValue)
+        // console.log(inputValue)
+        console.log(inputValue);
+    
+    }
+    async function create(e) {
+        e.preventDefault();
 
         // dataFun("post", inputValue);
         // await dataFun("get");
@@ -100,7 +82,7 @@ data["POST"].map((obj, key)=>{
                 </div>
                 <div className={po.boxBot}></div>
                 <div className={po.titleState}>
-                    
+                 
                 <form onSubmit={create}>
                     <input ref={commentVal} onChange={valueChange} type="text" placeholder="제목" name="COMMENT" />
                     {/* {
