@@ -98,7 +98,6 @@ function SignUp() {
         })
         .then((res) => {
           if (res.data.message === "error") {
-            console.log(res.data.data);
             setAccountresult({ ...accountresult, nick: res.data.data.nick, id: res.data.data.id });
           } else if (res.data.message === "CreateUser") {
             //  로그인페이지로이동
