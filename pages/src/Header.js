@@ -1,28 +1,42 @@
 import React from 'react'
 import Link from 'next/link'
 import hd from '@/styles/header.module.scss'
+import { useRouter } from "next/router";
 import { useRef, useEffect, useContext, useState } from 'react'
+import { DataContext } from "./MyContext";
 
 function Header() {
   const audio = useRef();
+  const {pageChange, setClose} = useContext(DataContext);
+  const [audioPlay,setAudio] = useState(false);
+  const router = useRouter();
 
   
   function togglePlay () {
     if (!audio.current.paused) {
       audio.current.pause();
-      setA(!a);
+      setAudio(!audioPlay);
     } else {
       audio.current.play();
-      setA(!a);
+      setAudio(!audioPlay);
     }
   }
   useEffect(() => {
   }, []);
 
-  
-// ;
+  function pageChangeHead(){
+    if(!pageChange){
+      setClose(true);
+      let closed;
+      closed = setTimeout(function(){
+        // setClose(!pageChange);
+        router.push('/page/Main');
+      }, 700);
+    }else{
+      router.push('/page/Main');
+    }
+  }
 
-const [a,setA] = useState(false);
 
 
   return (
@@ -32,15 +46,15 @@ const [a,setA] = useState(false);
         <div className={hd.music}>
           <audio loop ref={audio} src="/audio/bonescatch.mp3"></audio>
           <div 
-            className={ `${hd.togglePlay} ${a && hd.active}`}
+            className={ `${hd.togglePlay} ${audioPlay && hd.active}`}
             onClick={togglePlay}
           />
         </div>
 
 
-        <Link className={hd.link} href="/page/Main">
+        <div className={hd.link} onClick={pageChangeHead}>
             <img src='/img/logo0.png'></img>
-        </Link>
+        </div>
         <div className={hd.login}>
           <Link href="/">로그아웃</Link>
         </div>

@@ -8,6 +8,8 @@ import Link from "next/link";
 import { DataContext } from "../src/MyContext";
 
 function SignUp() {
+  const router = useRouter();
+  const {pageChange, setClose} = useContext(DataContext);
   const { pathname } = useRouter();
   const [accountresult, setAccountresult] = useState({ nick: "", id: "", tri: "" });
 
@@ -29,6 +31,7 @@ function SignUp() {
   const [BuName, setBuName] = useState("");
 
   useEffect(() => {
+    setClose(false);
     bujok.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {
@@ -106,13 +109,25 @@ function SignUp() {
         });
     }
   }
+
+  //페이지 전환
+  function closeFire(){
+    setClose(true);
+    let closed;
+    closed = setTimeout(function(){
+      // setClose(!pageChange);
+      router.push('/');
+    }, 700);
+  }
+
+
   return (
     <>
       <div className={lo.logWrap}>
-        <div className={lo.leftWrap}>
+        <div className={pageChange ? lo.leftWrapClose : lo.leftWrap}>
           <img ref={fire0} className={lo.fireLeft} />
         </div>
-        <div className={lo.rightWrap}>
+        <div className={pageChange ? lo.rightWrapClose : lo.rightWrap}>
           <img ref={fire1} className={lo.fireRight} />
         </div>
         <div className={lo.logTop}></div>
@@ -154,9 +169,9 @@ function SignUp() {
               <div className={lo.submitBtn} onClick={create}>
                 생성!
               </div>
-              <Link href="/" className={lo.submitBtn}>
+              <div onClick={closeFire} className={lo.submitBtn}>
                 취소!
-              </Link>
+              </div>
             </nav>
           </form>
         </div>

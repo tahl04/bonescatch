@@ -7,6 +7,7 @@ const { createContext, useState, useEffect } = require("react");
 export const DataContext = createContext(null);
 
 const MyContext = ({ children }) => {
+  const [pageChange, setClose] = useState(false);
   const [data, setData] = useState();
   const [who, setWho] = useState();
   const { data: session } = useSession();
@@ -24,17 +25,19 @@ const MyContext = ({ children }) => {
   }
 
   useEffect(() => {
-    dataFun("get");
+    dataFun("get", data);
   }, []);
+
+
   useEffect(() => {
-    if (session !== undefined) {
-      axios
-        .get("/api/who", {
+    if (session !== undefined && session !== null) {
+      axios.get("/api/who", {
           params: {
             id: session.user[0].ID,
           },
         })
         .then((res) => {
+          console.log(res.data);
           setWho(res.data);
         });
     }
@@ -43,7 +46,7 @@ const MyContext = ({ children }) => {
   //   useEffect(() => {}, [session]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who }}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose}}>
       <Header />
       <Lantern />
       {children}

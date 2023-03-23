@@ -8,10 +8,9 @@ import { DataContext } from "../src/MyContext";
 import { useSession } from "next-auth/react";
 
 function Main() {
-  const { data } = useContext(DataContext);
+  const { data,who } = useContext(DataContext);
   const { data: session, status } = useSession();
-
-  console.log(session);
+console.log(who);
 
   if (!data) return <>돌 날카롭게 깎는중.....</>;
   return (

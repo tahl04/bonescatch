@@ -3,8 +3,10 @@ import { useRef, useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { DataContext } from "./src/MyContext";
 
 export default function Home() {
+  const { pageChange, setClose } = useContext(DataContext);
   const { pathname } = useRouter();
   const fire0 = useRef();
   const fire1 = useRef();
@@ -28,15 +30,26 @@ export default function Home() {
     }
   }
 
-  useEffect(() => {}, [pathname]);
+  useEffect(() => {
+    setClose(false);
+  }, [pathname]);
 
+
+  function closeFire(){
+    setClose(true);
+    let closed;
+    closed = setTimeout(function(){
+      // setClose(!pageChange);
+      router.push(("/page/SignUp"));
+    }, 700);
+  }
   return (
     <>
       <div className={lo.logWrap}>
-        <div className={lo.leftWrap}>
+        <div className={pageChange ? lo.leftWrapClose : lo.leftWrap}>
           <img ref={fire0} className={lo.fireLeft} />
         </div>
-        <div className={lo.rightWrap}>
+        <div className={pageChange ? lo.rightWrapClose : lo.rightWrap}>
           <img ref={fire1} className={lo.fireRight} />
         </div>
         <div className={lo.logTop}></div>
@@ -47,9 +60,9 @@ export default function Home() {
             <input type="text" placeholder="아이디" name="USER" autoComplete="off" />
             <input type="password" placeholder="비밀번호" name="PASS" />
             <nav>
-              <Link className={lo.submitBtn} href="/page/SignUp">
+              <div className={lo.submitBtn} onClick={closeFire}>
                 회원가입
-              </Link>
+              </div>
               <button type="submit" className={lo.submitBtn} placeholder="아이디">
                 로그인
               </button>

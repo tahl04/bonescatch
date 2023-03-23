@@ -1,3 +1,4 @@
+
 // @import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
 
 // *{
@@ -11,116 +12,145 @@
   @content;
 }
 
+
 @keyframes lo-trans1 {
   0% {
-    content: url("/img/fire0.png");
+      content: url('/img/fire0.png');
   }
   100% {
-    content: url("/img/fire1.png");
+      content: url('/img/fire1.png');
   }
 }
 @keyframes lo-trans2 {
   50% {
-    background-image: url("/img/list-head1.png");
+      background-image: url('/img/list-head1.png');
   }
 }
 @keyframes lo-trans3 {
   50% {
-    background-image: url("/img/list-body3.png");
+      background-image: url('/img/list-body3.png');
   }
 }
 @keyframes lo-trans3-2 {
   50% {
-    background-image: url("/img/list-body7.png");
+      background-image: url('/img/list-body7.png');
   }
 }
 @keyframes lo-trans4 {
   50% {
-    background-image: url("/img/list-footer1.png");
+      background-image: url('/img/list-footer1.png');
   }
 }
 
 @keyframes bujok0 {
   50% {
-    content: url("/img/bburi-false1.png");
+      content: url('/img/bburi-false1.png');
   }
 }
 @keyframes bujok1 {
   50% {
-    content: url("/img/bada-false1.png");
+      content: url('/img/bada-false1.png');
   }
 }
 @keyframes bujok2 {
   50% {
-    content: url("/img/bawi-false1.png");
+      content: url('/img/bawi-false1.png');
   }
 }
 @keyframes bujok3 {
   50% {
-    content: url("/img/bam-false1.png");
+      content: url('/img/bam-false1.png');
   }
 }
 @keyframes bujok-true0 {
   50% {
-    content: url("/img/bburi-true1.png");
+      content: url('/img/bburi-true1.png');
   }
 }
 @keyframes bujok-true1 {
   50% {
-    content: url("/img/bada-true1.png");
+      content: url('/img/bada-true1.png');
   }
 }
 @keyframes bujok-true2 {
   50% {
-    content: url("/img/bawi-true1.png");
+      content: url('/img/bawi-true1.png');
   }
 }
 @keyframes bujok-true3 {
   50% {
-    content: url("/img/bam-true1.png");
+      content: url('/img/bam-true1.png');
   }
 }
 
 @keyframes lo-move0 {
   0% {
-    transform: rotate(-16deg);
-    left: -1000px;
+      transform: rotate(-16deg);
+      left: -1000px;
   }
-  20% {
-    transform: rotate(-16deg);
+  20%{
+
+      transform: rotate(-16deg);
   }
   100% {
-    left: -370px;
-
-    transform: rotate(16deg);
+      left: -370px;
+      
+      transform: rotate(16deg);
   }
 }
 @keyframes lo-move1 {
   0% {
-    transform: rotate(16deg);
-    right: -1000px;
+      transform: rotate(16deg);
+      right: -1000px;
   }
-  20% {
-    transform: rotate(16deg);
+  20%{
+
+      transform: rotate(16deg);
   }
   100% {
-    right: -370px;
-
-    transform: rotate(-16deg);
+      right: -370px;
+      
+      transform: rotate(-16deg);
+  }
+}
+@keyframes lo-move0-close {
+  0% {
+      left: -370px;
+      
+      transform: rotate(16deg);
+  }
+  100% {
+      transform: rotate(-16deg);
+      left: -1000px;
+  }
+}
+@keyframes lo-move1-close {
+  0% {
+      right: -370px;
+      
+      transform: rotate(-16deg);
+  }
+  100% {
+      transform: rotate(16deg);
+      right: -1000px;
   }
 }
 
-$c_width: 840px;
-$l_head: calc($c_width / 14.75);
-$l_body: calc($c_width / 5.067);
-$l_body_s: calc($c_width / 1.746);
-$l-foot: calc($c_width / 10.868);
+
+
+$c_width : 840px;
+$l_head : calc($c_width / 14.75);
+$l_body : calc($c_width / 5.067);
+$l_body_s : calc($c_width / 1.746);
+$l-foot : calc($c_width / 10.868);
+
+
 
 @mixin top() {
   width: $c_width;
   height: $l_head;
   background-size: cover;
-  background-image: url("/img/list-head0.png");
+  background-image: url('/img/list-head0.png');
   animation: lo-trans2 1.2s step-end infinite;
   @content;
 }
@@ -128,7 +158,7 @@ $l-foot: calc($c_width / 10.868);
   width: $c_width;
   height: $l_body;
   background-size: cover;
-  background-image: url("/img/list-body2.png");
+  background-image: url('/img/list-body2.png');
   animation: lo-trans3 1.7s step-end infinite;
   @content;
 }
@@ -136,7 +166,7 @@ $l-foot: calc($c_width / 10.868);
   width: $c_width;
   height: $l_body_s;
   background-size: cover;
-  background-image: url("/img/list-body6.png");
+  background-image: url('/img/list-body6.png');
   animation: lo-trans3-2 1.7s step-end infinite;
   @content;
 }
@@ -144,185 +174,199 @@ $l-foot: calc($c_width / 10.868);
   width: $c_width;
   height: $l_foot;
   background-size: cover;
-  background-image: url("/img/list-footer0.png");
+  background-image: url('/img/list-footer0.png');
   animation: lo-trans4 1.5s step-end infinite;
   @content;
 }
 
-.logWrap {
+
+
+.logWrap{
   position: relative;
   width: 100vw;
   height: 100vh;
   // background: radial-gradient(circle, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 82%);
   overflow: hidden;
   z-index: 8;
-  @include flex(center) {
-    flex-direction: column;
+  @include flex(center){
+      flex-direction: column;
   }
 }
 
-.logTop {
-  @include top() {
-  }
+.logTop{
+  @include top(){}
 }
-.logBody {
-  @include body() {
-  }
-  @include flex() {
-  }
+.logBody{
+  @include body(){}
+  @include flex(){}
 }
-.logBodyS {
-  @include body_s() {
-  }
-  @include flex() {
-  }
+.logBodyS{
+  @include body_s(){}
+  @include flex(){}
 }
-.logFoot {
-  @include foot() {
-  }
+.logFoot{
+  @include foot(){}
 }
 
-.leftWrap {
+.leftWrap{
   position: fixed;
   top: 10%;
   left: -1000px;
   transform: rotate(16deg);
-  transition: 0.3s;
+  transition: .3s;
   animation: lo-move0 1.5s forwards;
+  
 }
-.rightWrap {
+.rightWrap{
   position: fixed;
   top: 10%;
   right: -1000px;
   transform: rotate(-16deg);
-  transition: 0.3s;
+  transition: .3s;
   animation: lo-move1 1.5s forwards;
 }
-.fireLeft {
-  width: 900px;
-  height: auto;
-  content: url("/img/fire0.png");
-  animation: lo-trans1 1.5s infinite linear;
-  //
+
+.leftWrapClose{
+  position: fixed;
+  top: 10%;
+  left: -1000px;
+  transform: rotate(16deg);
+  transition: .3s;
+  animation: lo-move0-close 1.5s forwards;
 }
 
-.fireRight {
+.rightWrapClose{
+  position: fixed;
+  top: 10%;
+  right: -1000px;
+  transform: rotate(-16deg);
+  transition: .3s;
+  animation: lo-move1-close 1.5s forwards;
+}
+.fireLeft{
   width: 900px;
   height: auto;
-  content: url("/img/fire0.png");
+  content: url('/img/fire0.png');
+  animation: lo-trans1 1.5s infinite linear;
+  // 
+}
+
+.fireRight{
+  width: 900px;
+  height: auto;
+  content: url('/img/fire0.png');
   animation: lo-trans1 1.5s infinite linear;
 }
-.form {
-  @include flex(space-between, flex-start) {
-    flex-direction: column;
+
+
+.form{
+  @include flex(space-between, flex-start){
+      flex-direction: column;
   }
-  h1 {
-    font-size: 28px;
+  h1{
+      font-size: 28px;
   }
-  h2 {
-    font-size: 28px;
-    padding-bottom: 10px;
+  h2{
+      font-size: 28px;
+      padding-bottom: 10px;
   }
-  h3 {
-    font-size: 25px;
-    padding: 10px 0;
+  h3{
+      font-size: 25px;
+      padding: 10px 0;
   }
   width: 50%;
-  input {
-    position: relative;
-    margin: 7px 0;
-    width: 100%;
-    height: 30px;
-    border-radius: 4px;
-    border: 3px solid rgb(61, 34, 16);
-    background-color: #e0c7a1;
-    font-size: 20px;
-    color: #4d3615;
-    padding-left: 20px;
-    outline: none;
-  }
-  figcaption {
-    margin: 10px 0;
-    width: 100%;
-    border: none;
-    // height: 100px;
-    @include flex(space-between) {
-    }
-    img {
+  input{
       position: relative;
+      margin: 7px 0;
+      width: 100%;
+      height: 30px;
+      border-radius: 4px;
+      border: 3px solid rgb(61, 34, 16);
+      background-color: #e0c7a1;
+      font-size: 20px;
+      color: #4d3615;
+      padding-left: 20px;
+  }
+  figcaption{
+      margin: 10px 0;
+      width: 100%;
+      border: none;
+      // height: 100px;
+      @include flex(space-between){}
+      img{
+          position: relative;
+          cursor: pointer;
+          border: 3px solid rgb(133, 92, 38);
+          width: 100px;
+          height: 100px;
+      }
+  }
+  nav{
+      width: 100%;
+      @include flex(flex-end){}
+  }
+  button{
+      font-size: 16px;
+      position: relative;
+      margin: 10px 0;
+      width: 120px;
+      height: 30px;
       cursor: pointer;
-      border: 3px solid rgb(133, 92, 38);
-      width: 100px;
-      height: 100px;
-    }
+      color: #fff;
+      font-weight: normal;
+      background-color: #745424;
+      border-radius: 4px;
+      border: 3px solid rgb(61, 34, 16);
+      @include flex(){}
   }
-  nav {
-    width: 100%;
-    @include flex(flex-end) {
-    }
-  }
-  //   button {
-  //     font-size: 16px;
-  //     position: relative;
-  //     margin: 10px 0;
-  //     width: 120px;
-  //     height: 30px;
-  //     cursor: pointer;
-  //     color: #fff;
-  //     font-weight: normal;
-  //     background-color: #745424;
-  //     border-radius: 4px;
-  //     border: 3px solid rgb(61, 34, 16);
-  //     @include flex() {
-  //     }
-  //   }
 }
 
-.submitBtn {
+.submitBtn{
   font-size: 16px;
   position: relative;
   margin: 12px 0 0 10px;
   width: 120px;
   height: 30px;
+  cursor: pointer;
   color: #fff;
   font-weight: normal;
   background-color: #745424;
   border-radius: 4px;
-  border: 3px solid rgba(61, 34, 16, 0.5);
-  @include flex() {
-  }
+  border: 3px solid rgba(61, 34, 16, .5);
+  @include flex(){}
 }
-.bburi {
-  content: url("/img/bburi-false0.png");
+.bburi{
+  content: url('/img/bburi-false0.png');
   animation: bujok0 1.5s step-end infinite;
 }
-.bada {
-  content: url("/img/bada-false0.png");
+.bada{
+  content: url('/img/bada-false0.png');
   animation: bujok1 1.5s step-end infinite;
 }
-.bawi {
-  content: url("/img/bawi-false0.png");
+.bawi{
+  content: url('/img/bawi-false0.png');
   animation: bujok2 1.5s step-end infinite;
 }
-.bam {
-  content: url("/img/bam-false0.png");
+.bam{
+  content: url('/img/bam-false0.png');
   animation: bujok3 1.5s step-end infinite;
 }
 
-.bburiActive {
+
+.bburiActive{
   width: 800px;
-  content: url("/img/bburi-true0.png");
+  content: url('/img/bburi-true0.png');
   animation: bujok-true0 1.5s step-end infinite;
 }
-.badaActive {
-  content: url("/img/bada-true0.png");
+.badaActive{
+  content: url('/img/bada-true0.png');
   animation: bujok-true1 1.5s step-end infinite;
 }
-.bawiActive {
-  content: url("/img/bawi-true0.png");
+.bawiActive{
+  content: url('/img/bawi-true0.png');
   animation: bujok-true2 1.5s step-end infinite;
 }
-.bamActive {
-  content: url("/img/bam-true0.png");
+.bamActive{
+  content: url('/img/bam-true0.png');
   animation: bujok-true3 1.5s step-end infinite;
 }
