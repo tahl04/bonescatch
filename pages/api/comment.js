@@ -6,10 +6,10 @@ async function handler(req, res) {
 
   const commentPost = async () => {
     
-    let {USER, COUNT, COMMENT, POST} = body;
+    let {USER, COUNT, COMMENT, POST, CODENAME} = body;
     let data = await executeQuery(
-      'insert into TBL_COMMENT (USER,COUNT,COMMENT,POST) value (?,?,?,?)',
-      [USER,COUNT,COMMENT,POST]
+      'insert into TBL_COMMENT (USER,COUNT,COMMENT,POST,CODENAME) value (?,?,?,?,?)',
+      [USER,COUNT,COMMENT,POST,CODENAME]
     );
     res.json({...USER, ...POST, COMMENT:data})
   }

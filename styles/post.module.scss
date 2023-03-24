@@ -23,9 +23,25 @@
     }
 }
 
+
 @keyframes po-trans3 {
     50% {
-        background-image: url('/img/palette1.png');
+        background-image: url('/img/post/codename1.png');
+    }
+}
+@keyframes po-trans4 {
+    50% {
+        background-image: url('/img/post/input1.png');
+    }
+}
+@keyframes po-trans5 {
+    50% {
+        background-image: url('/img/post/check1.png');
+    }
+}
+@keyframes po-trans6 {
+    50% {
+        background-image: url('/img/list-body9.png');
     }
 }
 
@@ -35,6 +51,15 @@ $l_head : calc($c_width / 14.75);
 $l_body : calc($c_width / 5.067);
 $l_body_main : calc($c_width / 1.746);
 $l-foot : calc($c_width / 10.868);
+$l-input : calc($c_width / 8.26);
+$l-body_c : calc($c_width / 17.2083);
+
+$I_btn_w : calc($c_width / 5);
+$I_btn_h : calc($I_btn_w / 1.7065);
+
+//1.7065
+
+
 
 $po_width : 800px;
 $po_head : calc($po_width / 14.75);
@@ -91,15 +116,31 @@ $w-select-h : calc($w-select-w / 5.657);
     animation: po-trans2 1.5s step-end infinite;
     @content;
 }
-
-@mixin select($a : $w-select-w, $b : $w-select-h) {
+@mixin inputBox($a:$c_width, $b:$l_input) {
     width: $a;
     height: $b;
     background-size: cover;
-    background-image: url('/img/palette0.png');
-    animation: m-trans3 1.5s step-end infinite;
+    background-image: url('/img/post/input0.png');
+    animation: po-trans4 1.5s step-end infinite;
     @content;
 }
+@mixin inputBtn($a:$I_btn_w, $b:$I_btn_h) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/post/check0.png');
+    animation: po-trans5 1.5s step-end infinite;
+    @content;
+}
+@mixin body_c($a:$c_width, $b:$l-body_c) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-body8.png');
+    animation: po-trans6 1.5s step-end infinite;
+    @content;
+}
+
 
 
 
@@ -154,25 +195,85 @@ $w-select-h : calc($w-select-w / 5.657);
 }
 .bonescatch{
     width: 60%;
-    border: 3px solid #000;
+    border: 4px solid rgba(70, 43, 17, .1);
+    box-shadow: inset 4px 4px 20px rgba(70, 43, 17, .3), inset -4px -4px 7px rgba(243, 218, 200, 0.4);
 }
 .codeNameBox{
     width: 350px;
     height: 100px;
-    background-color: #fff;
-    margin-bottom: 35px;
-    // border: 1px solid #f00;
-    // transform: translateY(-10px);
+    background-image: url('/img/post/codename0.png');
+    background-size: cover;
+    margin-bottom: 45px;
+    animation: po-trans3 1.2s step-end infinite;
     @include flex(){
 
     }
     h1{
+        color: #eee;
         font-size: 30px;
     }
 }
 .titleState{
-    @include select(){}
-    form{
-        position: relative;
+    @include body(){}
+    nav{
+        @include inputBox(){}
+        @include flex(){}
+        form{
+            @include flex(){}
+            position: relative;
+            width: 100%;
+            padding: 0 20px 0 30px;
+            input[type=text]{
+                width: calc($c_width / 1.55);
+                height: 45px;
+                border: none;
+                background-color: transparent;
+                font-size: 20px;
+                padding-left: 20px;
+                &::placeholder{
+                    color: #251b07;
+                }
+            }
+            input[type=submit]{
+                @include inputBtn(){}
+                cursor: pointer;
+                background-color: transparent;
+                border: none;
+            }
+        }
+    }
+}
+.commentBox{
+    @include body_c(){}
+    @include flex(){
+        flex-direction: column;
+    }
+    nav{
+        width: 100%;
+        padding: 0 80px 0 60px;
+        @include flex(space-between){}
+        div{
+            @include flex(){}
+            h4{
+                width: 110px;
+                // border: 1px solid #f00;
+                color: #fff;
+                font-size: 20px;
+                // padding-right: 50px;
+            }
+            h3{
+                font-size: 24px;
+            }
+        }
+        h5{
+            font-size: 20px;
+            padding-right: 20px;
+        }
+    }
+    span{
+        margin-left: 100px;
+        width: 75%;
+        height: 4px;
+        background-color: rgba(83, 56, 24,.3);
     }
 }

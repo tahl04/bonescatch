@@ -5,16 +5,15 @@ const handler = async (req, res) => {
   const { method, body, query } = req;
   const seletData = async () => {
     try {
-      // const nickCheck = await executeQuery(`select * from TBL_USER where CODENAME = ?`, query.nick);
-
-      // if (nickCheck.length) {
-      //   console.log("중복");
-      // } else {
-      //   console.log("가능");
-      //   checkNick.current = true;
-      // }
 
       let data = await executeQuery("select * from TBL_USER order by ID DESC", []);
+      let arry = []
+      data.map((obj)=>{
+        arry.push({ID:obj.ID, CODENAME:obj.CODENAME, TRIBE:obj.TRIBE})
+      })
+
+      // console.log(arry)
+
       let datas = await executeQuery("select * from TBL_POST order by ID DESC", []);
       let datass = await executeQuery("select * from TBL_COMMENT order by ID DESC", []);
 
@@ -24,7 +23,7 @@ const handler = async (req, res) => {
         obj.DRAW = base64String;
         return obj;
       });
-      res.json({ USER: data, POST: datas, COMMENT: datass });
+      res.json({ USER: arry, POST: datas, COMMENT: datass });
     } catch (err) {
       res.send(err);
     }

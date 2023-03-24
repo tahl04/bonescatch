@@ -10,7 +10,6 @@ function Post() {
   const [CmCount, setCmCount] = useState(0);
   const commentVal = useRef();
 
-  // console.log(data)
   // CmCount.foreach((obj,key)=>{
 
   // })
@@ -22,6 +21,7 @@ function Post() {
   function commentMap() {}
   useEffect(() => {
     // console.log(who)
+  console.log(data)
   }, []);
 
   console.log(query);
@@ -30,14 +30,14 @@ function Post() {
     let t = e.target;
 
     setCmCount(1);
-    setValue({ ...inputValue, COMMENT: commentVal.current.value, COUNT: 1, USER: who[0].ID, POST: query.id });
+    setValue({ ...inputValue, COMMENT: commentVal.current.value, COUNT: 1, USER: who[0].ID, CODENAME: who[0].CODENAME, POST: query.id });
     console.log(inputValue);
   }
 
-  function create(e) {
+  async function create(e) {
     e.preventDefault();
     dataPost("post", inputValue);
-    // await dataPost("get");
+    await dataPost("get");
     // router.push("/page/Main");
   }
 
@@ -65,15 +65,41 @@ function Post() {
                     </nav>
                   </div>
                   <div className={po.boxBot}></div>
+                  
+                  <div className={po.boxTop}></div>
                   <div className={po.titleState}>
-                    <form onSubmit={create}>
-                      <input ref={commentVal} onChange={valueChange} type="text" placeholder="제목" name="COMMENT" />
-                      <input type="submit" value="저장" />
-                    </form>
+                    <nav>
+                        <form onSubmit={create}>
+                        <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" />
+                        <input type="submit" value=""/>
+                        </form>
+                    </nav>
                   </div>
-                  <div className={po.boxTop1}></div>
-                  <div className={po.boxMid1}></div>
-                  <div className={po.boxBot1}></div>
+                  {
+                    data['COMMENT'].map((obj, key)=>{
+                        if(obj.POST == query.id){
+                            return(
+                                <div key={key} className={po.commentBox}>
+                                    <nav>
+                                        <div>
+                                            <h4>{obj.CODENAME}</h4>
+                                            <h3>{obj.COMMENT}</h3>
+                                        </div>
+                                            <h5>{obj.DATE.match(/^((19|20)\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/g)}</h5>
+                                    </nav>
+                                    <span></span>
+                                </div>
+                            )
+                        }
+                    })
+                }
+                    {/* <div className={po.commentBox}>
+                        <nav>
+                            <h4>댓글이 없습니다! 정답을 맞춰 보세요.</h4>
+                        </nav>
+                        <span></span>
+                    </div> */}
+                  <div className={po.boxBot}></div>
                 </div>
               </div>
             );

@@ -29,6 +29,7 @@ function Main() {
       return;
     }
   }
+  console.log(data);
 
   useEffect(() => {
     auth();
