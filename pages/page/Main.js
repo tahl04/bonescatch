@@ -7,7 +7,7 @@ import Link from "next/link";
 // import Detail from '/Detail';
 // import Item from '/[id]';
 import { DataContext } from "../src/MyContext";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 function Main() {
   const router = useRouter();

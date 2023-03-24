@@ -1,0 +1,15 @@
+.shop_main {
+  width: 60%;
+  height: 60vh;
+  border: 1px solid red;
+  .shop_pen {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+  .shop_paint {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+}

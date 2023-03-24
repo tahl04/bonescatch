@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Header from "./Header";
 import Lantern from "./Lantern";
 
@@ -11,9 +11,6 @@ const MyContext = ({ children }) => {
   const [data, setData] = useState();
   const [who, setWho] = useState();
   const { data: session } = useSession();
-
-
-
 
   async function dataPost(type, obj) {
     let transw;
@@ -27,7 +24,6 @@ const MyContext = ({ children }) => {
     setData(transw);
   }
 
-
   async function dataFun(type, obj) {
     let trans;
     if (type == "get") {
@@ -39,17 +35,16 @@ const MyContext = ({ children }) => {
     }
     setData(trans);
   }
-  
 
   useEffect(() => {
     dataFun("get");
     dataPost("get");
   }, []);
 
-
   useEffect(() => {
     if (session !== undefined && session !== null) {
-      axios.get("/api/who", {
+      axios
+        .get("/api/who", {
           params: {
             id: session.user[0].ID,
           },
@@ -64,7 +59,7 @@ const MyContext = ({ children }) => {
   //   useEffect(() => {}, [session]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost}}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost }}>
       <Header />
       <Lantern />
       {children}

@@ -8,7 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 
 function Header() {
   const audio = useRef();
-  const { who, pageChange, setClose, dataFun } = useContext(DataContext);
+  const { pageChange, setClose, dataFun } = useContext(DataContext);
   const [audioPlay, setAudio] = useState(false);
   const router = useRouter();
   const { status } = useSession();
@@ -22,7 +22,6 @@ function Header() {
       setAudio(!audioPlay);
     }
   }
-  useEffect(() => {}, []);
 
   function pageChangeHead() {
     if (status === "unauthenticated") {
@@ -41,6 +40,9 @@ function Header() {
       }
     }
   }
+  function toshop() {
+    router.push("/page/Shop");
+  }
 
   return (
     <header className={hd.header}>
@@ -52,9 +54,15 @@ function Header() {
       <div className={hd.link} onClick={pageChangeHead}>
         <img src="/img/logo0.png"></img>
       </div>
-      <div className={hd.login}>
-        <button onClick={() => signOut()}>로그아웃</button>
-      </div>
+      {/* 로그인시 로그아웃 띄움 / 로그아웃시 공백 */}
+      {status === "unauthenticated" ? (
+        <div className={hd.login}></div>
+      ) : (
+        <div className={hd.login}>
+          <button onClick={toshop}>상점</button>
+          <button onClick={() => signOut()}>로그아웃</button>
+        </div>
+      )}
     </header>
   );
 }
