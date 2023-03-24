@@ -70,12 +70,12 @@ export default function Home() {
               <input type="text" placeholder="아이디" name="USER" autoComplete="off" />
               <input type="password" placeholder="비밀번호" name="PASS" />
               <div className={lo.navDiv}>
-                <div className={lo.submitBtn} onClick={closeFire}>
-                  회원가입
-                </div>
                 <button type="submit" className={lo.submitBtn}>
                   로그인
                 </button>
+                <div className={lo.submitBtn} onClick={closeFire}>
+                  회원가입
+                </div>
               </div>
             </form>
           </div>

@@ -52,7 +52,7 @@ function Header() {
       </div>
 
       <div className={hd.link} onClick={pageChangeHead}>
-        <img src="/img/logo0.png"></img>
+        <img src="/img/element/logo0.png"></img>
       </div>
       {/* 로그인시 로그아웃 띄움 / 로그아웃시 공백 */}
       {status === "unauthenticated" ? (

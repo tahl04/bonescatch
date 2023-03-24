@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useRef, useEffect, useContext, useState } from "react";
 import { DataContext } from "../src/MyContext";
-import wr from "@/styles/write.module.scss";
+import wr from "@/styles/draw.module.scss";
 
-const Write = () => {
+const Draw = () => {
   const { pathname } = useRouter();
 
   //색 셋팅
@@ -308,6 +308,11 @@ const Write = () => {
 
   async function create(e) {
     e.preventDefault();
+    
+    var canvas = canvasw.current;
+    var imgDataUrl = canvas.toDataURL("image/png");
+    console.log(imgDataUrl);
+    setValue({ ...inputValue, DRAW: imgDataUrl });
     dataFun("post", inputValue);
     await dataFun("get");
     router.push("/page/Main");
@@ -377,28 +382,28 @@ const Write = () => {
                   <img ref={(el) => (emp.current[key] = el)} className={wr.colorEmp}></img>
                   <ul>
                     <li onClick={() => colorChange(key, 0)} ref={(el) => (selectParts.current[0] = el)}>
-                      <img src="/img/parts-black0.png"></img>
+                      <img src="/img/item/parts-black0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 1)} ref={(el) => (selectParts.current[1] = el)}>
-                      <img src="/img/parts-blue0.png"></img>
+                      <img src="/img/item/parts-blue0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 2)} ref={(el) => (selectParts.current[2] = el)}>
-                      <img src="/img/parts-red0.png"></img>
+                      <img src="/img/item/parts-red0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 3)} ref={(el) => (selectParts.current[3] = el)}>
-                      <img src="/img/parts-green0.png"></img>
+                      <img src="/img/item/parts-green0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 4)} ref={(el) => (selectParts.current[4] = el)}>
-                      <img src="/img/parts-puple0.png"></img>
+                      <img src="/img/item/parts-puple0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 5)} ref={(el) => (selectParts.current[5] = el)}>
-                      <img src="/img/parts-yellow0.png"></img>
+                      <img src="/img/item/parts-yellow0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 6)} ref={(el) => (selectParts.current[6] = el)}>
-                      <img src="/img/parts-orange0.png"></img>
+                      <img src="/img/item/parts-orange0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[7] = el)}>
-                      <img src="/img/parts-empty0.png"></img>
+                      <img src="/img/item/parts-empty0.png"></img>
                     </li>
                   </ul>
                 </button>
@@ -468,4 +473,4 @@ const Write = () => {
   );
 };
 
-export default Write;
+export default Draw;

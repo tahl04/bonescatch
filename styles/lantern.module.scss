@@ -18,10 +18,10 @@
 }
 @keyframes l-trans1 {
     0% {
-        background-image: url('/img/bug0.png');
+        background-image: url('/img/element/bug0.png');
     }
     100% {
-        background-image: url('/img/bug1.png');
+        background-image: url('/img/element/bug1.png');
     }
 }
 
@@ -52,8 +52,8 @@
     left: 0;
     top: 0;
     transform: translate(-50%, -50%);
-    height: 50px;
-    width: 50px;
+    height: 30px;
+    width: 30px;
     background-size: cover;
     background-image: url('/img/bug0.png');
     transition: transform 0.7s ease-out;

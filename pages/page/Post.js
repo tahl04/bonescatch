@@ -6,42 +6,80 @@ import axios from "axios";
 
 function Post() {
   // const [thisPost, setPost] = useState([]);
-  const { data, who, dataFun, dataPost } = useContext(DataContext);
-  const [CmCount, setCmCount] = useState(0);
+  const { data, who, dataPost } = useContext(DataContext);
   const commentVal = useRef();
-
-  // CmCount.foreach((obj,key)=>{
-
-  // })
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
+
   // const { query } = useRouter();
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
 
-  function commentMap() {}
   useEffect(() => {
-    // console.log(who)
-  console.log(data)
+    console.log(who)
+  // console.log(data);
   }, []);
 
-  console.log(query);
-  //디비
+
+
   function valueChange(e) {
+
+
     let t = e.target;
 
-    setCmCount(1);
-    setValue({ ...inputValue, COMMENT: commentVal.current.value, COUNT: 1, USER: who[0].ID, CODENAME: who[0].CODENAME, POST: query.id });
+    
+    let countMap = 1;
+    data["COMMENT"].forEach((obj,key)=>{
+      if(obj.POST == query.id){
+        if(obj.USER == who[0].ID){
+          if(obj.COUNT == 1){
+            countMap++;
+          }
+          if(obj.COUNT == 2){
+            countMap++;
+          }
+          if(obj.COUNT == 3){
+            countMap++;
+          }
+        }
+      }
+    })
+
+    setValue({ ...inputValue, COMMENT: commentVal.current.value, COUNT:countMap, USER: who[0].ID, CODENAME: who[0].CODENAME, POST: query.id, TRIBE: who[0].TRIBE});
+
+    
     console.log(inputValue);
   }
 
   async function create(e) {
     e.preventDefault();
-    dataPost("post", inputValue);
-    await dataPost("get");
-    // router.push("/page/Main");
-  }
+    
+    // console.log(data)
+    
+    
+    console.log(inputValue.COUNT);
+    // setValue({ ...inputValue, COUNT:countMap });
+    if(inputValue.COUNT < 4){
+      dataPost("post", inputValue);
+      await dataPost("get");
+    }else{
+      alert("기회가 모두 소진되었습니다.");
+    }
 
-  if (!data) {
+    
+    data["POST"].forEach((obj,key)=>{
+      if(obj.ID == query.id){
+        if(inputValue.COMMENT == obj.TITLE){
+
+          //여기서 이제 상태 바꾸면 됨.
+          console.log("정답!");
+        }
+      }
+    })
+
+    // console.log(inputValue.COUNT);
+
+  }
+   if (!data) {
     return <>불러오는중,,,</>;
   }
   return (
@@ -54,7 +92,7 @@ function Post() {
                 <div className={po.boxWrap}>
                   <div className={po.boxTop}>
                     <div className={po.codeNameBox}>
-                      <h1>{obj.USER} 님의 본스케치</h1>
+                      <h1>{obj.USERCODE} 님의 본스케치</h1>
                     </div>
                   </div>
                   <div className={po.boxMid}>
@@ -70,7 +108,7 @@ function Post() {
                   <div className={po.titleState}>
                     <nav>
                         <form onSubmit={create}>
-                        <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" />
+                        <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT"  autoComplete="off" />
                         <input type="submit" value=""/>
                         </form>
                     </nav>
@@ -82,7 +120,7 @@ function Post() {
                                 <div key={key} className={po.commentBox}>
                                     <nav>
                                         <div>
-                                            <h4>{obj.CODENAME}</h4>
+                                            <h4 className={`${obj.TRIBE === "0" && po.bburi} ${obj.TRIBE === "1" && po.bada} ${obj.TRIBE === "2" && po.bawi} ${obj.TRIBE === "3" && po.bam}`}>{obj.CODENAME}</h4>
                                             <h3>{obj.COMMENT}</h3>
                                         </div>
                                             <h5>{obj.DATE.match(/^((19|20)\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/g)}</h5>

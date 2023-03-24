@@ -26,7 +26,7 @@
 }
 @keyframes m-trans3 {
     50% {
-        background-image: url('/img/palette1.png');
+        background-image: url('/img/draw/palette1.png');
     }
 }
 
@@ -35,22 +35,22 @@
 
 @keyframes t-0 {
     50% {
-        content: url('/img/tool0-1.png')
+        content: url('/img/draw/tool0-1.png')
     }
 }
 @keyframes t-1 {
     50% {
-        content: url('/img/tool1-1.png')
+        content: url('/img/draw/tool1-1.png')
     }
 }
 @keyframes t-2 {
     50% {
-        content: url('/img/tool2-1.png')
+        content: url('/img/draw/tool2-1.png')
     }
 }
 @keyframes t-e {
     50% {
-        content: url('/img/tool-empty1.png')
+        content: url('/img/draw/tool-empty1.png')
     }
 }
 
@@ -60,42 +60,42 @@
 
 @keyframes c-black {
     50% {
-        content: url('/img/color-black1.png');
+        content: url('/img/draw/color-black1.png');
     }
 }
 @keyframes c-blue {
     50% {
-        content: url('/img/color-blue1.png');
+        content: url('/img/draw/color-blue1.png');
     }
 }
 @keyframes c-red {
     50% {
-        content: url('/img/color-red1.png');
+        content: url('/img/draw/color-red1.png');
     }
 }
 @keyframes c-green {
     50% {
-        content: url('/img/color-green1.png');
+        content: url('/img/draw/color-green1.png');
     }
 }
 @keyframes c-yellow {
     50% {
-        content: url('/img/color-yellow1.png');
+        content: url('/img/draw/color-yellow1.png');
     }
 }
 @keyframes c-orange {
     50% {
-        content: url('/img/color-orange1.png');
+        content: url('/img/draw/color-orange1.png');
     }
 }
 @keyframes c-puple {
     50% {
-        content: url('/img/color-puple1.png');
+        content: url('/img/draw/color-puple1.png');
     }
 }
 @keyframes c-e {
     50% {
-        content: url('/img/color-empty1.png')
+        content: url('/img/draw/color-empty1.png')
     }
 }
 
@@ -103,42 +103,42 @@
 
 @keyframes p-black {
     50% {
-        content: url('/img/parts-black1.png')
+        content: url('/img/item/parts-black1.png')
     }
 }
 @keyframes p-blue {
     50% {
-        content: url('/img/parts-blue1.png')
+        content: url('/img/item/parts-blue1.png')
     }
 }
 @keyframes p-red {
     50% {
-        content: url('/img/parts-red1.png')
+        content: url('/img/item/parts-red1.png')
     }
 }
 @keyframes p-green {
     50% {
-        content: url('/img/parts-green1.png')
+        content: url('/img/item/parts-green1.png')
     }
 }
 @keyframes p-puple {
     50% {
-        content: url('/img/parts-puple1.png')
+        content: url('/img/item/parts-puple1.png')
     }
 }
 @keyframes p-orange {
     50% {
-        content: url('/img/parts-orange1.png')
+        content: url('/img/item/parts-orange1.png')
     }
 }
 @keyframes p-yellow {
     50% {
-        content: url('/img/parts-yellow1.png')
+        content: url('/img/item/parts-yellow1.png')
     }
 }
 @keyframes p-e {
     50% {
-        content: url('/img/parts-empty1.png')
+        content: url('/img/item/parts-empty1.png')
     }
 }
 
@@ -187,7 +187,7 @@ $w-parts-h : $w-parts-w;
     // width: $w-select-w;
     // height: $w-select-h;
     background-size: cover;
-    background-image: url('/img/palette0.png');
+    background-image: url('/img/draw/palette0.png');
     animation: m-trans3 1.5s step-end infinite;
     @content;
 }
@@ -259,19 +259,19 @@ $w-parts-h : $w-parts-w;
                         height: auto;
                     }
                     .toolOne{
-                        content: url('/img/tool0-0.png');
+                        content: url('/img/draw/tool0-0.png');
                         animation: t-0 1.5s step-end infinite;
                     }
                     .toolTwo{
-                        content: url('/img/tool2-0.png');
+                        content: url('/img/draw/tool2-0.png');
                         animation: t-2 1.5s step-end infinite;
                     }
                     .toolTre{
-                        content: url('/img/tool1-0.png');
+                        content: url('/img/draw/tool1-0.png');
                         animation: t-1 1.5s step-end infinite;
                     }
                     .toolEmp{
-                        content: url('/img/tool-empty0.png');
+                        content: url('/img/draw/tool-empty0.png');
                         animation: t-e 1.5s step-end infinite;
                     }
                 }
@@ -293,40 +293,40 @@ $w-parts-h : $w-parts-w;
                 height: auto;
             }
             .colorBla{
-                content: url('/img/color-black0.png');
+                content: url('/img/draw/color-black0.png');
                 animation: c-black 1.5s step-end infinite;
             }
             .colorRed{
-                content: url('/img/color-red0.png');
+                content: url('/img/draw/color-red0.png');
                 animation: c-red 1.5s step-end infinite;
             }
             .colorGre{
-                content: url('/img/color-green0.png');
+                content: url('/img/draw/color-green0.png');
                 animation: c-green 1.5s step-end infinite;
             }
             .colorPup{
                 color: #aa34d8;
-                content: url('/img/color-puple0.png');
+                content: url('/img/draw/color-puple0.png');
                 animation: c-puple 1.5s step-end infinite;
             }
             .colorBlu{
                 color: #3468d8;
-                content: url('/img/color-blue0.png');
+                content: url('/img/draw/color-blue0.png');
                 animation: c-blue 1.5s step-end infinite;
             }
             .colorYel{
                 color: #e2d51c;
-                content: url('/img/color-yellow0.png');
+                content: url('/img/draw/color-yellow0.png');
                 animation: c-yellow 1.5s step-end infinite;
             }
             .colorOra{
                 color: transparent;
-                content: url('/img/color-orange0.png');
+                content: url('/img/draw/color-orange0.png');
                 animation: c-orange 1.5s step-end infinite;
             }
             .colorEmp{
                 color: transparent;
-                content: url('/img/color-empty0.png');
+                content: url('/img/draw/color-empty0.png');
                 animation: c-e 1.5s step-end infinite;
             }
             &:nth-child(2){

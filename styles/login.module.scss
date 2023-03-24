@@ -15,10 +15,10 @@
 
 @keyframes lo-trans1 {
   0% {
-      content: url('/img/fire0.png');
+      content: url('/img/element/fire0.png');
   }
   100% {
-      content: url('/img/fire1.png');
+      content: url('/img/element/fire1.png');
   }
 }
 @keyframes lo-trans2 {
@@ -44,42 +44,42 @@
 
 @keyframes bujok0 {
   50% {
-      content: url('/img/bburi-false1.png');
+      content: url('/img/tribe/bburi-false1.png');
   }
 }
 @keyframes bujok1 {
   50% {
-      content: url('/img/bada-false1.png');
+      content: url('/img/tribe/bada-false1.png');
   }
 }
 @keyframes bujok2 {
   50% {
-      content: url('/img/bawi-false1.png');
+      content: url('/img/tribe/bawi-false1.png');
   }
 }
 @keyframes bujok3 {
   50% {
-      content: url('/img/bam-false1.png');
+      content: url('/img/tribe/bam-false1.png');
   }
 }
 @keyframes bujok-true0 {
   50% {
-      content: url('/img/bburi-true1.png');
+      content: url('/img/tribe/bburi-true1.png');
   }
 }
 @keyframes bujok-true1 {
   50% {
-      content: url('/img/bada-true1.png');
+      content: url('/img/tribe/bada-true1.png');
   }
 }
 @keyframes bujok-true2 {
   50% {
-      content: url('/img/bawi-true1.png');
+      content: url('/img/tribe/bawi-true1.png');
   }
 }
 @keyframes bujok-true3 {
   50% {
-      content: url('/img/bam-true1.png');
+      content: url('/img/tribe/bam-true1.png');
   }
 }
 
@@ -322,7 +322,7 @@ $c_b_height0 : $b_height0 / 2;
 .fireLeft{
   width: 900px;
   height: auto;
-  content: url('/img/fire0.png');
+  content: url('/img/element/fire0.png');
   animation: lo-trans1 1.5s infinite linear;
   // 
 }
@@ -330,7 +330,7 @@ $c_b_height0 : $b_height0 / 2;
 .fireRight{
   width: 900px;
   height: auto;
-  content: url('/img/fire0.png');
+  content: url('/img/element/fire0.png');
   animation: lo-trans1 1.5s infinite linear;
 }
 
@@ -413,37 +413,37 @@ $c_b_height0 : $b_height0 / 2;
   @include flex(){}
 }
 .bburi{
-  content: url('/img/bburi-false0.png');
+  content: url('/img/tribe/bburi-false0.png');
   animation: bujok0 1.5s step-end infinite;
 }
 .bada{
-  content: url('/img/bada-false0.png');
+  content: url('/img/tribe/bada-false0.png');
   animation: bujok1 1.5s step-end infinite;
 }
 .bawi{
-  content: url('/img/bawi-false0.png');
+  content: url('/img/tribe/bawi-false0.png');
   animation: bujok2 1.5s step-end infinite;
 }
 .bam{
-  content: url('/img/bam-false0.png');
+  content: url('/img/tribe/bam-false0.png');
   animation: bujok3 1.5s step-end infinite;
 }
 
 
 .bburiActive{
   width: 800px;
-  content: url('/img/bburi-true0.png');
+  content: url('/img/tribe/bburi-true0.png');
   animation: bujok-true0 1.5s step-end infinite;
 }
 .badaActive{
-  content: url('/img/bada-true0.png');
+  content: url('/img/tribe/bada-true0.png');
   animation: bujok-true1 1.5s step-end infinite;
 }
 .bawiActive{
-  content: url('/img/bawi-true0.png');
+  content: url('/img/tribe/bawi-true0.png');
   animation: bujok-true2 1.5s step-end infinite;
 }
 .bamActive{
-  content: url('/img/bam-true0.png');
+  content: url('/img/tribe/bam-true0.png');
   animation: bujok-true3 1.5s step-end infinite;
 }

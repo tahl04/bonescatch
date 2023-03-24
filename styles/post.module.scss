@@ -257,7 +257,8 @@ $w-select-h : calc($w-select-w / 5.657);
             h4{
                 width: 110px;
                 // border: 1px solid #f00;
-                color: #fff;
+                // color: #fff;
+                // font-weight: 600;
                 font-size: 20px;
                 // padding-right: 50px;
             }
@@ -276,4 +277,21 @@ $w-select-h : calc($w-select-w / 5.657);
         height: 4px;
         background-color: rgba(83, 56, 24,.3);
     }
+}
+
+.bburi{
+    color: #c4cbe6;
+    text-shadow: 1px 1px 2px rgb(0, 34, 253);
+}
+.bada{
+    color: #e7c8c7;
+    text-shadow: 1px 1px 2px #e9231c;
+}
+.bawi{
+    color: #ece2d4;
+    text-shadow: 1px 1px 2px #ff9100;
+}
+.bam{
+    color: #dbcbe4;
+    text-shadow: 1px 1px 2px #7e00c7;
 }

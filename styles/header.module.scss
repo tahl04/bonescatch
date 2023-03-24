@@ -18,21 +18,21 @@
 // }
 @keyframes trans {
   0% {
-    content: url("/img/logo0.png");
+    content: url("/img/element/logo0.png");
   }
   100% {
-    content: url("/img/logo1.png");
+    content: url("/img/element/logo1.png");
   }
 }
 
 @keyframes music0 {
   50% {
-    background-image: url("/img/play1.png");
+    background-image: url("/img/element/play1.png");
   }
 }
 @keyframes music1 {
   50% {
-    background-image: url("/img/stop1.png");
+    background-image: url("/img/element/stop1.png");
   }
 }
 
@@ -69,7 +69,7 @@
       width: 70px;
       height: 70px;
       background-size: cover;
-      background-image: url("/img/play0.png");
+      background-image: url("/img/element/play0.png");
       background-position: 50% 50%;
       cursor: pointer;
       animation: music0 0.5s step-end infinite;
@@ -80,7 +80,7 @@
 
     .active {
       animation: music1 0.5s step-end infinite;
-      background-image: url("/img/stop0.png");
+      background-image: url("/img/element/stop0.png");
     }
   }
   .login {

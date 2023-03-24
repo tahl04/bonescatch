@@ -40,7 +40,7 @@ function Main() {
     <>
       {/* <Lantern/> */}
 
-      <Link className={m.Write} href="/page/Write">
+      <Link className={m.Write} href="/page/Draw">
         글 작성하러가기
       </Link>
 
