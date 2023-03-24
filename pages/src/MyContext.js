@@ -1,5 +1,5 @@
 import axios from "axios";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import Header from "./Header";
 import Lantern from "./Lantern";
 

@@ -1,14 +1,13 @@
 import React from "react";
 
 const ShopItems = ({ item }) => {
-  console.log(item);
   function purchase() {
-    console.log(item.id, " 구매");
+    console.log(item.item_name, " 구매");
   }
   return (
     <figure>
-      <img alt={`${item.id}`}></img>
-      <figcaption>{item.id}</figcaption>
+      <img alt={`${item.item_name}`}></img>
+      <figcaption>{item.item_name}</figcaption>
       <button onClick={purchase}>구매</button>
     </figure>
   );
