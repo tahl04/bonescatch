@@ -13,7 +13,7 @@ function Main() {
     const router = useRouter();
   const { data,who } = useContext(DataContext);
   const { data: session, status } = useSession();
-console.log(who);
+// console.log(who);
 
 
 console.log(data)

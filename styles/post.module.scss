@@ -128,10 +128,12 @@ $w-select-h : calc($w-select-w / 5.657);
         flex-direction: column;
     }
     @include body_s(){}
-    h3{
-        @include flex(){}
+    nav{
+        @include flex(){};
+        h3{
+            margin-right: 10px;
+        }
         h2{
-            padding: 0 20px;
         }
     }
 }

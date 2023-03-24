@@ -34,6 +34,7 @@ const Write = () => {
   // const [colorSwitch,setSwitch] = useState([strokeCol,strokeCol,strokeCol,strokeCol]);
   let start_background_color = "transparent";
   let index = -1;
+  let saveIndex = index;
   let restore_array = [];
   //디비
   const { dataFun,who } = useContext(DataContext);
@@ -115,18 +116,24 @@ const Write = () => {
       //   // document.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
       // }
     });
+
+    //되돌리기
     backBtn.current.addEventListener("click", () => {
       // const context = canvasw.current.getContext("2d");
       if (index <= 0) {
-        clear_canvas();
-      } else {
+        ctx.fillStyle = start_background_color;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        restore_array = [];
+        index = -1;
+      }else{
         index -= 1;
         restore_array.pop();
         ctx.putImageData(restore_array[index], 0, 0);
       }
     });
 
-    //지우기 버튼
+    //전체 지우기 버튼
     allDel.current.addEventListener("click", () => {
       // const context = canvasw.current.getContext("2d");
       ctx.fillStyle = start_background_color;
@@ -139,11 +146,17 @@ const Write = () => {
     canvas.addEventListener(
       "mousedown",
       function (e) {
+        // if(index < 0){
+        //   index += 1;
+        // }
         index += 1;
+        saveIndex = index;
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
         restore_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
         canvas.addEventListener("mousemove", onPaint, false);
+        console.log(index);
+        console.log("셋인덱스"+saveIndex);
       },
       false
     );
@@ -168,14 +181,14 @@ const Write = () => {
   // },[parts])
 
   //전체 지우기
-  function clear_canvas() {
-    const context = canvasw.current.getContext("2d");
-    context.fillStyle = start_background_color;
-    context.clearRect(0, 0, canvasw.current.width, canvasw.current.height);
-    context.fillRect(0, 0, canvasw.current.width, canvasw.current.height);
-    restore_array = [];
-    index = -1;
-  }
+  // function clear_canvas() {
+  //   const context = canvasw.current.getContext("2d");
+  //   context.fillStyle = start_background_color;
+  //   context.clearRect(0, 0, canvasw.current.width, canvasw.current.height);
+  //   context.fillRect(0, 0, canvasw.current.width, canvasw.current.height);
+  //   restore_array = [];
+  //   index = -1;
+  // }
   //완료 버튼 누를 시
   const canvasSave = () => {
     //캔버스에서 그리던 그림을 data화 시켜서 옮기는 과정
@@ -290,6 +303,7 @@ const Write = () => {
   function valueChange(e) {
     let t = e.target;
     setValue({ ...inputValue, [t.name]: t.value , USER:who[0].ID, STATE:'활성화',USERCODE:who[0].CODENAME});
+    console.log(inputValue)
   }
 
   async function create(e) {

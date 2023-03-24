@@ -32,15 +32,16 @@ const handler = async (req, res) => {
 
   const insertData = async () => {
     
-    let {ID, USER, DRAW, STATE, TITLE, COUNT, COMMENT, DATE, USERCODE} = body;
+    let {USER, DRAW, STATE, TITLE, COMMENT, USERCODE} = body;
     let datas = await executeQuery(
-      'insert into TBL_POST (ID,USER,DRAW,STATE,TITLE,USERCODE) value (?,?,?,?,?,?)',
-      [ID,USER,DRAW,STATE,TITLE,USERCODE]
+      'insert into TBL_POST (USER,DRAW,STATE,TITLE,USERCODE) value (?,?,?,?,?)',
+      [USER,DRAW,STATE,TITLE,USERCODE]
     );
     // let datass = await executeQuery(
     //   'insert into TBL_COMMENT (ID,DATE,USER,COUNT,COMMENT) value (?,?,?,?,?)',
     //   [ID,DATE,USER,COUNT,COMMENT]
     // );
+    // console.log(body);
     res.json({...USER,...COMMENT, POST:datas})
   }
 

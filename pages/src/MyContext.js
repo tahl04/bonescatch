@@ -12,6 +12,22 @@ const MyContext = ({ children }) => {
   const [who, setWho] = useState();
   const { data: session } = useSession();
 
+
+
+
+  async function dataPost(type, obj) {
+    let transw;
+    if (type == "get") {
+      await axios.get("/api").then((res) => (transw = res.data));
+    } else if (type == "post") {
+      console.log(obj);
+      //   trans = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api", obj);
+      transw = await axios.post("http://localhost:3000/api/comment", obj);
+    }
+    setData(transw);
+  }
+
+
   async function dataFun(type, obj) {
     let trans;
     if (type == "get") {
@@ -27,6 +43,7 @@ const MyContext = ({ children }) => {
 
   useEffect(() => {
     dataFun("get");
+    dataPost("get");
   }, []);
 
 
@@ -38,7 +55,7 @@ const MyContext = ({ children }) => {
           },
         })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setWho(res.data);
         });
     }
@@ -47,7 +64,7 @@ const MyContext = ({ children }) => {
   //   useEffect(() => {}, [session]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose}}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost}}>
       <Header />
       <Lantern />
       {children}
