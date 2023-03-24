@@ -1,0 +1,25 @@
+.shop_main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  margin-top: 200px;
+  .shop_section {
+    width: 60%;
+    height: 60vh;
+    border: 1px solid yellow;
+    > button {
+      position: relative;
+    }
+    .shop_pen {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .shop_paint {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+  }
+}

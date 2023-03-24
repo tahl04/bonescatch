@@ -1,10 +1,8 @@
-
-
 @mixin flex($a: space-around, $b: center) {
-    display: flex;
-    justify-content: $a;
-    align-items: $b;
-    @content;
+  display: flex;
+  justify-content: $a;
+  align-items: $b;
+  @content;
 }
 // @keyframes trans {
 //     0% {
@@ -19,79 +17,83 @@
 //     }
 // }
 @keyframes trans {
-    0% {
-        content: url('/img/logo0.png');
-    }
-    100% {
-        content: url('/img/logo1.png');
-    }
+  0% {
+    content: url("/img/logo0.png");
+  }
+  100% {
+    content: url("/img/logo1.png");
+  }
 }
 
 @keyframes music0 {
-    50% {
-        background-image: url('/img/play1.png');
-    }
+  50% {
+    background-image: url("/img/play1.png");
+  }
 }
 @keyframes music1 {
-    50% {
-        background-image: url('/img/stop1.png');
-    }
+  50% {
+    background-image: url("/img/stop1.png");
+  }
 }
 
-.header{
-    z-index: 100;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 150px;
-    padding: 20px;
-    // border: 2px solid #f00;
-    @include flex(space-between){}
-    .link{
-        img{
-            cursor: pointer;
-            // border: 2px solid #f00;
-            width: 300px;
-            height: auto;
-            background-size: cover;
-            background-position: 50% 50%;
-            animation: trans .7s infinite linear;
-        }
+.header {
+  z-index: 100;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 150px;
+  padding: 20px;
+  // border: 2px solid #f00;
+  @include flex(space-between) {
+  }
+  .link {
+    img {
+      cursor: pointer;
+      // border: 2px solid #f00;
+      width: 300px;
+      height: auto;
+      background-size: cover;
+      background-position: 50% 50%;
+      animation: trans 0.7s infinite linear;
     }
-    .music{
-        width: 200px;
-        // width: 50px;
-        // height: 50px;
-        // background-color: #fff;
-        @include flex(){}
-        .togglePlay{
-            width: 70px;
-            height: 70px;
-            background-size: cover;
-            background-image: url('/img/play0.png');
-            background-position: 50% 50%;
-            cursor: pointer;
-            animation: music0 .5s step-end infinite;
-            &:hover{
-                transform: scale(1.08);
-            }
-        }
-        
-        .active{
-            animation: music1 .5s step-end infinite;
-            background-image: url('/img/stop0.png');
-        }
+  }
+  .music {
+    width: 200px;
+    // width: 50px;
+    // height: 50px;
+    // background-color: #fff;
+    @include flex() {
     }
-    .login{
-        width: 200px;
-        // border: 1px solid #f00;
-        a{
-            color: #fff;
-            font-size: 20px;
-        }
+    .togglePlay {
+      width: 70px;
+      height: 70px;
+      background-size: cover;
+      background-image: url("/img/play0.png");
+      background-position: 50% 50%;
+      cursor: pointer;
+      animation: music0 0.5s step-end infinite;
+      &:hover {
+        transform: scale(1.08);
+      }
     }
+
+    .active {
+      animation: music1 0.5s step-end infinite;
+      background-image: url("/img/stop0.png");
+    }
+  }
+  .login {
+    width: 200px;
+    button {
+      color: #fff;
+      font-size: 20px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }
-.asd{
-    background-color: #fff;
+.asd {
+  background-color: #fff;
 }

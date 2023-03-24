@@ -1,6 +1,6 @@
 // import React,{ useRef, useEffect, useContext, useState } from 'react'
 // import axios from 'axios'
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useRouter } from "next/router";
 import m from "@/styles/main.module.scss";
 import Link from "next/link";
@@ -10,24 +10,29 @@ import { DataContext } from "../src/MyContext";
 import { useSession } from "next-auth/react";
 
 function Main() {
-    const router = useRouter();
-  const { data,who } = useContext(DataContext);
+  const router = useRouter();
+  const { data, who } = useContext(DataContext);
   const { data: session, status } = useSession();
-// console.log(who);
+  // console.log(who);
 
-
-console.log(data)
-
-function move() {
+  function move() {
     // router.push('/board');
     router.push({
-        pathname: '/board',
-        query: { id: 3434343 }
-    })
-}
+      pathname: "/board",
+      query: { id: 3434343 },
+    });
+  }
+  function auth() {
+    if (status === "unauthenticated") {
+      router.push("/");
+    } else {
+      return;
+    }
+  }
 
-
-
+  useEffect(() => {
+    auth();
+  }, [status]);
 
   if (!data) return <>돌 날카롭게 깎는중.....</>;
   return (
@@ -42,20 +47,26 @@ function move() {
         <div className={m.Mtop}></div>
         <div className={m.Mbot}></div>
         <div className={m.Mtop}></div>
-        {
-data["POST"] ? data['POST'].map((res) => {
-          return (
-            <div key={res.ID} className={m.Mmid}>
-              <p> {res.USERCODE} 님의 본스케치 </p>
-              <p> {res.STATE} </p>
-              {res.STATE === "정답" ? <p>{res.TITLE}</p> : <p>글자 수 : {res.TITLE.length}</p>}
-              <img src={res.DRAW} className={m.bonescatch}></img>
-              {/* <Link href={}></Link> */}
-              <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID }}} > 바로가기 </Link>
-              <img className={m.underLine}></img>
-            </div>
-          );
-        }):<div>불러오는중</div>}
+        {data["POST"] ? (
+          data["POST"].map((res) => {
+            return (
+              <div key={res.ID} className={m.Mmid}>
+                <p> {res.USERCODE} 님의 본스케치 </p>
+                <p> {res.STATE} </p>
+                {res.STATE === "정답" ? <p>{res.TITLE}</p> : <p>글자 수 : {res.TITLE.length}</p>}
+                <img src={res.DRAW} className={m.bonescatch}></img>
+                {/* <Link href={}></Link> */}
+                <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
+                  {" "}
+                  바로가기{" "}
+                </Link>
+                <img className={m.underLine}></img>
+              </div>
+            );
+          })
+        ) : (
+          <div>불러오는중</div>
+        )}
         <div className={m.Mbot}></div>
         <div className={m.test}></div>
       </div>
