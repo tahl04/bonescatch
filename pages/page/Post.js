@@ -120,6 +120,7 @@ function Post() {
                                 <div key={key} className={po.commentBox}>
                                     <nav>
                                         <div>
+                                          <img className={`${obj.TRIBE === "0" && po.bburiIcon} ${obj.TRIBE === "1" && po.badaIcon} ${obj.TRIBE === "2" && po.bawiIcon} ${obj.TRIBE === "3" && po.bamIcon}`}></img>
                                             <h4 className={`${obj.TRIBE === "0" && po.bburi} ${obj.TRIBE === "1" && po.bada} ${obj.TRIBE === "2" && po.bawi} ${obj.TRIBE === "3" && po.bam}`}>{obj.CODENAME}</h4>
                                             <h3>{obj.COMMENT}</h3>
                                         </div>

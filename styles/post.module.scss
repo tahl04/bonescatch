@@ -254,6 +254,11 @@ $w-select-h : calc($w-select-w / 5.657);
         @include flex(space-between){}
         div{
             @include flex(){}
+            img{
+                width: 40px;
+                height: 40px;
+                margin-right: 10px;
+            }
             h4{
                 width: 110px;
                 // border: 1px solid #f00;
@@ -272,8 +277,8 @@ $w-select-h : calc($w-select-w / 5.657);
         }
     }
     span{
-        margin-left: 100px;
-        width: 75%;
+        margin-left: 150px;
+        width: 70%;
         height: 4px;
         background-color: rgba(83, 56, 24,.3);
     }
@@ -291,7 +296,21 @@ $w-select-h : calc($w-select-w / 5.657);
     color: #ece2d4;
     text-shadow: 1px 1px 2px #ff9100;
 }
+
 .bam{
     color: #dbcbe4;
     text-shadow: 1px 1px 2px #7e00c7;
+}
+.bburiIcon{
+    content: url('/img/tribe/bburi-icon.png');
+}
+.badaIcon{
+    content: url('/img/tribe/bada-icon.png');
+}
+.bawiIcon{
+    content: url('/img/tribe/bawi-icon.png');
+}
+.bamIcon{
+    content: url('/img/tribe/bam-icon.png');
+
 }
