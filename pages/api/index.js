@@ -46,6 +46,8 @@ const handler = async (req, res) => {
 
 
 
+
+
   switch (method) {
     case "GET":
       seletData();

@@ -69,9 +69,12 @@ function Post() {
     data["POST"].forEach((obj,key)=>{
       if(obj.ID == query.id){
         if(inputValue.COMMENT == obj.TITLE){
-
           //여기서 이제 상태 바꾸면 됨.
+          let putAr = [{ID: query.id, STATE: who[0].TRIBE}];
           console.log("정답!");
+          // setValue({...inputValue, POST: query.id, STATE: who[0].TRIBE})
+          dataPost("put", putAr);
+          dataPost("get");
         }
       }
     })

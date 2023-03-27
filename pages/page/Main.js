@@ -39,14 +39,19 @@ function Main() {
   return (
     <>
       {/* <Lantern/> */}
+      
 
-      <Link className={m.Write} href="/page/Draw">
-        글 작성하러가기
-      </Link>
+      <Link className={m.Write} href="/page/Draw"></Link>
 
       <div className={m.Mwrap}>
-        <div className={m.Mtop}></div>
-        <div className={m.Mbot}></div>
+        <div className={m.titleBox}>
+          <div className={m.mainTitle}>본 스케치</div>
+          <nav>
+            <div className={m.bornBtn}>전체 보기</div>
+            <div className={m.bornBtn}>미점령 게시물 보기</div>
+            <div className={m.bornBtn}>점령 게시물 보기</div>
+          </nav>
+        </div>
         <div className={m.Mtop}></div>
         {data["POST"] ? (
           data["POST"].map((res) => {

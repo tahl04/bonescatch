@@ -41,7 +41,21 @@ function Header() {
     }
   }
   function toshop() {
-    router.push("/page/Shop");
+    if (!pageChange) {
+      setClose(true);
+      let closed;
+      closed = setTimeout(async function () {
+        setClose(!pageChange);
+        // await dataFun("get");
+        router.push("/page/Shop");
+      }, 1000);
+    } else {
+      router.push("/page/Shop");
+    }
+    // router.push("/page/Shop");
+  }
+  function ranking() {
+    router.push("/page/Ranking");
   }
 
   return (
@@ -59,6 +73,7 @@ function Header() {
         <div className={hd.login}></div>
       ) : (
         <div className={hd.login}>
+          <button onClick={ranking}>랭킹</button>
           <button onClick={toshop}>상점</button>
           <button onClick={() => signOut()}>로그아웃</button>
         </div>

@@ -13,6 +13,14 @@ export default function Home() {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  function authCheck(){
+    if(status === 'authenticated'){
+      router.replace('/page/Main')
+    }
+    else{
+      return;
+    }
+  }
   async function signin(e) {
     e.preventDefault();
 
@@ -49,6 +57,9 @@ export default function Home() {
       router.push(("/page/SignUp"));
     }, 1000);
   }
+  useEffect(()=>{
+    authCheck();
+  },[status])
   return (
     <>
       <div className={pageChange ? lo.leftWrapClose : lo.leftWrap}>
