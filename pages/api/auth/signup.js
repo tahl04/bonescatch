@@ -24,14 +24,23 @@ async function handler(req, res) {
         res.send({ message: "error", data: result });
       } else {
         //회원가입처리
-        console.log(body);
-        const createUser = await executeQuery("insert into TBL_USER (CODENAME, TRIBE, PASS, NAME) value (?,?,?,?)", [
-          body.data.CODENAME,
-          body.data.TRIBE,
-          body.data.PASS,
-          body.data.USER,
-        ]);
-        res.send({ message: "CreateUser" });
+        try {
+          const createUser = await executeQuery("insert into TBL_USER (CODENAME, TRIBE, PASS, NAME) value (?,?,?,?)", [
+            body.data.CODENAME,
+            body.data.TRIBE,
+            body.data.PASS,
+            body.data.USER,
+          ]);
+
+          if (createUser) {
+            const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "", "", -1]);
+            console.log(userItem);
+          }
+
+          res.send({ message: "CreateUser" });
+        } catch (err) {
+          res.send(err);
+        }
       }
     } catch (err) {
       res.send(err);
