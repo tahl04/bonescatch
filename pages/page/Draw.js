@@ -301,7 +301,7 @@ const Draw = () => {
   //디비
   function valueChange(e) {
     let t = e.target;
-    setValue({ ...inputValue, [t.name]: t.value, USER: who[0].ID, STATE: "미점령", USERCODE: who[0].CODENAME });
+    setValue({ ...inputValue, [t.name]: t.value, USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME });
     // console.log(inputValue)
   }
 
