@@ -4,12 +4,11 @@ import axios from "axios";
 import lo from "@/styles/login.module.scss";
 import React, { useRef, useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { DataContext } from "../src/MyContext";
 
 function SignUp() {
   const router = useRouter();
-  const {pageChange, setClose} = useContext(DataContext);
+  const { pageChange, setClose } = useContext(DataContext);
   const { pathname } = useRouter();
   const [accountresult, setAccountresult] = useState({ nick: "", id: "", tri: "" });
 
@@ -103,23 +102,21 @@ function SignUp() {
           if (res.data.message === "error") {
             setAccountresult({ ...accountresult, nick: res.data.data.nick, id: res.data.data.id });
           } else if (res.data.message === "CreateUser") {
-            //  로그인페이지로이동
-            console.log("to sign in");
+            router.replace("/");
           }
         });
     }
   }
 
   //페이지 전환
-  function closeFire(){
+  function closeFire() {
     setClose(true);
     let closed;
-    closed = setTimeout(function(){
+    closed = setTimeout(function () {
       // setClose(!pageChange);
-      router.push('/');
+      router.push("/");
     }, 1000);
   }
-
 
   return (
     <>
@@ -130,60 +127,56 @@ function SignUp() {
         <img ref={fire1} className={lo.fireRight} />
       </div>
       <div className={lo.logWrap}>
+        {/* <div className={lo.box}> */}
+        <div className={`${lo.dolBox1} ${pageChange ? lo.dolBoxClose1 : lo.dolBoxOpen1}`}>
+          <div className={lo.logTop}></div>
+          <div className={lo.logBodyS}>
+            <form className={lo.form}>
+              <h2>회원가입</h2>
+              <input ref={CODEN} onChange={valueChange} type="text" placeholder="닉네임" name="CODENAME" autoComplete="off" />
+              <p>{accountresult && accountresult.nick}</p>
+              <input ref={USERN} onChange={valueChange} type="text" placeholder="아이디" name="USER" autoComplete="off" />
+              <p>{accountresult && accountresult.id}</p>
+              <input ref={PASSN} onChange={valueChange} type="password" placeholder="비밀번호" name="PASS" />
 
-    {/* <div className={lo.box}> */}
-    <div className={`${lo.dolBox1} ${pageChange ? lo.dolBoxClose1 : lo.dolBoxOpen1}`}>
-        <div className={lo.logTop}></div>
-        <div className={lo.logBodyS}>
-          <form className={lo.form}>
-            <h2>회원가입</h2>
-            <input ref={CODEN} onChange={valueChange} type="text" placeholder="닉네임" name="CODENAME" autoComplete="off" />
-            <p>{accountresult && accountresult.nick}</p>
-            <input ref={USERN} onChange={valueChange} type="text" placeholder="아이디" name="USER" autoComplete="off" />
-            <p>{accountresult && accountresult.id}</p>
-            <input ref={PASSN} onChange={valueChange} type="password" placeholder="비밀번호" name="PASS" />
+              <h3>부족 선택 {BuName}</h3>
+              <figcaption>
+                <img
+                  ref={(el) => (bujok.current[0] = el)}
+                  className={`${lo.bburi} ${bburi && lo.bburiActive}`}
+                  onClick={() => setValue({ ...inputValue, TRIBE: 0 })}
+                ></img>
+                <img
+                  ref={(el) => (bujok.current[1] = el)}
+                  className={`${lo.bada} ${bada && lo.badaActive}`}
+                  onClick={() => setValue({ ...inputValue, TRIBE: 1 })}
+                ></img>
+                <img
+                  ref={(el) => (bujok.current[2] = el)}
+                  className={`${lo.bawi} ${bawi && lo.bawiActive}`}
+                  onClick={() => setValue({ ...inputValue, TRIBE: 2 })}
+                ></img>
+                <img
+                  ref={(el) => (bujok.current[3] = el)}
+                  className={`${lo.bam} ${bam && lo.bamActive}`}
+                  onClick={() => setValue({ ...inputValue, TRIBE: 3 })}
+                ></img>
+              </figcaption>
+              <p>{accountresult && accountresult.tri}</p>
 
-            <h3>부족 선택 {BuName}</h3>
-            <figcaption>
-              <img
-                ref={(el) => (bujok.current[0] = el)}
-                className={`${lo.bburi} ${bburi && lo.bburiActive}`}
-                onClick={() => setValue({ ...inputValue, TRIBE: 0 })}
-              ></img>
-              <img
-                ref={(el) => (bujok.current[1] = el)}
-                className={`${lo.bada} ${bada && lo.badaActive}`}
-                onClick={() => setValue({ ...inputValue, TRIBE: 1 })}
-              ></img>
-              <img
-                ref={(el) => (bujok.current[2] = el)}
-                className={`${lo.bawi} ${bawi && lo.bawiActive}`}
-                onClick={() => setValue({ ...inputValue, TRIBE: 2 })}
-              ></img>
-              <img
-                ref={(el) => (bujok.current[3] = el)}
-                className={`${lo.bam} ${bam && lo.bamActive}`}
-                onClick={() => setValue({ ...inputValue, TRIBE: 3 })}
-              ></img>
-            </figcaption>
-            <p>{accountresult && accountresult.tri}</p>
-
-            <div className={lo.navDiv}>
-              <div className={lo.submitBtn} onClick={create}>
-                생성!
+              <div className={lo.navDiv}>
+                <div className={lo.submitBtn} onClick={create}>
+                  생성!
+                </div>
+                <div onClick={closeFire} className={lo.submitBtn}>
+                  취소!
+                </div>
               </div>
-              <div onClick={closeFire} className={lo.submitBtn}>
-                취소!
-              </div>
-            </div>
-          </form>
+            </form>
+          </div>
+          <div className={lo.logFoot}></div>
         </div>
-        <div className={lo.logFoot}></div>
-        </div>
-    {/* </div> */}
-        
-
-
+        {/* </div> */}
       </div>
     </>
   );

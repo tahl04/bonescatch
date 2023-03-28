@@ -29,7 +29,7 @@ function Main() {
       return;
     }
   }
-  console.log(data);
+  // console.log(data);
 
   useEffect(() => {
     auth();
@@ -39,7 +39,6 @@ function Main() {
   return (
     <>
       {/* <Lantern/> */}
-      
 
       <Link className={m.Write} href="/page/Draw"></Link>
 
