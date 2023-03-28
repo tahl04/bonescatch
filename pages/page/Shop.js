@@ -50,7 +50,7 @@ const Shop = () => {
         <button onClick={() => setItem("PAINT")}>염료</button>
 
         {data && data.length ? (
-          <article className={sh.shop_pen}>
+          <article className={sh.shop_item}>
             {data.map((item, key) => {
               return <ShopItems key={key} item={item}></ShopItems>;
             })}
