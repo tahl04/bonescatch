@@ -17,11 +17,10 @@ const MyContext = ({ children }) => {
     if (type == "get") {
       await axios.get("/api").then((res) => (transw = res.data));
     } else if (type == "post") {
-      // console.log(obj);
-      //   trans = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api", obj);
       transw = await axios.post("http://localhost:3000/api/comment", obj);
     } else if (type == "put") {
       // console.log(obj);
+      console.log("일단 진입", obj);
       transw = await axios.put("http://localhost:3000/api/comment", obj);
     }
     setData(transw);

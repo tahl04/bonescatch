@@ -1,6 +1,6 @@
 // import React,{ useRef, useEffect, useContext, useState } from 'react'
 // import axios from 'axios'
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import m from "@/styles/main.module.scss";
 import Link from "next/link";
@@ -13,7 +13,19 @@ function Main() {
   const router = useRouter();
   const { data, who } = useContext(DataContext);
   const { data: session, status } = useSession();
+  const [mainSwc, setSwc] = useState("전체보기");
   // console.log(who);
+
+  function stateAll(){
+    setSwc("전체보기");
+  }
+  function stateFalse(){
+    setSwc("미점령");
+  }
+  function stateTrue(){
+    setSwc("점령");
+  }
+
 
   function move() {
     // router.push('/board');
@@ -29,7 +41,7 @@ function Main() {
       return;
     }
   }
-  // console.log(data);
+  console.log(data);
 
   useEffect(() => {
     auth();
@@ -46,20 +58,25 @@ function Main() {
         <div className={m.titleBox}>
           <div className={m.mainTitle}>본 스케치</div>
           <nav>
-            <div className={m.bornBtn}>전체 보기</div>
-            <div className={m.bornBtn}>미점령 게시물 보기</div>
-            <div className={m.bornBtn}>점령 게시물 보기</div>
+            <div className={m.bornBtn} onClick={stateAll}>전체 보기</div>
+            <div className={m.bornBtn} onClick={stateFalse}>미점령 게시물 보기</div>
+            <div className={m.bornBtn} onClick={stateTrue}>점령 게시물 보기</div>
           </nav>
         </div>
         <div className={m.Mtop}></div>
-        {data["POST"] ? (
+        {
           data["POST"].map((res) => {
+            if(mainSwc === "전체보기"){
             return (
               <div key={res.ID} className={m.Mmid}>
                 <p> {res.USERCODE} 님의 본스케치 </p>
-                <p> {res.STATE} </p>
-                {res.STATE === "정답" ? <p>{res.TITLE}</p> : <p>글자 수 : {res.TITLE.length}</p>}
+                {res.STATE == 0 && <p>뿌리족 정답</p>}
+                {res.STATE == 1 && <p>바다족 정답</p>}
+                {res.STATE == 2 && <p>바위족 정답</p>}
+                {res.STATE == 3 && <p>밤족 정답</p>}
+                {res.STATE === "미점령" ? <p>글자 수 : {res.TITLE.length}</p> : <p>{res.TITLE}</p> }
                 <img src={res.DRAW} className={m.bonescatch}></img>
+                <img className={`${res.STATE == 0 && m.bburi} ${res.STATE == 1 && m.bada} ${res.STATE == 2 && m.bawi} ${res.STATE == 3 && m.bam}`}></img>
                 {/* <Link href={}></Link> */}
                 <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
                   {" "}
@@ -68,10 +85,59 @@ function Main() {
                 <img className={m.underLine}></img>
               </div>
             );
+          }else if(mainSwc === "점령"){
+
+
+            return (
+              <div key={res.ID} className={m.Mmid}>
+                <p> {res.USERCODE} 님의 본스케치 </p>
+                {res.STATE == 0 && <p>뿌리족 정답</p>}
+                {res.STATE == 1 && <p>바다족 정답</p>}
+                {res.STATE == 2 && <p>바위족 정답</p>}
+                {res.STATE == 3 && <p>밤족 정답</p>}
+                {res.STATE === "미점령" ? <p>글자 수 : {res.TITLE.length}</p> : <p>{res.TITLE}</p> }
+                <img src={res.DRAW} className={m.bonescatch}></img>
+                <img className={`${res.STATE == 0 && m.bburi} ${res.STATE == 1 && m.bada} ${res.STATE == 2 && m.bawi} ${res.STATE == 3 && m.bam}`}></img>
+                {/* <Link href={}></Link> */}
+                <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
+                  {" "}
+                  바로가기{" "}
+                </Link>
+                <img className={m.underLine}></img>
+              </div>
+            );
+
+
+
+          }else if(mainSwc === "미점령"){
+
+
+            return (
+              <h2>일단 하이</h2>
+              // <div key={res.ID} className={m.Mmid}>
+              //   <p> {res.USERCODE} 님의 본스케치 </p>
+              //   {res.STATE == 0 && <p>뿌리족 정답</p>}
+              //   {res.STATE == 1 && <p>바다족 정답</p>}
+              //   {res.STATE == 2 && <p>바위족 정답</p>}
+              //   {res.STATE == 3 && <p>밤족 정답</p>}
+              //   {res.STATE === "미점령" ? <p>글자 수 : {res.TITLE.length}</p> : <p>{res.TITLE}</p> }
+              //   <img src={res.DRAW} className={m.bonescatch}></img>
+              //   <img className={`${res.STATE == 0 && m.bburi} ${res.STATE == 1 && m.bada} ${res.STATE == 2 && m.bawi} ${res.STATE == 3 && m.bam}`}></img>
+              //   {/* <Link href={}></Link> */}
+              //   <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
+              //     {" "}
+              //     바로가기{" "}
+              //   </Link>
+              //   <img className={m.underLine}></img>
+              // </div>
+            );
+
+
+
+
+          }
           })
-        ) : (
-          <div>불러오는중</div>
-        )}
+        }
         <div className={m.Mbot}></div>
         <div className={m.test}></div>
       </div>

@@ -44,6 +44,46 @@
         background-image: url('/img/list-body9.png');
     }
 }
+@keyframes po-trans7 {
+    50% {
+        background-image: url('/img/post/right1.png');
+    }
+}
+@keyframes po-trans8 {
+    50% {
+        background-image: url('/img/post/wrong1.png');
+    }
+}
+
+@keyframes an-open {
+    0% {
+        transform: scale(0);
+    }
+    30%{
+        transform: scale(1.5);
+    }
+    50%{
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+  }
+// @keyframes an-open {
+//     0% {
+//         transform: translate(-50%, -300%);
+//     }
+//     25%{
+//         transform: translate(-50%, -40%);
+//     }
+//     45%{
+//         transform: translate(-50%, -55%);
+//     }
+//     100% {
+//         transform: translate(-50%, -50%);
+//     }
+//   }
+
 
 $c_width : 840px;
 $c_b_width : calc($c_width / 2);
@@ -60,13 +100,24 @@ $I_btn_h : calc($I_btn_w / 1.7065);
 //1.7065
 
 
-
 $po_width : 800px;
 $po_head : calc($po_width / 14.75);
 $po_body : calc($po_width / 5.067);
 $po_body_main : calc($po_width / 1.746);
 $po-foot : calc($po_width / 10.868);
 
+
+//정답 팝업
+// 2.4363
+
+
+// $an_width : calc($c_width / 0.9);
+$an_width : 700px;
+$an_height : calc($an_width / 2.4363);
+
+
+$I_btn2_w : 130px;
+$I_btn2_h : calc($I_btn2_w / 1.7065);
 
 
 
@@ -125,6 +176,14 @@ $w-select-h : calc($w-select-w / 5.657);
     @content;
 }
 @mixin inputBtn($a:$I_btn_w, $b:$I_btn_h) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/post/check0.png');
+    animation: po-trans5 1.5s step-end infinite;
+    @content;
+}
+@mixin inputBtn2($a:$I_btn2_w, $b:$I_btn2_h) {
     width: $a;
     height: $b;
     background-size: cover;
@@ -314,3 +373,75 @@ $w-select-h : calc($w-select-w / 5.657);
     content: url('/img/tribe/bam-icon.png');
 
 }
+.right{
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    @include flex(){}
+    figure{
+        width: $an_width;
+        height: $an_height;
+        animation: an-open 1s forwards;
+        nav{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            animation: po-trans7 1.7s step-end infinite;
+            background-image: url('/img/post/right0.png');
+            background-size: cover;
+            div{
+                position: absolute;
+                bottom: 40px;
+                right: 120px;
+                @include inputBtn2(){}
+                cursor: pointer;
+            }
+        }
+    }
+}
+.wrong{
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    @include flex(){}
+    figure{
+        animation: an-open 1s forwards;
+        width: $an_width;
+        height: $an_height;
+        nav{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            animation: po-trans8 1.7s step-end infinite;
+            background-image: url('/img/post/wrong0.png');
+            background-size: cover;
+            div{
+                position: absolute;
+                bottom: 40px;
+                right: 120px;
+                @include inputBtn2(){}
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+// .daPactive{
+//     display: block;
+//     figure{
+//         
+//         nav{
+            
+//         }
+//     }
+// }

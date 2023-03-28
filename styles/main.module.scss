@@ -70,6 +70,26 @@ $l-underline-h : calc($l-underline-w / 29.5);
         background-image: url('/img/main-btn-true1.png');
     }
 }
+@keyframes m-trans9 {
+    50% {
+        content: url('/img/post/bburi-occ1.png');
+    }
+}
+@keyframes m-trans10 {
+    50% {
+        content: url('/img/post/bada-occ1.png');
+    }
+}
+@keyframes m-trans11 {
+    50% {
+        content: url('/img/post/bawi-occ1.png');
+    }
+}
+@keyframes m-trans12 {
+    50% {
+        content: url('/img/post/bam-occ1.png');
+    }
+}
 
 @mixin top() {
     width: $c_width;
@@ -226,4 +246,36 @@ $l-underline-h : calc($l-underline-w / 29.5);
     @include flex(){}
     padding-top: 10px;
     color: rgb(58, 37, 12);
+}
+
+.bburi{
+    animation: m-trans9 1.7s step-end infinite;
+    transform: translate(200px, -120px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bburi-occ0.png');
+}
+.bada{
+    animation: m-trans10 1.7s step-end infinite;
+    transform: translate(200px, -120px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bada-occ0.png');
+
+}
+.bawi{
+    animation: m-trans11 1.7s step-end infinite;
+    transform: translate(200px, -120px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bawi-occ0.png');
+    
+}
+.bam{
+    animation: m-trans12 1.7s step-end infinite;
+    transform: translate(200px, -120px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bam-occ0.png');
+
 }

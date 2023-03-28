@@ -16,14 +16,12 @@ async function handler(req, res) {
     res.json({...USER, ...POST, COMMENT:data})
   }
 
-
   const updateProduct = async () => {
-    
-    let post = qs.parse(body);
-    // let {STATE} = body;
-      let data = await executeQuery('UPDATE TBL_POST SET STATE=? WHERE ID=?', [post.STATE]);
-      res.json({...USER, ...COMMENT,POST:data});
+    let {ID, STATE} = body;
+    executeQuery(`UPDATE TBL_POST SET STATE='${STATE}' WHERE ID=${ID}`);
+      
   };
+
 
   
 
@@ -32,12 +30,10 @@ async function handler(req, res) {
     case "POST":
       commentPost();
       break;
-    case "GET":
-        // commentPost();
-    //     // seletData();
-      break;
     case "PUT": 
       updateProduct();
+      break;
+    case "GET":
       break;
   }
 
