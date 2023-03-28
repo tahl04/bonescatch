@@ -37,7 +37,7 @@ const Draw = () => {
   let saveIndex = index;
   let restore_array = [];
   //디비
-  const { dataFun,who } = useContext(DataContext);
+  const { dataFun, who } = useContext(DataContext);
   const router = useRouter();
   const initial = { USER: "", DRAW: "", TITLE: "", STATE: "" };
   const [inputValue, setValue] = useState(initial);
@@ -80,7 +80,7 @@ const Draw = () => {
       obj.addEventListener("click", () => {
         strokeCol = parts[key];
         ctx.strokeStyle = strokeCol;
-        console.log(parts, strokeCol);
+        // console.log(parts, strokeCol);
       });
     });
     ctx.strokeStyle = strokeCol;
@@ -105,7 +105,6 @@ const Draw = () => {
       // console.log('pushed key ' + e.key);
 
       if (keyCode == 17) {
-        console.log("gd");
         // if(keyCode == 90){
         //     console.log("gdasdsad");
         // }
@@ -126,7 +125,7 @@ const Draw = () => {
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         restore_array = [];
         index = -1;
-      }else{
+      } else {
         index -= 1;
         restore_array.pop();
         ctx.putImageData(restore_array[index], 0, 0);
@@ -156,7 +155,7 @@ const Draw = () => {
         restore_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
         canvas.addEventListener("mousemove", onPaint, false);
         console.log(index);
-        console.log("셋인덱스"+saveIndex);
+        console.log("셋인덱스" + saveIndex);
       },
       false
     );
@@ -302,16 +301,16 @@ const Draw = () => {
   //디비
   function valueChange(e) {
     let t = e.target;
-    setValue({ ...inputValue, [t.name]: t.value , USER:who[0].ID, STATE:'활성화',USERCODE:who[0].CODENAME});
-    console.log(inputValue)
+    setValue({ ...inputValue, [t.name]: t.value, USER: who[0].ID, STATE: "활성화", USERCODE: who[0].CODENAME });
+    // console.log(inputValue)
   }
 
   async function create(e) {
     e.preventDefault();
-    
+
     var canvas = canvasw.current;
     var imgDataUrl = canvas.toDataURL("image/png");
-    console.log(imgDataUrl);
+    // console.log(imgDataUrl);
     setValue({ ...inputValue, DRAW: imgDataUrl });
     dataFun("post", inputValue);
     await dataFun("get");
@@ -449,16 +448,12 @@ const Draw = () => {
 
         <div className={wr.textBox}>
           <form onSubmit={create}>
-            <p>
-              {/* <input onChange={valueChange} type="text" placeholder="이름" name="USER" /> */}
-            </p>
+            <p>{/* <input onChange={valueChange} type="text" placeholder="이름" name="USER" /> */}</p>
             {/* <p><input onChange={valueChange} type="text" placeholder='사진경로' name="datazz" /></p> */}
             <p>
               <input onChange={valueChange} type="text" placeholder="제목" name="TITLE" />
             </p>
-            <p>
-              {/* <input onChange={valueChange} type="text" placeholder="상태" name="STATE" /> */}
-            </p>
+            <p>{/* <input onChange={valueChange} type="text" placeholder="상태" name="STATE" /> */}</p>
             {/* <p><input onChange={valueChange} type="text" placeholder='제목' name="TITLE" /></p> */}
             <p>
               <input type="submit" value="저장" />

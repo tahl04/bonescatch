@@ -4,7 +4,6 @@ import axios from "axios";
 import lo from "@/styles/login.module.scss";
 import React, { useRef, useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
-import Link from "next/link";
 import { DataContext } from "../src/MyContext";
 
 function SignUp() {
