@@ -5,12 +5,14 @@ import wr from "@/styles/draw.module.scss";
 
 const Draw = () => {
   const { pathname } = useRouter();
-
+  
+  const [popCheck, setPop] = useState(false);
+  
   //색 셋팅
   let strokeCol = "#754d22";
   const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726", "#e48b26", strokeCol];
   const [parts, setParts] = useState([strokeCol, strokeCol, strokeCol, strokeCol]);
-  const copyParts = parts;
+  
 
   const emp = useRef([]),
     bla = useRef([]),
@@ -28,10 +30,7 @@ const Draw = () => {
   const backBtn = useRef([]);
   const allDel = useRef([]);
   const selectParts = useRef([]);
-  // const [useColor, setColor] = useState();
-
-  const [useCtx, setCtx] = useState("");
-  // const [colorSwitch,setSwitch] = useState([strokeCol,strokeCol,strokeCol,strokeCol]);
+  const titleVal = useRef();
   let start_background_color = "transparent";
   let index = -1;
   let saveIndex = index;
@@ -43,16 +42,8 @@ const Draw = () => {
   const [inputValue, setValue] = useState(initial);
 
   //그림판
-
-  // useEffect(()=>{
-
-  // },[pathname])
   useEffect(() => {
     //시작 시
-
-    // parts.map((obj,key)=>{
-    //     emp.current[key].style.display = "block";
-    // })
 
     //canvas 셋팅
     const canvas = canvasw.current;
@@ -99,7 +90,6 @@ const Draw = () => {
 
     //뒤로가기 버튼
     //keycode 17 90
-
     document.addEventListener("keydown", function (e) {
       const keyCode = e.keyCode;
       // console.log('pushed key ' + e.key);
@@ -134,7 +124,6 @@ const Draw = () => {
 
     //전체 지우기 버튼
     allDel.current.addEventListener("click", () => {
-      // const context = canvasw.current.getContext("2d");
       ctx.fillStyle = start_background_color;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -172,39 +161,13 @@ const Draw = () => {
       ctx.lineTo(mouse.x, mouse.y);
       ctx.stroke();
     };
-    setCtx(ctx);
+    // setCtx(ctx);
+
+    
+    
   }, []);
-
-  // useEffect(()=>{
-
-  // },[parts])
-
-  //전체 지우기
-  // function clear_canvas() {
-  //   const context = canvasw.current.getContext("2d");
-  //   context.fillStyle = start_background_color;
-  //   context.clearRect(0, 0, canvasw.current.width, canvasw.current.height);
-  //   context.fillRect(0, 0, canvasw.current.width, canvasw.current.height);
-  //   restore_array = [];
-  //   index = -1;
-  // }
-  //완료 버튼 누를 시
-  const canvasSave = () => {
-    //캔버스에서 그리던 그림을 data화 시켜서 옮기는 과정
-    var canvasData = useCtx.getImageData(0, 0, canvasw.current.width, canvasw.current.height);
-    console.log(canvasData);
-    setValue({ ...initial, datazz: canvasData });
-    sendImg.current.getContext("2d").putImageData(canvasData, 0, 0);
-    console.log(initial);
-  };
-
-  //사진 배열에 넣기
-  function saveImage() {
-    var canvas = canvasw.current;
-    var imgDataUrl = canvas.toDataURL("image/png");
-    console.log(imgDataUrl);
-    setValue({ ...initial, DRAW: imgDataUrl });
-  }
+  
+  
 
   //파츠 클릭시
   function colorChange(keyColor, index) {
@@ -298,27 +261,57 @@ const Draw = () => {
     });
   }
 
-  //디비
-  function valueChange(e) {
-    let t = e.target;
-    setValue({ ...inputValue, [t.name]: t.value, USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME });
-    // console.log(inputValue)
-  }
-
-  async function create(e) {
-    e.preventDefault();
-
+  //사진 배열에 넣기
+  function saveImage() {
     var canvas = canvasw.current;
     var imgDataUrl = canvas.toDataURL("image/png");
-    // console.log(imgDataUrl);
+    console.log(imgDataUrl);
     setValue({ ...inputValue, DRAW: imgDataUrl });
+  }
+
+
+  const drawSave = () => {
+    setValue({DRAW:canvasw.current.toDataURL("image/png"),
+    USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME, TITLE: titleVal.current.value});
+    setPop(!popCheck);
+  };
+
+  function reDraw(){
+    setPop(!popCheck);
+  }
+
+  //디비
+  async function uploadBonescatch(){
     dataFun("post", inputValue);
     await dataFun("get");
     router.push("/page/Main");
   }
+
+
   return (
     <>
+    {/* <div style={{display:'none'}} className={popCheck && wr.checkPop}> */}
+    <div className={popCheck ? `${wr.checkPop} ${wr.popActive} ` : wr.checkPop}>
+      <figure>
+        <nav>
+          <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
+          {
+            popCheck &&  <div style={{backgroundImage:`url(${inputValue.DRAW})`}} className={wr.bonescatch}></div>
+          }
+          <ul>
+            <li onClick={uploadBonescatch}>올리기 !</li>
+            <li onClick={reDraw}>다시 그리기 !</li>
+          </ul>
+        </nav>
+      </figure>
+    </div>
+
+
+
       <div className={wr.wrap}>
+
+
+        
         <div className={wr.drawBox}>
           <div className={wr.top} />
           <div className={wr.body}>
@@ -340,12 +333,9 @@ const Draw = () => {
               <div className={wr.canWrap}>
                 <canvas ref={canvasw} className={wr.paint}></canvas>
                 <div className={wr.edit}>
-                  <button onClick={saveImage}>캔버스 값 가져오기</button>
-                  {/* <button onClick={undo_last} type="button">되돌리기</button> */}
                   <button ref={backBtn} type="button">
                     되돌리기
                   </button>
-                  {/* <button ref={allDel} onClick={clear_canvas} type="button">지우기</button> */}
                   <button ref={allDel} type="button">
                     지우기
                   </button>
@@ -357,20 +347,6 @@ const Draw = () => {
             {parts.map((obj, key) => {
               return (
                 <button key={key} style={{ color: obj }} className={wr.color} ref={(el) => (useColors.current[key] = el)}>
-                  {/* <img className={
-                                    `
-                                    ${obj === "#754d22" ? wr.colorEmp : ""} 
-                                    ${obj === "#2951d4" ? wr.colorBlu : ""} 
-                                    ${obj === "#d43d29" ? wr.colorRed : ""} 
-                                    ${obj === "#42ad27" ? wr.colorGre : ""} 
-                                    ${obj === "#982cca" ? wr.colorPup : ""} 
-                                    ${obj === "#e4d726" ? wr.colorYel : ""} 
-                                    ${obj === "#e48b26" ? wr.colorOra : ""}
-                                    ${obj === strokeCol ? wr.colorOra : ""}
-                                    `}>
-
-                                </img> */}
-                  {/* <img className={wr.colorEmp}></img> */}
                   <img ref={(el) => (bla.current[key] = el)} className={wr.colorBla} style={{ display: "none" }}></img>
                   <img ref={(el) => (blu.current[key] = el)} className={wr.colorBlu} style={{ display: "none" }}></img>
                   <img ref={(el) => (red.current[key] = el)} className={wr.colorRed} style={{ display: "none" }}></img>
@@ -408,62 +384,19 @@ const Draw = () => {
                 </button>
               );
             })}
-            {/* <button style={{color:'green'}} className={wr.color} ref={el => (useColors.current[0] = el)}>
-                            <img className={wr.colorGre}></img>
-                            <ul>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                                <li></li>
-                            </ul>
-                        </button>
-                        <button style={{color:'red'}} className={wr.color} ref={el => (useColors.current[1] = el)}>
-                            <img className={wr.colorRed}></img>
-                        </button>
-                        <button style={{color:'black'}} className={wr.color}>
-                            <img className={wr.colorEmp}></img>
-                        </button>
-                        <button style={{color:'black'}} className={wr.color} ref={el => (useColors.current[2] = el)}>
-                            <img className={wr.colorBla}></img>
-                        </button> */}
-            {/* <button style={{color:'#aa34d8'}} className={wr.color} ref={el => (useColors.current[3] = el)}>
-                            <img className={wr.colorPup}></img>
-                        </button>
-                        <button style={{color:'transparent'}} className={wr.color}>
-                            <img className={wr.colorEmp}></img>
-                        </button>
-                        <button style={{color:'#3468d8'}} className={wr.color} ref={el => (useColors.current[4] = el)}>
-                            <img className={wr.colorBlu}></img>
-                        </button>
-                        <button style={{color:'#e2d51c'}} className={wr.color} ref={el => (useColors.current[5] = el)}>
-                            <img className={wr.colorYel}></img>
-                        </button> */}
-            {/* <button onClick={setColor('#333333')}>Eraser</button> */}
           </div>
         </div>
 
         <div className={wr.textBox}>
-          <form onSubmit={create}>
-            <p>{/* <input onChange={valueChange} type="text" placeholder="이름" name="USER" /> */}</p>
-            {/* <p><input onChange={valueChange} type="text" placeholder='사진경로' name="datazz" /></p> */}
-            <p>
-              <input onChange={valueChange} type="text" placeholder="제목" name="TITLE" />
-            </p>
-            <p>{/* <input onChange={valueChange} type="text" placeholder="상태" name="STATE" /> */}</p>
-            {/* <p><input onChange={valueChange} type="text" placeholder='제목' name="TITLE" /></p> */}
-            <p>
-              <input type="submit" value="저장" />
-            </p>
-          </form>
+          <nav>
+              <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
+            <div onClick={drawSave}/>
+          </nav>
         </div>
+
+
+
       </div>
-      {/* <button onClick={canvasSave}>캔버스 값 가져오기</button> */}
-      {/* <button onClick={posting}>캔버스 값 가져오기</button> */}
-      {/* <button onClick={reset}>리셋</button> */}
     </>
   );
 };

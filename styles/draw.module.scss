@@ -29,6 +29,21 @@
         background-image: url('/img/draw/palette1.png');
     }
 }
+@keyframes m-trans4 {
+    50% {
+        background-image: url('/img/main-box1.png');
+    }
+}
+@keyframes po-trans5 {
+    50% {
+        background-image: url('/img/post/input1.png');
+    }
+}
+@keyframes po-trans6 {
+    50% {
+        background-image: url('/img/post/check1.png');
+    }
+}
 
 //tool
 
@@ -53,6 +68,7 @@
         content: url('/img/draw/tool-empty1.png')
     }
 }
+
 
 
 //color
@@ -152,8 +168,23 @@ $w-select-w : calc($c_width / 1.01);
 $w-select-h : calc($w-select-w / 5.657);
 $w-parts-w : calc($w-select-w * 0.09);
 $w-parts-h : $w-parts-w;
+
+
+$l_width : 600px;
+$l_title : calc($l_width / 3.047);
+$l_input : calc($l_width/ 8.26);
 // $w-parts-h : calc($w-parts-w / 5.6575);
 
+$total_width: $c_width + $l_width;
+
+
+$dr_bones : 500px; 
+$dr_bones_h : calc($dr_bones/1.5); 
+
+
+
+$I_btn_w : calc($l_width / 5);
+$I_btn_h : calc($I_btn_w / 1.7065);
 
 
 @mixin top() {
@@ -191,8 +222,33 @@ $w-parts-h : $w-parts-w;
     animation: m-trans3 1.5s step-end infinite;
     @content;
 }
+@mixin titleBox() {
+    width: $l_width;
+    height: $l_title;
+    background-size: cover;
+    background-image: url('/img/main-box0.png');
+    animation: m-trans4 1.7s step-end infinite;
+    padding-top: 50px;
+    @include flex(){}
+    @content;
+}
 
-
+@mixin inputBox() {
+    width: $l_width;
+    height: $l_input;
+    background-size: cover;
+    background-image: url('/img/post/input0.png');
+    animation: po-trans5 1.5s step-end infinite;
+    @content;
+}
+@mixin inputBtn($a:$I_btn_w, $b:$I_btn_h) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/post/check0.png');
+    animation: po-trans6 1.5s step-end infinite;
+    @content;
+}
 
 
 
@@ -200,14 +256,16 @@ $w-parts-h : $w-parts-w;
 
 
 .wrap{
+    width: calc($total_width + 50px);
+    // height: 100vh;
     padding-top: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+    @include flex(space-between){
+        // flex-direction: column;
+    }
 }
 .drawBox{
     // position: relative;
-    padding-left: 200px;
+    // padding-left: 100px;
     @include flex(center, flex-start){
         flex-direction: column;
     }
@@ -402,12 +460,89 @@ $w-parts-h : $w-parts-w;
 }
 
 .textBox{
-    font-family: 'Galmuri14';
-    font-weight: bold;
-    margin-left: 200px;
-    position: relative;
-    width: 200px;
-    height: 300px;
-    // background-color: #fff;
-    // border: 1px solid #f00;
+    // margin-left: 100px;
+    @include titleBox(){}
+    nav{
+        width: 100%;
+        padding: 0 20px 0 30px;
+        @include flex(){}
+        @include inputBox(){}
+        input{
+            width: calc($l_width / 1.55);
+            height: 45px;
+            border: none;
+            position: relative;
+            background-color: transparent;
+            font-size: 22px;
+            padding-left: 30px;
+            &::placeholder{
+                color: #251b07;
+            }
+        }
+        div{
+            height: 40px;
+            width: 20%;
+            position: relative;
+            @include inputBtn(){}
+            cursor: pointer;
+            border: none;
+        }
+    }
+}
+.checkPop{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 80;
+    background-color: rgba(0,0,0,.5);
+    figure{
+        width: 50%;
+        height: 500px;
+        position: absolute;
+        // background-color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        nav{
+            width: 100%;
+            height: 100%;
+            @include flex(){ 
+                flex-direction: column;
+            }
+            h2{
+                color: #f00;
+            }
+            canvas{
+                border: 1px solid #f00;
+                // width: 100%;
+                // height: 200px;
+            }
+            ul{
+                width: 100%;
+                @include flex(){}
+                li{
+                    cursor: pointer;
+                    width: 45%;
+                    height: 40px;
+                    border: 1px solid #f00;
+                    color: #f00;
+                    @include flex(){}
+                }
+            }
+        }
+    }
+}
+.popActive{
+    display: block;
+}
+.bonescatch{
+    background-size: cover;
+    background-position: 50% 50%;
+    width: $dr_bones;
+    height: $dr_bones_h;
+    
+    border: 1px solid #f00;
 }
