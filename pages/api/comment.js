@@ -17,8 +17,8 @@ async function handler(req, res) {
   }
 
   const updateProduct = async () => {
-    let {ID, STATE} = body;
-    executeQuery(`UPDATE TBL_POST SET STATE='${STATE}' WHERE ID=${ID}`);
+    let {ID, STATE, RIGHTUSER} = body;
+    executeQuery(`UPDATE TBL_POST SET RIGHTUSER='${RIGHTUSER}', STATE='${STATE}' WHERE ID=${ID}`);
       
   };
 

@@ -10,7 +10,7 @@ const Draw = () => {
   
   //색 셋팅
   let strokeCol = "#754d22";
-  const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726", "#e48b26", strokeCol];
+  const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726","#eeeeee", "#e48b26", strokeCol];
   const [parts, setParts] = useState([strokeCol, strokeCol, strokeCol, strokeCol]);
   
 
@@ -21,6 +21,7 @@ const Draw = () => {
     gre = useRef([]),
     pup = useRef([]),
     yel = useRef([]),
+    whi = useRef([]),
     ora = useRef([]);
 
   //그림판
@@ -38,7 +39,7 @@ const Draw = () => {
   //디비
   const { dataFun, who } = useContext(DataContext);
   const router = useRouter();
-  const initial = { USER: "", DRAW: "", TITLE: "", STATE: "" };
+  const initial = { USER: "", DRAW: "", TITLE: "", STATE: "",RIGHTUSER:"" };
   const [inputValue, setValue] = useState(initial);
 
   //그림판
@@ -185,6 +186,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "black") {
@@ -195,6 +197,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#2951d4") {
@@ -205,6 +208,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#d43d29") {
@@ -215,6 +219,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#42ad27") {
@@ -225,6 +230,7 @@ const Draw = () => {
         gre.current[key].style.display = "block";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#982cca") {
@@ -235,6 +241,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "block";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#e4d726") {
@@ -245,6 +252,18 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "block";
+        whi.current[key].style.display = "none";
+        ora.current[key].style.display = "none";
+        return;
+      } else if (obj === "#eeeeee") {
+        emp.current[key].style.display = "none";
+        bla.current[key].style.display = "none";
+        blu.current[key].style.display = "none";
+        red.current[key].style.display = "none";
+        gre.current[key].style.display = "none";
+        pup.current[key].style.display = "none";
+        yel.current[key].style.display = "none";
+        whi.current[key].style.display = "block";
         ora.current[key].style.display = "none";
         return;
       } else if (obj === "#e48b26") {
@@ -255,6 +274,7 @@ const Draw = () => {
         gre.current[key].style.display = "none";
         pup.current[key].style.display = "none";
         yel.current[key].style.display = "none";
+        whi.current[key].style.display = "none";
         ora.current[key].style.display = "block";
         return;
       }
@@ -272,7 +292,7 @@ const Draw = () => {
 
   const drawSave = () => {
     setValue({DRAW:canvasw.current.toDataURL("image/png"),
-    USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME, TITLE: titleVal.current.value});
+    USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME, TITLE: titleVal.current.value, RIGHTUSER:"없음"});
     setPop(!popCheck);
   };
 
@@ -357,6 +377,7 @@ const Draw = () => {
                   <img ref={(el) => (gre.current[key] = el)} className={wr.colorGre} style={{ display: "none" }}></img>
                   <img ref={(el) => (pup.current[key] = el)} className={wr.colorPup} style={{ display: "none" }}></img>
                   <img ref={(el) => (yel.current[key] = el)} className={wr.colorYel} style={{ display: "none" }}></img>
+                  <img ref={(el) => (whi.current[key] = el)} className={wr.colorWhi} style={{ display: "none" }}></img>
                   <img ref={(el) => (ora.current[key] = el)} className={wr.colorOra} style={{ display: "none" }}></img>
                   <img ref={(el) => (emp.current[key] = el)} className={wr.colorEmp}></img>
                   <ul>
@@ -379,9 +400,12 @@ const Draw = () => {
                       <img src="/img/item/parts-yellow0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 6)} ref={(el) => (selectParts.current[6] = el)}>
-                      <img src="/img/item/parts-orange0.png"></img>
+                      <img src="/img/item/parts-white0.png"></img>
                     </li>
                     <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[7] = el)}>
+                      <img src="/img/item/parts-orange0.png"></img>
+                    </li>
+                    <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[8] = el)}>
                       <img src="/img/item/parts-empty0.png"></img>
                     </li>
                   </ul>

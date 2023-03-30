@@ -15,7 +15,12 @@ export default function Home() {
 
   function authCheck(){
     if(status === 'authenticated'){
-      router.replace('/page/Main')
+      // router.replace('/page/Main')
+      setClose(true);
+      let closede;
+      closede = setTimeout(function(){
+        router.push(("/page/Main"));
+      }, 700);
     }
     else{
       return;
@@ -33,12 +38,11 @@ export default function Home() {
     if (!result.error) {
       console.log("로그인 성공");
       
-      setClose(true);
-      let closed;
-      closed = setTimeout(function(){
-        router.push(("/page/Main"));
-      }, 700);
-      // router.push("/page/Main");
+      // setClose(true);
+      // let closede;
+      // closede = setTimeout(function(){
+      //   router.push(("/page/Main"));
+      // }, 700);
     } else {
       console.log(result.error);
     }

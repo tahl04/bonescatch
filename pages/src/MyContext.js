@@ -19,8 +19,6 @@ const MyContext = ({ children }) => {
     } else if (type == "post") {
       transw = await axios.post("http://localhost:3000/api/comment", obj);
     } else if (type == "put") {
-      // console.log(obj);
-      console.log("일단 진입", obj);
       transw = await axios.put("http://localhost:3000/api/comment", obj);
     }
     setData(transw);

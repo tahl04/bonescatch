@@ -113,6 +113,11 @@
         content: url('/img/draw/color-yellow1.png');
     }
 }
+@keyframes c-white {
+    50% {
+        content: url('/img/draw/color-white1.png');
+    }
+}
 @keyframes c-orange {
     50% {
         content: url('/img/draw/color-orange1.png');
@@ -166,6 +171,11 @@
         content: url('/img/item/parts-yellow1.png')
     }
 }
+@keyframes p-white {
+    50% {
+        content: url('/img/item/parts-white1.png')
+    }
+}
 @keyframes p-e {
     50% {
         content: url('/img/item/parts-empty1.png')
@@ -178,9 +188,9 @@ $c_width : 900px;
 $w_head : calc($c_width / 16.428);
 $w_body : calc($c_width / 1.945);
 $w-foot : calc($c_width / 4.36);
-$w-select-w : calc($c_width / 1.01);
+$w-select-w : calc($c_width / 0.92);
 $w-select-h : calc($w-select-w / 5.657);
-$w-parts-w : calc($w-select-w * 0.09);
+$w-parts-w : calc($w-select-w * 0.08);
 $w-parts-h : $w-parts-w;
 
 
@@ -445,6 +455,11 @@ $I_btn_h : calc($I_btn_w / 1.7065);
                 content: url('/img/draw/color-yellow0.png');
                 animation: c-yellow 1.5s step-end infinite;
             }
+            .colorWhi{
+                color: transparent;
+                content: url('/img/draw/color-white0.png');
+                animation: c-white 1.5s step-end infinite;
+            }
             .colorOra{
                 color: transparent;
                 content: url('/img/draw/color-orange0.png');
@@ -507,9 +522,12 @@ $I_btn_h : calc($I_btn_w / 1.7065);
                         animation: p-yellow 1.5s step-end infinite;
                     }
                     &:nth-child(7){
-                        animation: p-orange 1.5s step-end infinite;
+                        animation: p-white 1.5s step-end infinite;
                     }
                     &:nth-child(8){
+                        animation: p-orange 1.5s step-end infinite;
+                    }
+                    &:nth-child(9){
                         animation: p-e 1.5s step-end infinite;
                     }
 

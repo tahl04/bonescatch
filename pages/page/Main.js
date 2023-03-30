@@ -46,6 +46,7 @@ function Main() {
   useEffect(() => {
     auth();
   }, [status]);
+  console.log(who)
 
   if (!data) return <>돌 날카롭게 깎는중.....</>;
   return (

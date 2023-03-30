@@ -18,6 +18,11 @@ function Ranking() {
           <img></img>
         </nav>
       </div>
+
+
+    
+
+
     </>
   )
 }

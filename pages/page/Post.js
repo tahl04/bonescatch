@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import po from "@/styles/post.module.scss";
 import { DataContext } from "../src/MyContext";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 function Post() {
   // const [thisPost, setPost] = useState([]);
@@ -16,6 +17,8 @@ function Post() {
   
   const [rightBtn, setRight] = useState(false);
   const [wrongBtn, setWrong] = useState(false);
+  
+  const { data: session, status } = useSession();
 
 
   useEffect(() => {
@@ -23,6 +26,20 @@ function Post() {
     // console.log(data);
     
   }, []);
+
+  function authCheck(){
+    if(status === 'authenticated'){
+      return;
+    }
+    else{
+      router.push(("/"));
+    }
+  }
+
+  useEffect(()=>{
+    authCheck();
+  },[status])
+
 
   function valueChange(e) {
     let t = e.target;
@@ -90,7 +107,7 @@ function Post() {
   function closedPop(){
     if(rightBtn){
       setRight(false);
-      dataPost("put", {STATE:who.TRIBE, ID:query.id})
+      dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID})
       dataPost("get")
       router.push("/page/Main");
     }
