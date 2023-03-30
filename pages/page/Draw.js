@@ -405,7 +405,7 @@ const Draw = () => {
                     <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[7] = el)}>
                       <img src="/img/item/parts-orange0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[8] = el)}>
+                    <li onClick={() => colorChange(key, 8)} ref={(el) => (selectParts.current[8] = el)}>
                       <img src="/img/item/parts-empty0.png"></img>
                     </li>
                   </ul>

@@ -357,7 +357,7 @@ $I_btn_h : calc($I_btn_w / 1.7065);
                 .edit{
                     @include flex(){}
                     button{
-                        margin: 15px 10px 0;
+                        margin: 15px 10px 20px;
                         transition: .2s;
                         cursor: pointer;
                         width: 100px;

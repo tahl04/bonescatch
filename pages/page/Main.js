@@ -57,7 +57,7 @@ function Main() {
 
       <div className={m.Mwrap}>
         <div className={m.titleBox}>
-          <div className={m.mainTitle}>본 스케치</div>
+          <div className={m.mainTitle}>모두의 본 스케치</div>
           <nav>
             <div className={`${mainSwc=="전체" ? m.bornBtnActive : m.bornBtn}`} onClick={stateAll}>전체 보기</div>
             <div className={`${mainSwc=="미점령" ? m.bornBtnActive : m.bornBtn}`} onClick={stateFalse}>미점령 본스케치 보기</div>
