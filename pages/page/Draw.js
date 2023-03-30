@@ -294,14 +294,18 @@ const Draw = () => {
     <div className={popCheck ? `${wr.checkPop} ${wr.popActive} ` : wr.checkPop}>
       <figure>
         <nav>
-          <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
-          {
-            popCheck &&  <div style={{backgroundImage:`url(${inputValue.DRAW})`}} className={wr.bonescatch}></div>
-          }
-          <ul>
-            <li onClick={uploadBonescatch}>올리기 !</li>
-            <li onClick={reDraw}>다시 그리기 !</li>
-          </ul>
+          <div></div>
+          <div>
+            <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
+            {
+              popCheck &&  <span style={{backgroundImage:`url(${inputValue.DRAW})`}} className={wr.bonescatch}></span>
+            }
+            <ul>
+              <li onClick={uploadBonescatch}>올리기 !</li>
+              <li onClick={reDraw}>다시 그리기 !</li>
+            </ul>
+          </div>
+          <div></div>
         </nav>
       </figure>
     </div>
@@ -337,7 +341,7 @@ const Draw = () => {
                     되돌리기
                   </button>
                   <button ref={allDel} type="button">
-                    지우기
+                    전체 지우기
                   </button>
                 </div>
               </div>
@@ -387,11 +391,32 @@ const Draw = () => {
           </div>
         </div>
 
-        <div className={wr.textBox}>
-          <nav>
-              <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
-            <div onClick={drawSave}/>
-          </nav>
+        <div className={wr.rightWrap}>
+
+          <div className={wr.textBox}>
+            <nav>
+                <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
+              <div onClick={drawSave}/>
+            </nav>
+          </div>
+
+          <div className={wr.sulMyung}>
+            <div></div>
+            <div>
+              <h4> - 사용법</h4>
+              <h3>1. 좌측에 있는 석판에 그림을 기록합니다.
+                <br></br>&nbsp; 우리는 그것을 본스케치라고 부릅니다</h3>
+              <h3>2. 기록한 본스케치에 대한 제목을 우측 상단에<br></br>&nbsp; 입력합니다.</h3>
+              <h3>3. 1번과 2번을 완료한 뒤 확인을 눌러<br></br>&nbsp; 최종 본스케치를 확인합니다.</h3>
+              <h4> - 그 외</h4>
+              <h3>- 좌측 도구를 통해 붓의 굵기를 변경할 수 있습니다.</h3>
+              <h3>- 하단 파레트에 재료를 넣어 색을 변경할 수 있습니다.</h3>
+              <h3>- 상점을 통해 더 많은 도구와 재료를 구해보세요.</h3>
+            </div>
+            <div></div>
+          </div>
+
+
         </div>
 
 

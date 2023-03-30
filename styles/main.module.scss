@@ -23,9 +23,9 @@ $l_b_width : calc($c_width / 3.8);
 $l_m_btn : calc($l_b_width / 3.0263);
 
 
-$l-foot : calc($c_width / 10.868);
-$l-underline-w : calc($c_width / 1.1);
-$l-underline-h : calc($l-underline-w / 29.5);
+$l_foot : calc($c_width / 10.868);
+$l_underline-w : calc($c_width / 1.1);
+$l_underline-h : calc($l-underline-w / 29.5);
 
 
 
@@ -154,8 +154,8 @@ $l-underline-h : calc($l-underline-w / 29.5);
     @content;
 }
 @mixin underline() {
-    width: $l-underline-w;
-    height: $l-underline-h;
+    width: $l_underline-w;
+    height: $l_underline-h;
     background-size: cover;
     content: url('/img/underline0.png');
     animation: m-trans4 1.5s step-end infinite;
@@ -165,7 +165,7 @@ $l-underline-h : calc($l-underline-w / 29.5);
     width: 100%;
     height: calc(100vw / 5.435);
     background-size: cover;
-    background-image: url('/img/list-footer0.png');
+    background-image: url('/img/footer0.png');
     animation: m-trans3 1.5s step-end infinite;
     z-index: 8;
     position: relative;
