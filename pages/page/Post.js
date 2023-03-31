@@ -9,15 +9,8 @@ function Post() {
   const { data, who, dataPost } = useContext(DataContext);
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
-
-  // const { query } = useRouter();
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
-
-  // useEffect(() => {
-  //   console.log(who)
-  //   console.log(data);
-  // }, []);
 
   function valueChange(e) {
     let t = e.target;

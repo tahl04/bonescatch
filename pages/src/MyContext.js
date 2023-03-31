@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
 import Header from "./Header";
 import Lantern from "./Lantern";
 
@@ -10,7 +11,8 @@ const MyContext = ({ children }) => {
   const [pageChange, setClose] = useState(false);
   const [data, setData] = useState();
   const [who, setWho] = useState();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
+  const router = useRouter();
 
   async function dataPost(type, obj) {
     let transw;
@@ -57,6 +59,12 @@ const MyContext = ({ children }) => {
         });
     }
   }, [session]);
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.replace("/");
+    }
+  }, [status]);
 
   return (
     <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost }}>
