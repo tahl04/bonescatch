@@ -33,6 +33,12 @@ $l_underline-h : calc($l-underline-w / 29.5);
 $g_talk_w : 700px;
 $g_talk_h : calc($g_talk_w / 2.5);
 
+//아이템 팝업
+
+$item_pop_w : 700px;
+$item_pop_h : calc($item_pop_w / 1.25);
+
+$item_pop_img: calc(700px / 3); 
 
 @keyframes m-trans0 {
     50% {
@@ -168,6 +174,60 @@ $g_talk_h : calc($g_talk_w / 2.5);
 @keyframes m-trans25 {
     50% {
         content: url('/img/item/parts-black1.png');
+    }
+}
+@keyframes m-trans26 {
+    50% {
+        color: rgba(255,255,255,.5);
+    }
+}
+@keyframes m-trans27 {
+    50% {
+        background-image: url('/img/item/get-item-box1.png');
+    }
+}
+@keyframes m-trans28 {
+    50% {
+        content: url('/img/item/parts-blue1.png');
+    }
+}
+@keyframes m-trans29 {
+    50% {
+        content: url('/img/item/parts-black1.png');
+    }
+}
+@keyframes m-trans30 {
+    50% {
+        content: url('/img/item/parts-orange1.png');
+    }
+}
+@keyframes m-trans31 {
+    50% {
+        content: url('/img/item/parts-puple1.png');
+    }
+}
+@keyframes m-trans32 {
+    50% {
+        content: url('/img/item/parts-white1.png');
+    }
+}
+
+
+
+
+
+@keyframes get-item {
+    0% {
+        transform: scale(0);
+    }
+    30%{
+        transform: scale(1.5);
+    }
+    50%{
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
     }
 }
 
@@ -696,4 +756,107 @@ $g_talk_h : calc($g_talk_w / 2.5);
         color: #fff;
         font-size: 30px;
     }
+}
+
+.addItemOne{
+    position: fixed;
+    z-index: 50;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.6);
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    @include flex(){}
+    figure{
+        animation: get-item 1s forwards;
+        @include flex(center, center){
+            flex-direction: column;
+        }
+        h1{
+            font-size: 18px;
+            font-weight: normal;
+            color: #eee;
+            text-shadow: 2px 2px 2px #2b1f07;
+            padding-top: 10px;
+            animation: m-trans26 1.5s step-end infinite;
+        }
+        nav{
+            animation: m-trans27 1.5s step-end infinite;
+            padding: 30px 0 0 20px;
+            width: $item_pop_w;
+            height: $item_pop_h;
+            background-size: cover;
+            background-image: url('/img/item/get-item-box0.png');
+            @include flex(center,center){
+                flex-direction: column;
+            }
+            img{
+                width: $item_pop_img;
+                height: $item_pop_img;
+                margin-bottom: 40px;
+            }
+            div{
+                padding: 20px;
+                width: calc($item_pop_w / 1.7);
+                height: calc($item_pop_h / 5);
+                @include flex(){}
+                h6{
+                    word-break:break-all;
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+.hideItem{
+    display: none;
+}
+
+.bburiItem{
+    img{
+        content: url('/img/item/parts-blue0.png');
+        animation: m-trans28 1.5s step-end infinite;
+    }
+    b{
+        color: rgb(44, 67, 201);
+    }
+}
+.badaItem{
+    img{
+        content: url('/img/item/parts-black0.png');
+        animation: m-trans29 1.7s step-end infinite;
+
+    }
+    b{
+        color: #fff;
+    }
+}
+.bawiItem{
+    img{
+        content: url('/img/item/parts-orange0.png');
+        animation: m-trans30 1.7s step-end infinite;
+
+    }
+    b{
+        color: #f79e18;
+    }
+}
+.bamItem{
+    img{
+        content: url('/img/item/parts-puple0.png');
+        animation: m-trans31 1.7s step-end infinite;
+    }
+    b{
+        color: rgb(132, 34, 145);
+    }
+}
+.shellCoinGet{
+    img{
+        content: url('/img/item/parts-white0.png');
+        animation: m-trans32 1.7s step-end infinite;
+    }
+    b{
+    }
+
 }

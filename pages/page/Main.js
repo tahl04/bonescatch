@@ -15,6 +15,10 @@ function Main() {
   const { data: session, status } = useSession();
   const [mainSwc, setSwc] = useState("전체");
   const [talkPage, setTalk] = useState("첫장");
+
+
+  const [firstGet, setFirstGet] = useState("비활성");
+  const [secondGet, setSecondGet] = useState("비활성");
   // console.log(who);
 
   function stateAll(){
@@ -63,22 +67,31 @@ function Main() {
   function page12(){
     setTalk("열두번째장");
   }
-  async function completePage(){
-    setTalk("END");
-    dataShell("put", {SHELL:10, ID:who.ID})
-    await sessionWho();
-    // dataShell("get")
-    // dataPost("get");
-    // router.push("/");
+  function completePage(){
+    setFirstGet("활성");
   }
   console.log(who);
 
-  function move() {
-    // router.push('/board');
-    router.push({
-      pathname: "/board",
-      query: { id: 3434343 },
-    });
+  // function move() {
+  //   // router.push('/board');
+  //   router.push({
+  //     pathname: "/board",
+  //     query: { id: 3434343 },
+  //   });
+  // }
+
+  function firstClose (){
+    setFirstGet("비활성");
+    let setCounts;
+    setCounts = setTimeout(function () {
+      setSecondGet("활성");
+    }, 200);
+  }
+  async function secondClose (){
+    setTalk("END");
+    setSecondGet("비활성");
+    dataShell("put", {SHELL:10, ID:who.ID});
+    await sessionWho();
   }
 
   if (!data) return <div className={m.bonebone}>
@@ -317,6 +330,62 @@ function Main() {
                 {
                   talkPage == "열두번째장" &&
                   <>
+
+                      <div className={firstGet == "활성" ? m.addItemOne : m.hideItem}>
+                      <figure onClick={firstClose}>
+                        {
+                          who.TRIBE == "0" &&
+                          <nav className={m.bburiItem}>
+                            <img></img>
+                            <div>
+                              <h6>&nbsp;- 그리기 염료 <br/>뿌리 지역의 특산물인 <b>푸른 광석</b>을 획득 했습니다.</h6>
+                            </div>
+                          </nav>
+                        }
+                        {
+                          who.TRIBE == "1" &&
+                          <nav className={m.badaItem}>
+                            <img></img>
+                            <div>
+                              <h6>&nbsp;- 그리기 염료 <br/>바다 지역의 특산물인 <b>먹물을 머금은 오징어</b>를 획득 했습니다.</h6>
+                            </div>
+                          </nav>
+                        }
+                        {
+                          who.TRIBE == "2" &&
+                          <nav className={m.bawiItem}>
+                          <img></img>
+                          <div>
+                            <h6>&nbsp;- 그리기 염료 <br/>바위 지역의 특산물인 <b>구황작물</b>을 획득 <br/>했습니다.</h6>
+                          </div>
+                        </nav>
+                        }
+                        {
+                          who.TRIBE == "3" &&
+                          <nav className={m.bamItem}>
+                          <img></img>
+                          <div>
+                            <h6>&nbsp;- 그리기 염료 <br/>밤 지역의 특산물인 <b>밤 하늘색 꽃</b>을 획득<br/>했습니다.</h6>
+                          </div>
+                        </nav>
+                        }
+                        <h1>석판을 클릭하면 창이 닫힙니다.</h1>
+                        </figure>
+                      </div>
+
+                  <div className={secondGet == "활성" ? m.addItemOne : m.hideItem}>
+                  <figure onClick={secondClose}>
+                          <nav className={m.shellCoinGet}>
+                            <img></img>
+                            <div>
+                              <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}10{`)`}개를 획득<br/> 했습니다.</h6>
+                            </div>
+                          </nav>
+                    <h1>석판을 클릭하면 창이 닫힙니다.</h1>
+                    </figure>
+                  </div>
+
+
                   <div className={m.talk}>
                     <figure>
                       <div>
