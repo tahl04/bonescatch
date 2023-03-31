@@ -11,7 +11,6 @@ function Post() {
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
 
-  const router = useRouter();
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
   
@@ -19,27 +18,6 @@ function Post() {
   const [wrongBtn, setWrong] = useState(false);
   
   const { data: session, status } = useSession();
-
-
-  useEffect(() => {
-    // console.log(who)
-    // console.log(data);
-    
-  }, []);
-
-  function authCheck(){
-    if(status === 'authenticated'){
-      return;
-    }
-    else{
-      router.push(("/"));
-    }
-  }
-
-  useEffect(()=>{
-    authCheck();
-  },[status])
-
 
   function valueChange(e) {
     let t = e.target;
