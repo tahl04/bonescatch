@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 
 function Post() {
   // const [thisPost, setPost] = useState([]);
+  const router = useRouter();
   const { data, who, dataPost } = useContext(DataContext);
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
@@ -84,20 +85,21 @@ function Post() {
 
   }
   
-  function closedPop(){
+  async function closedPop(){
     if(rightBtn){
       setRight(false);
-      dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID})
-      dataPost("get")
+      dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID});
+      await dataPost("get");
       router.push("/page/Main");
     }
     setWrong(false);
   }
   if (!data) {
-    return <>불러오는중,,,</>;
+    return <>불러오는중,,,</>
   }
   return (
     <>
+
       <div className={rightBtn && po.right} >
       <figure>
         <nav>
@@ -134,8 +136,10 @@ function Post() {
                         <h2>{obj.TITLE.length}</h2>
                       </div>
                       {/* <div>나의 댓글 수 ( 최대 3개 ) : &nbsp; */}
-                      <fieldset>
-                        댓글 횟수 : &nbsp;
+                      {
+                          obj.STATE == "미점령" ? 
+                        <fieldset>
+                        나의 댓글 횟수 : &nbsp;
                         <figure>
                           <article>
                             <span></span>
@@ -161,6 +165,8 @@ function Post() {
                         }
                         </figure>
                       </fieldset>
+                      :<></>
+                      }
                       {/* <p>나의 남은 횟수 : {namDat}</p> */}
                     </nav>
                   </div>

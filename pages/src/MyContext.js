@@ -14,6 +14,15 @@ const MyContext = ({ children }) => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
+  async function dataShell(type, obj) {
+    let transe;
+    if (type == "put") {
+      transe = await axios.put("http://localhost:3000/api/shell", obj);
+    }
+    setData(transe);
+  }
+
+
   async function dataPost(type, obj) {
     let transw;
     if (type == "get") {
@@ -43,7 +52,8 @@ const MyContext = ({ children }) => {
     dataPost("get");
   }, []);
 
-  useEffect(() => {
+  function sessionWho(){
+
     if (session !== undefined && session !== null) {
       axios
         .get("/api/who", {
@@ -55,6 +65,9 @@ const MyContext = ({ children }) => {
           setWho(res.data);
         });
     }
+  }
+  useEffect(() => {
+    sessionWho();
   }, [session]);
 
   useEffect(() => {
@@ -64,7 +77,7 @@ const MyContext = ({ children }) => {
   }, [status]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost }}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho }}>
       <Header />
       <Lantern />
       {children}

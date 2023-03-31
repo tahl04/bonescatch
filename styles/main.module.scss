@@ -28,6 +28,11 @@ $l_underline-w : calc($c_width / 1.1);
 $l_underline-h : calc($l-underline-w / 29.5);
 
 
+//가이드
+
+$g_talk_w : 700px;
+$g_talk_h : calc($g_talk_w / 2.5);
+
 
 @keyframes m-trans0 {
     50% {
@@ -102,6 +107,67 @@ $l_underline-h : calc($l-underline-w / 29.5);
 @keyframes m-trans14 {
     50% {
         background-image: url('/img/main-btn-false0.png');
+    }
+}
+@keyframes m-trans15 {
+    50% {
+        content: url('/img/tribe/bburi-true1.png');
+    }
+}
+@keyframes m-trans16 {
+    50% {
+        content: url('/img/tribe/bada-true1.png');
+    }
+}
+@keyframes m-trans17 {
+    50% {
+        content: url('/img/tribe/bawi-true1.png');
+    }
+}
+@keyframes m-trans18 {
+    50% {
+        content: url('/img/tribe/bam-true1.png');
+    }
+}
+@keyframes m-trans19 {
+    50% {
+        background-image: url('/img/element/talk1.png');
+    }
+}
+@keyframes m-trans20 {
+    0%{
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes m-trans21 {
+    50% {
+        content: url('/img/item/wallet1.png');
+    }
+}
+@keyframes m-trans22 {
+    50% {
+        content: url('/img/item/parts-yellow1.png');
+    }
+}
+@keyframes m-trans23 {
+    50% {
+        content: url('/img/item/parts-puple1.png');
+    }
+}
+@keyframes m-trans24 {
+    50% {
+        content: url('/img/item/tool1-1.png');
+    }
+}
+@keyframes m-trans25 {
+    50% {
+        content: url('/img/item/parts-black1.png');
     }
 }
 
@@ -379,3 +445,255 @@ $l_underline-h : calc($l-underline-w / 29.5);
     }
 }
 
+
+
+//가이드 
+
+
+.guide{
+    z-index: 110;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background-color: rgba(0,0,0,.5);
+}
+.bburiJokjang{
+    position: absolute;
+    left: -6%;
+    bottom: -150px;
+    width: calc(15% + 300px);
+    height: auto;
+    background-size: cover;
+    content: url('/img/tribe/bburi-true0.png');
+    animation: m-trans15 1.2s step-end infinite;
+}
+.badaJokjang{
+    position: absolute;
+    left: -6%;
+    bottom: -15%;
+    width: calc(15% + 300px);
+    height: auto;
+    background-size: cover;
+    content: url('/img/tribe/bada-true0.png');
+    animation: m-trans16 1.2s step-end infinite;
+}
+.bawiJokjang{
+    position: absolute;
+    left: -6%;
+    bottom: -150px;
+    width: calc(15% + 300px);
+    height: auto;
+    background-size: cover;
+    content: url('/img/tribe/bawi-true0.png');
+    transform: scaleX(-1);
+    animation: m-trans17 1.2s step-end infinite;
+}
+.bamJokjang{
+    position: absolute;
+    left: -6%;
+    bottom: -150px;
+    width: calc(15% + 300px);
+    height: auto;
+    background-size: cover;
+    content: url('/img/tribe/bam-true0.png');
+    animation: m-trans18 1.2s step-end infinite;
+}
+.talk{
+    width: $g_talk_w;
+    height: $g_talk_h;
+    background-size: cover;
+    background-image: url('/img/element/talk0.png');
+    position: absolute;
+    right: 50%;
+    bottom: 20px;
+    padding: 55px 55px 65px;
+    transform: translateX(50%);
+    animation: m-trans19 1.4s step-end infinite;
+    figure{
+        width: 100%;
+        height: 100%;
+        @include flex(space-between, flex-start){
+            flex-direction: column;
+        }
+        div{
+            @include flex(center, flex-start){
+                flex-direction: column;
+            }
+            h3{
+                font-size: 22px;
+                word-break:break-all;
+                color: #000;
+                padding-bottom: 10px;
+            }
+            h5{
+                
+                font-size: 18px;
+                word-break:break-all;
+                color: rgb(87, 87, 87);
+                padding-bottom: 15px;
+            }
+        }
+        nav{
+            width: 100%;
+            @include flex(flex-end){}
+            h4{
+                margin-left: 20px;
+                color: rgb(43, 43, 43);
+                cursor: pointer;
+                font-size: 28px;
+                text-shadow: 2px 2px 2px rgba(0,0,0,.5);
+                &:hover{
+                    color: rgb(190, 149, 72);
+                    text-shadow: 2px 2px 2px rgba(0,0,0,1);
+                }
+                
+            }
+        }
+    }
+}
+.tyuDraw{
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    animation: m-trans5 1.9s step-end infinite;
+    background-image: url('/img/element/draw-btn0.png');
+    background-size: cover;
+}
+.tyuMark{
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    img{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        width: 200px;
+        height: auto;
+        &:nth-child(1){
+            transform: translate(-150%, -50%);
+            animation: m-trans9 1.7s step-end infinite;
+            content: url('/img/post/bburi-occ0.png');
+        }
+        &:nth-child(2){
+            transform: translate(-85%, -50%);
+            animation: m-trans10 1.6s step-end infinite;
+            content: url('/img/post/bada-occ0.png');
+        }
+        &:nth-child(3){
+            transform: translate(-20%, -50%);
+            animation: m-trans11 1.8s step-end infinite;
+            content: url('/img/post/bawi-occ0.png');
+        }
+        &:nth-child(4){
+            transform: translate(50%, -50%);
+            animation: m-trans12 1.5s step-end infinite;
+            content: url('/img/post/bam-occ0.png');
+        }
+    }
+}
+.tyuGi{
+    padding: 20px 20px 20px 60px;
+    border-radius: 16px;
+    border: 5px solid rgb(12, 6, 1);
+    background-color: rgb(158, 110, 55);
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include flex(){}
+    h1{
+        color: #fff;
+    }
+    div{
+        width: 250px;
+        height: 100px;
+        position: relative;
+        @include flex(flex-start){}
+        article{
+            @include flex(flex-start){}
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            position: absolute;
+            span{
+                width: 50px;
+                height: 50px;
+                background-color: rgba(94, 65, 3, .3);
+                border-radius: 50%;
+                margin: 0 10px;
+                border: 3px solid rgba(37, 31, 31, .3);
+            }
+        }
+        p{
+            width: 50px;
+            height: 50px;
+            background-color: rgb(94, 65, 3);
+            border-radius: 50%;
+            margin: 0 10px;
+            border: 3px solid rgb(37, 31, 31);
+            
+            animation: m-trans20 1.2s step-end infinite;
+        }
+    }
+}
+.tyuCoin{
+    width: 400px;
+    height: 400px;
+    position: absolute;
+    top: 42%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    content: url('/img/item/wallet0.png');
+    animation: m-trans21 1.2s step-end infinite;
+}
+.tyuTool{
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    img{
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        width: 200px;
+        height: auto;
+        &:nth-child(1){
+            transform: translate(-150%, -50%);
+            animation: m-trans22 1.7s step-end infinite;
+            content: url('/img/item/parts-yellow0.png');
+        }
+        &:nth-child(2){
+            transform: translate(-85%, -50%);
+            animation: m-trans23 1.6s step-end infinite;
+            content: url('/img/item/parts-puple0.png');
+        }
+        &:nth-child(3){
+            transform: translate(-20%, -50%);
+            animation: m-trans24 1.8s step-end infinite;
+            content: url('/img/item/tool1-0.png');
+        }
+        &:nth-child(4){
+            transform: translate(50%, -50%);
+            animation: m-trans25 1.5s step-end infinite;
+            content: url('/img/item/parts-black0.png');
+        }
+    }
+}
+.bonebone{
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(0,0,0,.5);
+    @include flex(){}
+    h2{
+        color: #fff;
+        font-size: 30px;
+    }
+}

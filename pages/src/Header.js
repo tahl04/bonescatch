@@ -8,7 +8,7 @@ import { signOut, useSession } from "next-auth/react";
 
 function Header() {
   const audio = useRef();
-  const { pageChange, setClose, dataFun } = useContext(DataContext);
+  const { pageChange, setClose, dataFun, who} = useContext(DataContext);
   const [audioPlay, setAudio] = useState(false);
   const router = useRouter();
   const { status } = useSession();
@@ -68,18 +68,33 @@ function Header() {
         <div className={`${hd.togglePlay} ${audioPlay && hd.active}`} onClick={togglePlay} />
       </div>
 
-      <div className={hd.link} onClick={pageChangeHead}>
-        <img src="/img/element/logo0.png"></img>
-      </div>
+      {/* {
+        who.SHELL === -1 ? 
+              <div className={hd.link}>
+                <img src="/img/element/logo0.png"></img>
+              </div>
+            :  */}
+            <>
+              <div className={hd.link} onClick={pageChangeHead}>
+                <img src="/img/element/logo0.png"></img>
+              </div>
+            </>
+      {/* } */}
+
       {/* 로그인시 로그아웃 띄움 / 로그아웃시 공백 */}
       {status === "unauthenticated" ? (
         <div className={hd.login}></div>
       ) : (
         <div className={hd.login}>
-          <button onClick={shhhhop}>상점 비주얼</button>
-          <button onClick={ranking}>랭킹</button>
-          <button onClick={toshop}>상점</button>
-          <button onClick={() => signOut()}>로그아웃</button>
+          {/* {
+        who.SHELL === -1 ? <div className={hd.tyutyu}>튜토리얼 진행중</div> 
+            :  */}
+            <>
+                <button onClick={ranking}>랭킹</button>
+                <button onClick={toshop}>상점</button>
+                <button onClick={() => signOut()}>로그아웃</button>
+            </>
+          {/* } */}
         </div>
       )}
     </header>
