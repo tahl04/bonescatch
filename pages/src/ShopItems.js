@@ -1,24 +1,27 @@
 import React, { useContext } from "react";
 import { DataContext } from "./MyContext";
+import sh from "@/styles/shop.module.scss";
 
 const ShopItems = ({ item }) => {
   const { who } = useContext(DataContext);
 
   function purchase() {
-    console.log(item.TYPE, item.NAME);
     if (item.PRICE < who.SHELL) {
-      console.log("구매 가능");
-      // Price만큼 shell을 감소시키고 TBL_MINE 에 update요청을 보낸다.
-      // update 요청 후 who 의 정보 갱신이 필요(get)
+      console.log("구매 가능", item.PRICE);
     } else {
-      console.log("구매 불가");
+      console.log("구매 불가", item.PRICE);
     }
   }
+
   return (
-    <figure>
-      <img alt={`${item.TYPE} ${item.NAME}`} />
-      <figcaption>{(item.TYPE, item.NAME)}</figcaption>
-      <button onClick={purchase}>구매</button>
+    <figure className={item.TYPE === "PEN" ? sh.pen : sh.paint} onClick={purchase}>
+      <div className={sh.shop_item_image_space}>
+        {item.TYPE === "PEN" ? (
+          <img src={`/img/draw/${item.IMG}-0.png`} alt="shop item image" />
+        ) : (
+          <img src={`/img/item/${item.IMG}0.png`} alt="shop item image" />
+        )}
+      </div>
     </figure>
   );
 };

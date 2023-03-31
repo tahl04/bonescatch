@@ -44,22 +44,33 @@ const Shop = () => {
   }, [item]);
 
   return (
-    <main className={sh.shop_main}>
-      <section className={sh.shop_section}>
-        <button onClick={() => setItem("PEN")}>팬</button>
-        <button onClick={() => setItem("PAINT")}>염료</button>
-
-        {data && data.length ? (
-          <article className={sh.shop_item}>
-            {data.map((item, key) => {
-              return <ShopItems key={key} item={item}></ShopItems>;
-            })}
-          </article>
-        ) : (
-          <div>기본</div>
-        )}
-      </section>
-    </main>
+    <>
+      <main className={sh.shop_main}>
+        <div className={sh.shop}>
+          <div className={sh.wrap}>
+            <div className={sh.doduzi}>
+              <section className={sh.shop_section}>
+                {data && data.length ? (
+                  <article className={sh.shop_item}>
+                    {data.map((item, key) => {
+                      return <ShopItems key={key} item={item}></ShopItems>;
+                    })}
+                  </article>
+                ) : (
+                  <></>
+                )}
+              </section>
+            </div>
+          </div>
+        </div>
+        <button className={sh.shop_btn} onClick={() => setItem("PEN")}>
+          팬
+        </button>
+        <button className={sh.shop_btn} onClick={() => setItem("PAINT")}>
+          염료
+        </button>
+      </main>
+    </>
   );
 };
 
