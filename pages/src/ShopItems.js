@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "./MyContext";
 import sh from "@/styles/shop.module.scss";
 
 const ShopItems = ({ item }) => {
-  const { who } = useContext(DataContext);
+  const { who, count } = useContext(DataContext);
 
   function purchase() {
     if (item.PRICE < who.SHELL) {
@@ -12,6 +12,7 @@ const ShopItems = ({ item }) => {
       console.log("구매 불가", item.PRICE);
     }
   }
+  console.log(count);
 
   return (
     <figure className={item.TYPE === "PEN" ? sh.pen : sh.paint} onClick={purchase}>
