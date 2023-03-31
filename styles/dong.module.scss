@@ -1,0 +1,53 @@
+@mixin flex($a: space-around, $b: center) {
+    display: flex;
+    justify-content: $a;
+    align-items: $b;
+    @content;
+}
+
+@keyframes move0 {
+    0% {
+        bottom: -2000px;
+    }
+    100%{
+        bottom: 0;
+    }
+}
+@keyframes trans0 {
+    50% {
+        background-image: url('/img/shop/shop-bg1.png');
+    }
+}
+
+
+
+$shop_h : calc(100vh - 150px);
+$shop_w : calc($shop_h / 0.1852);
+
+
+.shop{
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    // background-color: rgba(0,0,0,.4);
+    // background-color: #fff;
+}
+.wrap{
+    height: $shop_h;
+    width: $shop_w;
+    position: absolute;
+    left: 50%;
+    bottom: -2000px;
+    transform: translateX(-50%);
+    animation: move0 1.5s forwards;
+}
+.doduzi{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('/img/shop/shop-bg0.png');
+    animation: trans0 1.5s step-end infinite;
+}

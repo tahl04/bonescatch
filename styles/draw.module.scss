@@ -29,7 +29,36 @@
         background-image: url('/img/draw/palette1.png');
     }
 }
-
+@keyframes m-trans4 {
+    50% {
+        background-image: url('/img/main-box1.png');
+    }
+}
+@keyframes po-trans5 {
+    50% {
+        background-image: url('/img/post/input1.png');
+    }
+}
+@keyframes po-trans6 {
+    50% {
+        background-image: url('/img/post/check1.png');
+    }
+}
+@keyframes m-trans7 {
+    50% {
+        background-image: url('/img/list-head1.png');
+    }
+}
+@keyframes m-trans8 {
+    50% {
+        background-image: url('/img/list-body1.png');
+    }
+}
+@keyframes m-trans9 {
+    50% {
+        background-image: url('/img/list-footer1.png');
+    }
+}
 //tool
 
 
@@ -53,6 +82,7 @@
         content: url('/img/draw/tool-empty1.png')
     }
 }
+
 
 
 //color
@@ -81,6 +111,11 @@
 @keyframes c-yellow {
     50% {
         content: url('/img/draw/color-yellow1.png');
+    }
+}
+@keyframes c-white {
+    50% {
+        content: url('/img/draw/color-white1.png');
     }
 }
 @keyframes c-orange {
@@ -136,6 +171,11 @@
         content: url('/img/item/parts-yellow1.png')
     }
 }
+@keyframes p-white {
+    50% {
+        content: url('/img/item/parts-white1.png')
+    }
+}
 @keyframes p-e {
     50% {
         content: url('/img/item/parts-empty1.png')
@@ -148,12 +188,65 @@ $c_width : 900px;
 $w_head : calc($c_width / 16.428);
 $w_body : calc($c_width / 1.945);
 $w-foot : calc($c_width / 4.36);
-$w-select-w : calc($c_width / 1.01);
+$w-select-w : calc($c_width / 0.92);
 $w-select-h : calc($w-select-w / 5.657);
-$w-parts-w : calc($w-select-w * 0.09);
+$w-parts-w : calc($w-select-w * 0.08);
 $w-parts-h : $w-parts-w;
+
+
+
+$check_width : 650px;
+$check_head: calc($check_width / 14.75);
+$check_body: calc($check_width / 1.265);
+$check_foot: calc($check_width / 10.868);
+
+
+$l_width : 500px;
+$l_title : calc($l_width / 3.047);
+$l_input : calc($l_width/ 8.26);
+
+
+$sul_head: calc($l_width / 14.75);
+$sul_body: calc($l_width / 1.265);
+$sul_foot: calc($l_width / 10.868);
 // $w-parts-h : calc($w-parts-w / 5.6575);
 
+$total_width: $c_width + $l_width;
+
+
+$dr_bones : calc($check_width / 1.3); 
+$dr_bones_h : calc($dr_bones/1.5); 
+
+
+
+$I_btn_w : calc($l_width / 5);
+$I_btn_h : calc($I_btn_w / 1.7065);
+
+
+@mixin CheckTop($a:$check_width, $b:$check_head) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-head0.png');
+    animation: m-trans7 1.2s step-end infinite;
+    @content;
+}
+@mixin CheckBody($a:$check_width,$b:$check_body) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-body0.png');
+    animation: m-trans8 1.7s step-end infinite;
+    @content;
+}
+@mixin CheckFoot($a:$check_width,$b:$check_foot) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/list-footer0.png');
+    animation: m-trans9 1.5s step-end infinite;
+    @content;
+}
 
 
 @mixin top() {
@@ -191,8 +284,33 @@ $w-parts-h : $w-parts-w;
     animation: m-trans3 1.5s step-end infinite;
     @content;
 }
+@mixin titleBox() {
+    width: $l_width;
+    height: $l_title;
+    background-size: cover;
+    background-image: url('/img/main-box0.png');
+    animation: m-trans4 1.7s step-end infinite;
+    padding-top: 50px;
+    @include flex(){}
+    @content;
+}
 
-
+@mixin inputBox() {
+    width: $l_width;
+    height: $l_input;
+    background-size: cover;
+    background-image: url('/img/post/input0.png');
+    animation: po-trans5 1.5s step-end infinite;
+    @content;
+}
+@mixin inputBtn($a:$I_btn_w, $b:$I_btn_h) {
+    width: $a;
+    height: $b;
+    background-size: cover;
+    background-image: url('/img/post/check0.png');
+    animation: po-trans6 1.5s step-end infinite;
+    @content;
+}
 
 
 
@@ -200,14 +318,17 @@ $w-parts-h : $w-parts-w;
 
 
 .wrap{
+    width: calc($total_width + 50px);
+    // height: 100vh;
     padding-top: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+    margin: 0 auto;
+    @include flex(space-between){
+        // flex-direction: column;
+    }
 }
 .drawBox{
     // position: relative;
-    padding-left: 200px;
+    // padding-left: 100px;
     @include flex(center, flex-start){
         flex-direction: column;
     }
@@ -230,13 +351,28 @@ $w-parts-h : $w-parts-w;
                 }
                 .paint{
                     position: relative;
-                    border: 4px solid rgba(73, 46, 20, .3);
+                    border-radius: 4px;
+                    box-shadow: inset 4px 4px 6px rgba(70, 43, 17, .3), inset -4px -4px 4px rgba(243, 218, 200, 0.4);
                 }
                 .edit{
                     @include flex(){}
                     button{
-                        border: 2px solid rgba(73, 46, 20, .7);
-                        background: transparent;
+                        margin: 15px 10px 20px;
+                        transition: .2s;
+                        cursor: pointer;
+                        width: 100px;
+                        height: 40px;
+                        border-radius: 6px;
+                        border: 2px solid rgb(97, 71, 23);
+                        background-color: transparent;
+                        color: #4d3615;
+                        @include flex(){}
+                        &:hover{
+                            color: #fff;
+                            font-weight: normal;
+                            background-color: #745424;
+                            border: 2px solid rgb(61, 34, 16);
+                        }
                         position: relative;
                     }
                 }
@@ -319,6 +455,11 @@ $w-parts-h : $w-parts-w;
                 content: url('/img/draw/color-yellow0.png');
                 animation: c-yellow 1.5s step-end infinite;
             }
+            .colorWhi{
+                color: transparent;
+                content: url('/img/draw/color-white0.png');
+                animation: c-white 1.5s step-end infinite;
+            }
             .colorOra{
                 color: transparent;
                 content: url('/img/draw/color-orange0.png');
@@ -351,7 +492,6 @@ $w-parts-h : $w-parts-w;
                 overflow: hidden;
                 padding: 0 10px;
                 z-index: 90;
-                color: #d43d29;
                 
                 @include select(0,0){}
                 li{
@@ -382,9 +522,12 @@ $w-parts-h : $w-parts-w;
                         animation: p-yellow 1.5s step-end infinite;
                     }
                     &:nth-child(7){
-                        animation: p-orange 1.5s step-end infinite;
+                        animation: p-white 1.5s step-end infinite;
                     }
                     &:nth-child(8){
+                        animation: p-orange 1.5s step-end infinite;
+                    }
+                    &:nth-child(9){
                         animation: p-e 1.5s step-end infinite;
                     }
 
@@ -401,13 +544,148 @@ $w-parts-h : $w-parts-w;
     }
 }
 
+.rightWrap{
+    @include flex(){
+        flex-direction: column;
+    }
+}
 .textBox{
-    font-family: 'Galmuri14';
-    font-weight: bold;
-    margin-left: 200px;
-    position: relative;
-    width: 200px;
-    height: 300px;
-    // background-color: #fff;
-    // border: 1px solid #f00;
+    // margin-left: 100px;
+    @include titleBox(){}
+    nav{
+        width: 100%;
+        padding: 0 20px 0 30px;
+        @include flex(){}
+        @include inputBox(){}
+        input{
+            width: calc($l_width / 1.55);
+            height: 45px;
+            border: none;
+            position: relative;
+            background-color: transparent;
+            font-size: 22px;
+            padding-left: 30px;
+            &::placeholder{
+                color: #251b07;
+            }
+        }
+        div{
+            height: 40px;
+            width: 20%;
+            position: relative;
+            @include inputBtn(){}
+            cursor: pointer;
+            border: none;
+        }
+    }
+}
+.sulMyung{
+    @include flex(){
+        flex-direction: column;
+    }
+    div{
+        &:nth-child(1){
+            @include CheckTop($l_width,$sul_head){}
+        }
+        &:nth-child(2){
+            @include CheckBody($l_width,$sul_body){}
+            @include flex(center, flex-start){ 
+                flex-direction: column;
+            }
+            padding: 0 50px;
+        }
+        &:nth-child(3){
+            @include CheckFoot($l_width,$sul_foot){}
+    
+        }
+        h4{
+            font-size: 26px;
+            padding: 5px;
+        }
+        h3{
+            font-size: 18px;
+            padding: 6px 0;
+        }
+    }
+}
+.checkPop{
+    display: none;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    z-index: 80;
+    background-color: rgba(0,0,0,.5);
+    figure{
+        width: $check_width;
+        position: absolute;
+        // background-color: #fff;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        nav{
+            // border: 1px solid #f00;
+            width: 100%;
+            height: 100%;
+            @include flex(){ 
+                flex-direction: column;
+            }
+            div{
+                &:nth-child(1){
+                    @include CheckTop(){}
+                }
+                &:nth-child(2){
+                    @include CheckBody(){}
+                    @include flex(){ 
+                        flex-direction: column;
+                    }
+                }
+                &:nth-child(3){
+                    @include CheckFoot(){}
+
+                }
+                h2{
+                    font-size: 40px;
+                    color: #f7e5c6;
+                    text-shadow: 3px 1px 2px rgb(65, 49, 17);
+                    font-weight: bold;
+                }
+                ul{
+                    width: 100%;
+                    padding: 0 30px;
+                    @include flex(){}
+                    li{
+                        cursor: pointer;
+                        width: 45%;
+                        height: 40px;
+                        border-radius: 4px;
+                        border: 3px solid rgb(61, 34, 16);
+                        background-color: #d3ba94;
+                        color: #4d3615;
+                        @include flex(){}
+                        &:hover{
+                            color: #fff;
+                            font-weight: normal;
+                            background-color: #745424;
+                            border-radius: 4px;
+                            border: 3px solid rgb(61, 34, 16);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.popActive{
+    display: block;
+}
+.bonescatch{
+    border-radius: 4px;
+    box-shadow: inset 4px 4px 20px rgba(70, 43, 17, .3), inset -4px -4px 7px rgba(243, 218, 200, 0.4);
+    background-size: cover;
+    background-position: 50% 50%;
+    width: $dr_bones;
+    height: $dr_bones_h;
 }

@@ -7,21 +7,25 @@
     @content;
 }
 
-$c_width : 845px;
+$c_width : 864px;
 $l_head : calc($c_width / 14.75);
 $l_body : calc($c_width / 1.265);
+$l_m_body : calc($c_width / 17.2083);
 $l_title : calc($c_width / 3.047);
 $l_m_width : calc($c_width / 2.3);
 $l_m_title : calc($l_m_width / 3.5);
 
+$c_bones : calc($c_width*0.6); 
+$c_bones_h : calc($c_bones/1.5); 
+// 1.5
 //버튼
 $l_b_width : calc($c_width / 3.8);
 $l_m_btn : calc($l_b_width / 3.0263);
 
 
-$l-foot : calc($c_width / 10.868);
-$l-underline-w : calc($c_width / 1.65);
-$l-underline-h : calc($l-underline-w / 29.5);
+$l_foot : calc($c_width / 10.868);
+$l_underline-w : calc($c_width / 1.1);
+$l_underline-h : calc($l-underline-w / 29.5);
 
 
 
@@ -70,6 +74,36 @@ $l-underline-h : calc($l-underline-w / 29.5);
         background-image: url('/img/main-btn-true1.png');
     }
 }
+@keyframes m-trans9 {
+    50% {
+        content: url('/img/post/bburi-occ1.png');
+    }
+}
+@keyframes m-trans10 {
+    50% {
+        content: url('/img/post/bada-occ1.png');
+    }
+}
+@keyframes m-trans11 {
+    50% {
+        content: url('/img/post/bawi-occ1.png');
+    }
+}
+@keyframes m-trans12 {
+    50% {
+        content: url('/img/post/bam-occ1.png');
+    }
+}
+@keyframes m-trans13 {
+    50% {
+        background-image: url('/img/list-body9.png');
+    }
+}
+@keyframes m-trans14 {
+    50% {
+        background-image: url('/img/main-btn-false0.png');
+    }
+}
 
 @mixin top() {
     width: $c_width;
@@ -85,6 +119,14 @@ $l-underline-h : calc($l-underline-w / 29.5);
     background-size: cover;
     background-image: url('/img/list-body0.png');
     animation: m-trans1 1.7s step-end infinite;
+    @content;
+}
+@mixin m_body() {
+    width: $c_width;
+    height: $l_m_body;
+    background-size: cover;
+    background-image: url('/img/list-body8.png');
+    animation: m-trans13 1.7s step-end infinite;
     @content;
 }
 @mixin titleBox() {
@@ -112,8 +154,8 @@ $l-underline-h : calc($l-underline-w / 29.5);
     @content;
 }
 @mixin underline() {
-    width: $l-underline-w;
-    height: $l-underline-h;
+    width: $l_underline-w;
+    height: $l_underline-h;
     background-size: cover;
     content: url('/img/underline0.png');
     animation: m-trans4 1.5s step-end infinite;
@@ -123,7 +165,7 @@ $l-underline-h : calc($l-underline-w / 29.5);
     width: 100%;
     height: calc(100vw / 5.435);
     background-size: cover;
-    background-image: url('/img/list-footer0.png');
+    background-image: url('/img/footer0.png');
     animation: m-trans3 1.5s step-end infinite;
     z-index: 8;
     position: relative;
@@ -135,6 +177,15 @@ $l-underline-h : calc($l-underline-w / 29.5);
     background-size: cover;
     background-image: url('/img/main-btn-true0.png');
     animation: m-trans8 1.5s step-end infinite;
+    position: relative;
+    @content;
+}
+@mixin mainBtnFalse() {
+    width: $l_b_width;
+    height: $l_m_btn;
+    background-size: cover;
+    background-image: url('/img/main-btn-false1.png');
+    animation: m-trans14 1.5s step-end infinite;
     position: relative;
     @content;
 }
@@ -159,14 +210,41 @@ $l-underline-h : calc($l-underline-w / 29.5);
     @include flex(){
         flex-direction: column;
     }
-    
+    h2{
+        color: #ddd;
+        text-shadow: 2px 2px 2px #2b1f07;
+        padding-top: 20px;
+        font-size: 30px;
+        padding-bottom: 10px;
+        border-radius: 2px;
+        // border-bottom: 4px solid rgba(82, 60, 19, .2);
+    }
+    h3{
+        width: 60%;
+        font-size: 26px;
+    }
+    p{
+        // color: rgba(85, 64, 23, 0.8);
+        font-size: 20px;
+    }
+    nav{
+        width: 60%;
+        @include flex(flex-end){}
+    }
+    span{
+        width: 75%;
+        height: 4px;
+        background-color: rgba(82, 60, 19, .2);
+    }
 }
 .bonescatch{
-    width: 60%;
-    height: auto;
-    // border-radius: 4px 8px 2px 8px;
-    border: 4px solid rgba(70, 43, 17, .1);
+    width: $c_bones;
+    height: $c_bones_h;
+    border-radius: 6px;
     box-shadow: inset 4px 4px 20px rgba(70, 43, 17, .3), inset -4px -4px 7px rgba(243, 218, 200, 0.4);
+    background-size: cover;
+    background-position: 50% 50%;
+    @include flex(flex-end,flex-end){}
 }
 .Mbot{
     @include foot(){};
@@ -198,7 +276,14 @@ $l-underline-h : calc($l-underline-w / 29.5);
 
 .linkDetail{
     position: relative;
-    border: 3px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    width: 130px;
+    height: 40px;
+    background-color: #553f12;
+    border: 3px solid #2b1f07;
+    color: #fff;
+    font-weight: normal;
+    @include flex(){}
 }
 .titleBox{
     padding-top: 10px;
@@ -217,8 +302,9 @@ $l-underline-h : calc($l-underline-w / 29.5);
 .mainTitle{
     @include flex(){}
     @include mainTitle(){}
-    color: #fff;
+    color: #ffffff;
     font-size: 35px;
+    text-shadow: 3px 3px 2px #000000;
 }
 .bornBtn{
     cursor: pointer;
@@ -226,4 +312,70 @@ $l-underline-h : calc($l-underline-w / 29.5);
     @include flex(){}
     padding-top: 10px;
     color: rgb(58, 37, 12);
+    &:hover{
+        transform: scale(1.05);
+    }
 }
+.bornBtnActive{
+    cursor: pointer;
+    @include mainBtnFalse(){}
+    @include flex(){}
+    padding-top: 10px;
+    color: rgb(212, 212, 212);
+    &:hover{
+        transform: scale(1.05);
+    }
+}
+
+.bburi{
+    animation: m-trans9 1.7s step-end infinite;
+    transform: translate(40px, 60px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bburi-occ0.png');
+}
+.bada{
+    animation: m-trans10 1.7s step-end infinite;
+    transform: translate(40px, 60px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bada-occ0.png');
+
+}
+.bawi{
+    animation: m-trans11 1.7s step-end infinite;
+    transform: translate(40px, 60px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bawi-occ0.png');
+    
+}
+.bam{
+    animation: m-trans12 1.7s step-end infinite;
+    transform: translate(40px, 60px);
+    width: 200px;
+    height: auto;
+    content: url('/img/post/bam-occ0.png');
+
+}
+.mBody{
+    @include m_body(){}
+    @include flex(center,flex-start){
+        flex-direction: column;
+    }
+    padding: 0 80px;
+    h4{
+        padding-left: 20px;
+        font-size: 26px;
+        color: #2c1f0b;
+        font-weight: bold;
+    }
+    span{
+        border-radius: 2px;
+        margin-top: 10px;
+        width: 100%;
+        height: 4px;
+        background-color: rgba(82, 60, 19, .2);
+    }
+}
+

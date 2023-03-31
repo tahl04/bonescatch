@@ -3,14 +3,21 @@ import { useRouter } from "next/router";
 import po from "@/styles/post.module.scss";
 import { DataContext } from "../src/MyContext";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 function Post() {
   // const [thisPost, setPost] = useState([]);
   const { data, who, dataPost } = useContext(DataContext);
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
+
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
+  
+  const [rightBtn, setRight] = useState(false);
+  const [wrongBtn, setWrong] = useState(false);
+  
+  const { data: session, status } = useSession();
 
   function valueChange(e) {
     let t = e.target;
@@ -18,7 +25,7 @@ function Post() {
     let countMap = 1;
     data["COMMENT"].forEach((obj, key) => {
       if (obj.POST == query.id) {
-        if (obj.USER == who[0].ID) {
+        if (obj.USER == who.ID) {
           if (obj.COUNT == 1) {
             countMap++;
           }
@@ -36,10 +43,10 @@ function Post() {
       ...inputValue,
       COMMENT: commentVal.current.value,
       COUNT: countMap,
-      USER: who[0].ID,
-      CODENAME: who[0].CODENAME,
+      USER: who.ID,
+      CODENAME: who.CODENAME,
       POST: query.id,
-      TRIBE: who[0].TRIBE,
+      TRIBE: who.TRIBE,
     });
 
     console.log(inputValue);
@@ -47,11 +54,9 @@ function Post() {
 
   async function create(e) {
     e.preventDefault();
-
     // console.log(data)
-
-    console.log(inputValue.COUNT);
-    // setValue({ ...inputValue, COUNT:countMap });
+    // console.log(inputValue.COUNT);
+    let ars = 0;
     if (inputValue.COUNT < 4) {
       dataPost("post", inputValue);
       await dataPost("get");
@@ -62,23 +67,52 @@ function Post() {
     data["POST"].forEach((obj, key) => {
       if (obj.ID == query.id) {
         if (inputValue.COMMENT == obj.TITLE) {
-          //여기서 이제 상태 바꾸면 됨.
-          let putAr = [{ ID: query.id, STATE: who[0].TRIBE }];
           console.log("정답!");
-          // setValue({...inputValue, POST: query.id, STATE: who[0].TRIBE})
-          dataPost("put", putAr);
-          dataPost("get");
+          ars = 3;
+          // dataPost("get");
         }
       }
     });
 
-    console.log(inputValue.COUNT);
+    if(ars === 3){
+      setRight(true);;
+    }else{
+      setWrong(true);
+    }
+
+  }
+  
+  function closedPop(){
+    if(rightBtn){
+      setRight(false);
+      dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID})
+      dataPost("get")
+      router.push("/page/Main");
+    }
+    setWrong(false);
   }
   if (!data) {
     return <>불러오는중,,,</>;
   }
   return (
     <>
+      <div className={rightBtn && po.right} >
+      <figure>
+        <nav>
+          <div onClick={closedPop}></div>
+        </nav>
+      </figure>
+      </div>
+
+      <div className={wrongBtn && po.wrong} >
+        <figure>
+          <nav>
+          <div onClick={closedPop}></div>
+          </nav>
+        </figure>
+      </div>
+
+
       {data["POST"] ? (
         data["POST"].map((obj, key) => {
           if (obj.ID == query.id) {
@@ -100,14 +134,19 @@ function Post() {
                   <div className={po.boxBot}></div>
 
                   <div className={po.boxTop}></div>
-                  <div className={po.titleState}>
-                    <nav>
-                      <form onSubmit={create}>
-                        <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" autoComplete="off" />
-                        <input type="submit" value="" />
-                      </form>
-                    </nav>
-                  </div>
+                  {
+                        obj.STATE === "미점령"
+                        ? <div className={po.titleState}>
+                        <nav>
+                          <form onSubmit={create}>
+                            <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" autoComplete="off" />
+                            <input type="submit" value="" />
+                          </form>
+                        </nav>
+                      </div>
+                        : <></>
+                  }
+                  
                   {data["COMMENT"].map((obj, key) => {
                     if (obj.POST == query.id) {
                       return (
