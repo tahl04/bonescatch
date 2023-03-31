@@ -1,131 +1,138 @@
 @mixin flex($a: space-around, $b: center) {
-    display: flex;
-    justify-content: $a;
-    align-items: $b;
-    @content;
+  display: flex;
+  justify-content: $a;
+  align-items: $b;
+  @content;
 }
 @keyframes bujok0 {
-    50% {
-        content: url('/img/tribe/bam-true1.png');
-    }
+  50% {
+    content: url("/img/tribe/bam-true1.png");
   }
+}
 @keyframes bujok1 {
-    50% {
-        content: url('/img/tribe/bawi-true1.png');
-    }
+  50% {
+    content: url("/img/tribe/bawi-true1.png");
   }
+}
 @keyframes bujok2 {
-    50% {
-        content: url('/img/tribe/bburi-true1.png');
-    }
+  50% {
+    content: url("/img/tribe/bburi-true1.png");
   }
+}
 @keyframes bujok3 {
-    50% {
-        content: url('/img/tribe/bada-true1.png');
-    }
+  50% {
+    content: url("/img/tribe/bada-true1.png");
   }
-
-  
-  @keyframes la-open0 {
-    0% {
-        top: -1000px;
-        right: -1000px;
-    }
-    100% {
-        top: -200px;
-        right: -200px;
-    }
-  }
-  @keyframes la-open1 {
-    0% {
-        top: -1000px;
-        left: -1000px;
-    }
-    100% {
-        top: -200px;
-        left: -200px;
-    }
-  }
-  @keyframes la-open2 {
-    0% {
-        bottom: -1000px;
-        right: -1000px;
-    }
-    100% {
-        bottom: -200px;
-        right: -200px;
-    }
-  }
-  @keyframes la-open3 {
-    0% {
-        bottom: -1000px;
-        left: -1000px;
-    }
-    100% {
-        bottom: -250px;
-        left: -200px;
-    }
-  }
-
-
-
-.rankWrap{
-    z-index: -1;
-    position: fixed;
-    width: 100%;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    nav{
-        width: 600px;
-        height: 600px;
-        position: absolute;
-        img{
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: 50% 50%;
-        }
-    }
 }
 
-.bam{
+@keyframes la-open0 {
+  0% {
     top: -1000px;
     right: -1000px;
-    animation: la-open0 1.5s forwards;
-    img{
-        content: url('/img/tribe/bam-true0.png');
-        animation: bujok0 1.5s step-end infinite;
-        transform: scaleX(-1);
-    }
+  }
+  100% {
+    top: -200px;
+    right: -200px;
+  }
 }
-.bawi{
+@keyframes la-open1 {
+  0% {
     top: -1000px;
     left: -1000px;
-    animation: la-open1 1.5s forwards;
-    img{
-        transform: scaleX(-1);
-        content: url('/img/tribe/bawi-true0.png');
-        animation: bujok1 1.5s step-end infinite;
-    }
+  }
+  100% {
+    top: -200px;
+    left: -200px;
+  }
 }
-.bburi{
+@keyframes la-open2 {
+  0% {
     bottom: -1000px;
     right: -1000px;
-    animation: la-open2 1.5s forwards;
-    img{
-        transform: scaleX(-1);
-        content: url('/img/tribe/bburi-true0.png');
-        animation: bujok2 1.5s step-end infinite;
-    }
+  }
+  100% {
+    bottom: -200px;
+    right: -200px;
+  }
 }
-.bada{
+@keyframes la-open3 {
+  0% {
     bottom: -1000px;
     left: -1000px;
-    animation: la-open3 1.5s forwards;
-    img{
-        content: url('/img/tribe/bada-true0.png');
-        animation: bujok3 1.5s step-end infinite;
+  }
+  100% {
+    bottom: -250px;
+    left: -200px;
+  }
+}
+
+.rankWrap {
+  z-index: -1;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  nav {
+    width: 600px;
+    height: 600px;
+    position: absolute;
+    img {
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: 50% 50%;
     }
+  }
+  .chart-wrap {
+    width: 10px;
+    border: 1px solid red;
+    .chart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+  }
+}
+
+.bam {
+  top: -1000px;
+  right: -1000px;
+  animation: la-open0 1.5s forwards;
+  img {
+    content: url("/img/tribe/bam-true0.png");
+    animation: bujok0 1.5s step-end infinite;
+    transform: scaleX(-1);
+  }
+}
+.bawi {
+  top: -1000px;
+  left: -1000px;
+  animation: la-open1 1.5s forwards;
+  img {
+    transform: scaleX(-1);
+    content: url("/img/tribe/bawi-true0.png");
+    animation: bujok1 1.5s step-end infinite;
+  }
+}
+.bburi {
+  bottom: -1000px;
+  right: -1000px;
+  animation: la-open2 1.5s forwards;
+  img {
+    transform: scaleX(-1);
+    content: url("/img/tribe/bburi-true0.png");
+    animation: bujok2 1.5s step-end infinite;
+  }
+}
+.bada {
+  bottom: -1000px;
+  left: -1000px;
+  animation: la-open3 1.5s forwards;
+  img {
+    content: url("/img/tribe/bada-true0.png");
+    animation: bujok3 1.5s step-end infinite;
+  }
 }

@@ -6,7 +6,7 @@ export default function handler(req, res) {
   console.log(method);
 
   async function getRank() {
-    const rankData = await executeQuery("select STATE, RIGHTUSER from TBL_POST");
+    const rankData = await executeQuery("select STATE, RIGHTUSER from TBL_POST where STATE NOT IN('미점령')");
     res.json(rankData);
   }
 
