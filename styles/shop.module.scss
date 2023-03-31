@@ -11,15 +11,19 @@
     > button {
       position: relative;
     }
-    .shop_pen {
+    .shop_item {
       display: flex;
       justify-content: space-around;
       align-items: center;
-    }
-    .shop_paint {
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
+      > figure {
+        > img {
+        }
+        > figcaption {
+        }
+        > button {
+          position: relative;
+        }
+      }
     }
   }
 }

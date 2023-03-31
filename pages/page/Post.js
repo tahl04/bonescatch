@@ -11,7 +11,6 @@ function Post() {
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
 
-  const router = useRouter();
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
   
@@ -19,8 +18,6 @@ function Post() {
   const [wrongBtn, setWrong] = useState(false);
   
   const { data: session, status } = useSession();
-
-
 
 
   function valueChange(e) {

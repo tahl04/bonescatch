@@ -34,19 +34,6 @@ function Main() {
       query: { id: 3434343 },
     });
   }
-  function auth() {
-    if (status === "unauthenticated") {
-      router.push("/");
-    } else {
-      return;
-    }
-  }
-  console.log(data);
-
-  useEffect(() => {
-    auth();
-  }, [status]);
-  console.log(who)
 
   if (!data) return <>돌 날카롭게 깎는중.....</>;
   return (
