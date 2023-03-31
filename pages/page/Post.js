@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import po from "@/styles/post.module.scss";
 import { DataContext } from "../src/MyContext";
-import axios from "axios";
 import { useSession } from "next-auth/react";
 
 function Post() {
@@ -13,12 +12,11 @@ function Post() {
 
   const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
-  
+
   const [rightBtn, setRight] = useState(false);
   const [wrongBtn, setWrong] = useState(false);
-  
-  const { data: session, status } = useSession();
 
+  const { data: session, status } = useSession();
 
   function valueChange(e) {
     let t = e.target;
@@ -63,7 +61,7 @@ function Post() {
       await dataPost("get");
     } else {
       alert("기회가 모두 소진되었습니다.");
-      return
+      return;
     }
 
     data["POST"].forEach((obj, key) => {
@@ -76,19 +74,18 @@ function Post() {
       }
     });
 
-    if(ars === 3){
-      setRight(true);;
-    }else{
+    if (ars === 3) {
+      setRight(true);
+    } else {
       setWrong(true);
     }
-
   }
-  
-  function closedPop(){
-    if(rightBtn){
+
+  function closedPop() {
+    if (rightBtn) {
       setRight(false);
-      dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID})
-      dataPost("get")
+      dataPost("put", { STATE: who.TRIBE, ID: query.id, RIGHTUSER: who.ID });
+      dataPost("get");
       router.push("/page/Main");
     }
     setWrong(false);
@@ -98,22 +95,21 @@ function Post() {
   }
   return (
     <>
-      <div className={rightBtn && po.right} >
-      <figure>
-        <nav>
-          <div onClick={closedPop}></div>
-        </nav>
-      </figure>
-      </div>
-
-      <div className={wrongBtn && po.wrong} >
+      <div className={rightBtn && po.right}>
         <figure>
           <nav>
-          <div onClick={closedPop}></div>
+            <div onClick={closedPop}></div>
           </nav>
         </figure>
       </div>
 
+      <div className={wrongBtn && po.wrong}>
+        <figure>
+          <nav>
+            <div onClick={closedPop}></div>
+          </nav>
+        </figure>
+      </div>
 
       {data["POST"] ? (
         data["POST"].map((obj, key) => {
@@ -142,23 +138,21 @@ function Post() {
                             <span></span>
                             <span></span>
                           </article>
-                        {
-                          data["COMMENT"].map((objs, key) => {
+                          {data["COMMENT"].map((objs, key) => {
                             if (objs.POST == query.id) {
                               if (objs.USER == who.ID) {
                                 if (objs.COUNT == 1) {
-                                  return <p></p>
+                                  return <p></p>;
                                 }
                                 if (objs.COUNT == 2) {
-                                  return <p></p>
+                                  return <p></p>;
                                 }
                                 if (objs.COUNT == 3) {
-                                  return <p></p>
+                                  return <p></p>;
                                 }
                               }
                             }
-                          })
-                        }
+                          })}
                         </figure>
                       </fieldset>
                       {/* <p>나의 남은 횟수 : {namDat}</p> */}
@@ -167,19 +161,19 @@ function Post() {
                   <div className={po.boxBot}></div>
 
                   <div className={po.boxTop}></div>
-                  {
-                        obj.STATE === "미점령"
-                        ? <div className={po.titleState}>
-                        <nav>
-                          <form onSubmit={create}>
-                            <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" autoComplete="off" />
-                            <input type="submit" value="" />
-                          </form>
-                        </nav>
-                      </div>
-                        : <></>
-                  }
-                  
+                  {obj.STATE === "미점령" ? (
+                    <div className={po.titleState}>
+                      <nav>
+                        <form onSubmit={create}>
+                          <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" autoComplete="off" />
+                          <input type="submit" value="" />
+                        </form>
+                      </nav>
+                    </div>
+                  ) : (
+                    <></>
+                  )}
+
                   {data["COMMENT"].map((obj, key) => {
                     if (obj.POST == query.id) {
                       return (
