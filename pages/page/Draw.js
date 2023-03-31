@@ -342,17 +342,20 @@ const Draw = () => {
             <nav>
               <div className={wr.tool}>
                 <button className={wr.toolBtn} ref={(el) => (brushSize.current[0] = el)}>
-                  <img className={wr.toolOne}></img>
+                  <img className={wr.toolThu}></img>
                 </button>
                 <button className={wr.toolBtn} ref={(el) => (brushSize.current[1] = el)}>
-                  <img className={wr.toolTwo}></img>
-                </button>
-                <button className={wr.toolBtn}>
-                  <img className={wr.toolEmp}></img>
+                  <img className={wr.toolOne}></img>
                 </button>
                 <button className={wr.toolBtn} ref={(el) => (brushSize.current[2] = el)}>
+                  <img className={wr.toolTwo}></img>
+                </button>
+                <button className={wr.toolBtn} ref={(el) => (brushSize.current[3] = el)}>
                   <img className={wr.toolTre}></img>
                 </button>
+                {/* <button className={wr.toolBtn}>
+                  <img className={wr.toolEmp}></img>
+                </button> */}
               </div>
               <div className={wr.canWrap}>
                 <canvas ref={canvasw} className={wr.paint}></canvas>

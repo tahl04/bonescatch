@@ -21,24 +21,6 @@ function Post() {
   const { data: session, status } = useSession();
 
 
-  useEffect(() => {
-    // console.log(who)
-    // console.log(data);
-    
-  }, []);
-
-  function authCheck(){
-    if(status === 'authenticated'){
-      return;
-    }
-    else{
-      router.push(("/"));
-    }
-  }
-
-  useEffect(()=>{
-    authCheck();
-  },[status])
 
 
   function valueChange(e) {
@@ -84,6 +66,7 @@ function Post() {
       await dataPost("get");
     } else {
       alert("기회가 모두 소진되었습니다.");
+      return
     }
 
     data["POST"].forEach((obj, key) => {
@@ -149,8 +132,39 @@ function Post() {
                   <div className={po.boxMid}>
                     <img src={obj.DRAW} className={po.bonescatch}></img>
                     <nav>
-                      <h3>글자 수 : </h3>
-                      <h2>{obj.TITLE.length}</h2>
+                      <div>
+                        <h3>글자 수 : </h3>
+                        <h2>{obj.TITLE.length}</h2>
+                      </div>
+                      {/* <div>나의 댓글 수 ( 최대 3개 ) : &nbsp; */}
+                      <fieldset>
+                        댓글 횟수 : &nbsp;
+                        <figure>
+                          <article>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                          </article>
+                        {
+                          data["COMMENT"].map((objs, key) => {
+                            if (objs.POST == query.id) {
+                              if (objs.USER == who.ID) {
+                                if (objs.COUNT == 1) {
+                                  return <p></p>
+                                }
+                                if (objs.COUNT == 2) {
+                                  return <p></p>
+                                }
+                                if (objs.COUNT == 3) {
+                                  return <p></p>
+                                }
+                              }
+                            }
+                          })
+                        }
+                        </figure>
+                      </fieldset>
+                      {/* <p>나의 남은 횟수 : {namDat}</p> */}
                     </nav>
                   </div>
                   <div className={po.boxBot}></div>

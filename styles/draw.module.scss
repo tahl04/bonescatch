@@ -77,6 +77,11 @@
         content: url('/img/draw/tool2-1.png')
     }
 }
+@keyframes t-3 {
+    50% {
+        content: url('/img/draw/tool3-1.png');
+    }
+}
 @keyframes t-e {
     50% {
         content: url('/img/draw/tool-empty1.png')
@@ -405,6 +410,10 @@ $I_btn_h : calc($I_btn_w / 1.7065);
                     .toolTre{
                         content: url('/img/draw/tool1-0.png');
                         animation: t-1 1.5s step-end infinite;
+                    }
+                    .toolThu{
+                        content: url('/img/draw/tool3-0.png');
+                        animation: t-3 1.5s step-end infinite;
                     }
                     .toolEmp{
                         content: url('/img/draw/tool-empty0.png');
