@@ -5,7 +5,7 @@ import { DataContext } from "../src/MyContext";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 
-function Post() {
+function Postset() {
   // const [thisPost, setPost] = useState([]);
   const router = useRouter();
   const { data, who, dataPost, dataShell, sessionWho } = useContext(DataContext);
@@ -17,65 +17,99 @@ function Post() {
   
   const [rightBtn, setRight] = useState(false);
   const [wrongBtn, setWrong] = useState(false);
-  const [getShellPop, setShellPop] = useState("비활성");
-  const [countShells, setCountShells] = useState(1);
+  const [rightState, setRightState] = useState("비활성");
+  const [coinEa, setCoin] = useState(1);
+  const [countIdx, setCountIdx] = useState(0);
   
   const { data: session, status } = useSession();
 
 
-  // async function countShell(){
-  //   let countCoin = 0;
-  //   if(data){
-  //     data["COMMENT"].forEach((obj, key) => {
-  //       if (obj.POST == query.id) {
-  //         countCoin++;
-  //       }
-  //     });
-  //   }
-  //   setCountShells(countCoin);
-  // }
 
-  // useEffect(()=>{
-  //   countShell();
-  // },[data])
-
-
-  useEffect(() => {
-    let closed;
-    closed = setTimeout(function () {
-        if (data) {
-        let countCoin = 1;
-        data["COMMENT"] ? data["COMMENT"].forEach((obj, key) => {
-          if (obj.POST == query.id) {
-            countCoin++;
-          }
-        }) : countCoin = countShells;
-        ;
-        setCountShells(countCoin);
+  function coinPlus(){
+    // if(data){
+      let coinMap = 0;
+      data["COMMENT"].forEach((obj, key) => {
+        if (obj.POST == query.id) {
+          coinMap++;
         }
-      }, 4000);
-  }, [data]);
-
-  function valueChange(e) {
-    let t = e.target;
-
-    let countMap = 1;
-    data["COMMENT"].forEach((obj, key) => {
-      if (obj.POST == query.id) {
-        if (obj.USER == who.ID) {
-          if (obj.COUNT == 1) {
-            countMap++;
-          }
-          if (obj.COUNT == 2) {
-            countMap++;
-          }
-          if (obj.COUNT == 3) {
-            countMap++;
-          }
-        }
+      })
+      if(coinMap == 0){
+        coinMap++;
       }
-    });
+      let countMap = 0;
+      data["COMMENT"].forEach((obj, key) => {
+        if (obj.POST == query.id) {
+          if (obj.USER == who.ID) {
+            if (obj.COUNT == 1) {
+              countMap++;
+            }
+            if (obj.COUNT == 2) {
+              countMap++;
+            }
+            if (obj.COUNT == 3) {
+              countMap++;
+            }
+          }
+        }
+      })
+      setCountIdx(countMap);
+      setCoin(coinMap);
+    // }
+  }
+  useEffect(()=>{
+    // if(data){
+      let coinMap = 0;
+      data["COMMENT"].forEach((obj, key) => {
+        if (obj.POST == query.id) {
+          coinMap++;
+        }
+      })
+      if(coinMap == 0){
+        coinMap++;
+      }
+      // let countMap = 0;
+      // data["COMMENT"].forEach((obj, key) => {
+      //   if (obj.POST == query.id) {
+      //     if (obj.USER == who.ID) {
+      //       if (obj.COUNT == 1) {
+      //         countMap++;
+      //       }
+      //       if (obj.COUNT == 2) {
+      //         countMap++;
+      //       }
+      //       if (obj.COUNT == 3) {
+      //         countMap++;
+      //       }
+      //     }
+      //   }
+      // })
+      // setCountIdx(countMap);
+      setCoin(coinMap);
+    // }
+  },[])
 
+  function valueChange() {
+    // let t = e.target;
+    console.log(data)
+
+
+    let countMap = 0;
+      data["COMMENT"].forEach((obj, key) => {
+        if (obj.POST == query.id) {
+          if (obj.USER == who.ID) {
+            if (obj.COUNT == 1) {
+              countMap++;
+            }
+            if (obj.COUNT == 2) {
+              countMap++;
+            }
+            if (obj.COUNT == 3) {
+              countMap++;
+            }
+          }
+        }
+      })
+    
     setValue({
       ...inputValue,
       COMMENT: commentVal.current.value,
@@ -85,7 +119,6 @@ function Post() {
       POST: query.id,
       TRIBE: who.TRIBE,
     });
-
     console.log(inputValue);
   }
 
@@ -93,6 +126,7 @@ function Post() {
     e.preventDefault();
     // console.log(data)
     // console.log(inputValue.COUNT);
+    
     let ars = 0;
     if (inputValue.COUNT < 4) {
       dataPost("post", inputValue);
@@ -101,7 +135,6 @@ function Post() {
       alert("기회가 모두 소진되었습니다.");
       return
     }
-
     data["POST"].forEach((obj, key) => {
       if (obj.ID == query.id) {
         if (inputValue.COMMENT == obj.TITLE) {
@@ -120,45 +153,36 @@ function Post() {
 
   }
   
-  async function closedPop(){
+  function closedPop(){
     if(rightBtn){
       setRight(false);
-      setShellPop("활성");
-      // dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID});
-      // await dataPost("get");
-      // router.push("/page/Main");
+      setRightState("활성");
     }
     setWrong(false);
+    coinPlus();
   }
 
-  async function outPost(){
-    setShellPop("비활성")
+  
+  async function closePost(){
     dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID});
-    dataShell("put", {SHELL:who.SHELL+countShells, ID:who.ID});
+    dataShell("put", {SHELL:who.SHELL+coinEa, ID:who.ID});
+    dataPost("get");
     sessionWho();
-    // await sessionWho();
     await dataPost("get");
     router.push("/page/Main");
+
   }
+
+
   if (!data) {
-    return <div className="bonebone">돌 날카롭게 깎는중...</div>
+    return <>불러오는중,,,</>
   }
   return (
-    <>
 
-      <div className={getShellPop == "활성" ? po.addItemOne : po.hideItem}>
-        <figure onClick={outPost}>
-          <nav>
-            <img></img>
-            <div>
-              <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}{countShells}개{`)`}를 획득<br/> 했습니다.</h6>
-            </div>
-          </nav>
-          <h1>석판을 클릭하면 창이 닫힙니다.</h1>
-          </figure>
-        </div>
-
-
+<>
+    {
+      // who &&
+      <>
       <div className={rightBtn && po.right} >
       <figure>
         <nav>
@@ -175,6 +199,18 @@ function Post() {
         </figure>
       </div>
 
+      <div className={rightState == "활성" ? po.addItemOne : po.hideItem}>
+        <figure onClick={closePost}>
+                <nav className={po.shellCoinGet}>
+                  <img></img>
+                  <div>
+                    <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}{coinEa}개{`)`}를 획득<br/> 했습니다.</h6>
+                  </div>
+                </nav>
+          <h1>석판을 클릭하면 창이 닫힙니다.</h1>
+          </figure>
+        </div>
+
 
       {data["POST"] ? (
         data["POST"].map((obj, key) => {
@@ -184,36 +220,23 @@ function Post() {
                 <div className={po.boxWrap}>
                   <div className={po.boxTop}>
                     <div className={po.codeNameBox}>
-                      <h1>{obj.USERCODE} 님의 본스케치</h1>
+                      <h1>{obj.USERCODE}님의 본스케치</h1>
                     </div>
                   </div>
                   <div className={po.boxMid}>
-                      <div className={po.titleLeng}>
-                        {
-                          obj.STATE != "미점령" ? 
-                          <>
-                            <h3>정답은 : </h3>
-                            <h2>{obj.TITLE}</h2>
-                          </>
-                          :
-                          <>
-                            <h3>글자 수 : </h3>
-                            <h2>{obj.TITLE.length}</h2>
-                          </>
-                        }
-                      </div>
+                    <div className={po.titleEa}>
+                      <h3>글자 수 : </h3>
+                      <h2>{obj.TITLE.length}</h2>
+                    </div>
                     <img src={obj.DRAW} className={po.bonescatch}></img>
                     <nav>
-                      {
-                          obj.STATE == "미점령" && 
-                      <div>
-                        <img></img>
-                        <h4> &nbsp;X&nbsp;  {countShells}</h4>
+                      <div className={po.jaehanWrap}>
+                        <img className={po.shellCoin}></img>
+                        <h4>X&nbsp; {coinEa}</h4>
                       </div>
-                      }
+                      {/* <div>나의 댓글 수 ( 최대 3개 ) : &nbsp; */}
                       {
-                        obj.STATE === "미점령" && obj.USER != who.ID
-                        ? 
+                          obj.STATE == "미점령" ? 
                         <fieldset>
                         나의 댓글 횟수 : &nbsp;
                         <figure>
@@ -223,7 +246,6 @@ function Post() {
                             <span></span>
                           </article>
                         {
-                          who &&
                           data["COMMENT"].map((objs, key) => {
                             if (objs.POST == query.id) {
                               if (objs.USER == who.ID) {
@@ -251,9 +273,8 @@ function Post() {
 
                   <div className={po.boxTop}></div>
                   {
-                        obj.STATE === "미점령" && obj.USER != who.ID
-                        ? 
-                        <div className={po.titleState}>
+                        obj.STATE === "미점령"
+                        ? <div className={po.titleState}>
                         <nav>
                           <form onSubmit={create}>
                             <input ref={commentVal} onChange={valueChange} type="text" placeholder="정답을 입력해 주세요!" name="COMMENT" autoComplete="off" />
@@ -264,27 +285,27 @@ function Post() {
                         : <></>
                   }
                   
-                  {data["COMMENT"].map((objw, key) => {
-                    if (objw.POST == query.id) {
+                  {data["COMMENT"].map((obj, key) => {
+                    if (obj.POST == query.id) {
                       return (
                         <div key={key} className={po.commentBox}>
                           <nav>
                             <div>
                               <img
-                                className={`${objw.TRIBE === "0" && po.bburiIcon} ${objw.TRIBE === "1" && po.badaIcon} ${objw.TRIBE === "2" && po.bawiIcon} ${
-                                  objw.TRIBE === "3" && po.bamIcon
+                                className={`${obj.TRIBE === "0" && po.bburiIcon} ${obj.TRIBE === "1" && po.badaIcon} ${obj.TRIBE === "2" && po.bawiIcon} ${
+                                  obj.TRIBE === "3" && po.bamIcon
                                 }`}
                               ></img>
                               <h4
-                                className={`${objw.TRIBE === "0" && po.bburi} ${objw.TRIBE === "1" && po.bada} ${objw.TRIBE === "2" && po.bawi} ${
-                                  objw.TRIBE === "3" && po.bam
+                                className={`${obj.TRIBE === "0" && po.bburi} ${obj.TRIBE === "1" && po.bada} ${obj.TRIBE === "2" && po.bawi} ${
+                                  obj.TRIBE === "3" && po.bam
                                 }`}
                               >
-                                {objw.CODENAME}
+                                {obj.CODENAME}
                               </h4>
-                              <h3>{objw.COMMENT}</h3>
+                              <h3>{obj.COMMENT}</h3>
                             </div>
-                            <h5>{objw.DATE.match(/^((19|20)\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/g)}</h5>
+                            <h5>{obj.DATE.match(/^((19|20)\d{2})-(0[1-9]|1[012])-(0[1-9]|[12][0-9]|3[01])/g)}</h5>
                           </nav>
                           <span></span>
                         </div>
@@ -304,10 +325,12 @@ function Post() {
           }
         })
       ) : (
-      <div className="bonebone">돌 날카롭게 깎는중...</div>
+        <div>불러오는중</div>
       )}
+    </>
+    }
     </>
   );
 }
 
-export default Post;
+export default Postset;

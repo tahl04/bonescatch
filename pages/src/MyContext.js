@@ -67,7 +67,19 @@ const MyContext = ({ children }) => {
     }
   }
   useEffect(() => {
-    sessionWho();
+    // sessionWho();
+    if (session !== undefined && session !== null) {
+      axios
+        .get("/api/who", {
+          params: {
+            id: session.user[0].ID,
+          },
+        })
+        .then((res) => {
+          setWho(res.data);
+        });
+    }
+    
   }, [session]);
 
   useEffect(() => {

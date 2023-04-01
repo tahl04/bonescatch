@@ -303,6 +303,7 @@ const Draw = () => {
   //디비
   async function uploadBonescatch(){
     dataFun("post", inputValue);
+    dataFun("get");
     await dataFun("get");
     router.push("/page/Main");
   }

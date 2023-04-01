@@ -91,12 +91,13 @@ function Main() {
     setTalk("END");
     setSecondGet("비활성");
     dataShell("put", {SHELL:10, ID:who.ID});
+    sessionWho();
     await sessionWho();
   }
 
-  if (!data) return <div className={m.bonebone}>
-    <h2>석판을 전시하는 중...</h2>
-  </div>;
+  if (!data) return <div className="bonebone">
+    돌 날카롭게 깎는중...
+  </div>
   return (
     <>
 
@@ -378,7 +379,7 @@ function Main() {
                           <nav className={m.shellCoinGet}>
                             <img></img>
                             <div>
-                              <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}10{`)`}개를 획득<br/> 했습니다.</h6>
+                              <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}10개{`)`}를 획득<br/> 했습니다.</h6>
                             </div>
                           </nav>
                     <h1>석판을 클릭하면 창이 닫힙니다.</h1>
