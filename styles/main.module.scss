@@ -211,6 +211,12 @@ $item_pop_img: calc(700px / 3);
         content: url('/img/item/parts-white1.png');
     }
 }
+@keyframes m-trans33 {
+    50% {
+        color: #222;
+        text-shadow: none;
+    }
+}
 
 
 
@@ -346,12 +352,40 @@ $item_pop_img: calc(700px / 3);
         // border-bottom: 4px solid rgba(82, 60, 19, .2);
     }
     h3{
+       color: #d3c5a0; 
         width: 60%;
         font-size: 26px;
+        // font-weight: normal;
+        // -webkit-text-stroke: 1px red;
+        text-shadow: -1px 0 #221707, 0 1px #221707, 1px 0 #221707, 0 -1px #221707;
     }
     p{
+        color: #222;
         // color: rgba(85, 64, 23, 0.8);
-        font-size: 20px;
+        font-size: 30px;
+        b{
+            padding: 0 4px;
+        }
+        .bburiB{
+            color: rgb(53, 97, 219);
+            text-shadow: 1px 1px 15px rgba(53, 97, 219,.3);
+            animation: m-trans33 1.7s linear infinite;
+        }
+        .badaB{
+            color: rgb(206, 71, 54);
+            text-shadow: 1px 1px 15px rgba(206, 71, 54,.3);
+            animation: m-trans33 1.7s linear infinite;
+        }
+        .bawiB{
+            color: rgb(255, 154, 3);
+            text-shadow: 1px 1px 15px rgba(255, 154, 3,.3);
+            animation: m-trans33 1.7s linear infinite;
+        }
+        .bamB{
+            color: rgb(147, 49, 177);
+            text-shadow: 1px 1px 15px rgba(147, 49, 177,.3);
+            animation: m-trans33 1.7s linear infinite;
+        }
     }
     nav{
         width: 60%;

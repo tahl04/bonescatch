@@ -19,6 +19,7 @@ function Main() {
 
   const [firstGet, setFirstGet] = useState("비활성");
   const [secondGet, setSecondGet] = useState("비활성");
+  const [getBug, setBug] = useState("비활성");
   // console.log(who);
 
   function stateAll(){
@@ -87,12 +88,14 @@ function Main() {
       setSecondGet("활성");
     }, 200);
   }
+
   async function secondClose (){
     setTalk("END");
+    setBug("활성화")
     setSecondGet("비활성");
     dataShell("put", {SHELL:10, ID:who.ID});
-    sessionWho();
     await sessionWho();
+    sessionWho();
   }
 
   if (!data) return <div className="bonebone">
@@ -105,7 +108,7 @@ function Main() {
   {/* 튜토리얼 */}
       {
         who &&
-        who.SHELL === -1 ? 
+        who.SHELL === -1 && getBug == "비활성" ? 
         <>
           <div className={m.guide}>
             {who.TRIBE == 0 && <img className={m.bburiJokjang}></img>}
@@ -437,10 +440,10 @@ function Main() {
                       {res.STATE == 3 && <img className={m.bam}></img>}
                     </div>
                     {/* <Link href={}></Link> */}
-                    {res.STATE == 0 && <p>뿌리족 점령 !</p>}
-                    {res.STATE == 1 && <p>바다족 점령 !</p>}
-                    {res.STATE == 2 && <p>바위족 점령 !</p>}
-                    {res.STATE == 3 && <p>밤족 점령 !</p>}
+                    {res.STATE == 0 && <p><b className={m.bburiB}>뿌리</b>족 점령 !</p>}
+                    {res.STATE == 1 && <p><b className={m.badaB}>바다</b>족 점령 !</p>}
+                    {res.STATE == 2 && <p><b className={m.bawiB}>바위</b>족 점령 !</p>}
+                    {res.STATE == 3 && <p><b className={m.bamB}>밤</b>족 점령 !</p>}
                     {res.STATE == "미점령" && <p>정답을 맞춰서 본스케치를 점령 해보세요!</p>}
                     <nav>
                       <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
