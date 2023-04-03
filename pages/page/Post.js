@@ -38,7 +38,7 @@ function Post() {
   // useEffect(()=>{
   //   countShell();
   // },[data])
-
+  
 
   useEffect(() => {
     let closed;

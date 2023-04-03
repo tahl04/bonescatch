@@ -51,13 +51,6 @@ function Tutorial() {
     setFirstGet("활성");
   }
 
-  function firstClose() {
-    setFirstGet("비활성");
-    let setCounts;
-    setCounts = setTimeout(function () {
-      setSecondGet("활성");
-    }, 200);
-  }
 
   async function secondClose() {
     setTalk("END");

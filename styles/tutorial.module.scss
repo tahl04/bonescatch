@@ -116,6 +116,20 @@ $item_pop_img: calc(700px / 3);
         content: url('/img/item/parts-white1.png');
     }
 }
+@keyframes get-item {
+    0% {
+        transform: scale(0);
+    }
+    30%{
+        transform: scale(1.5);
+    }
+    50%{
+        transform: scale(.9);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
 
 .guide{
     z-index: 110;
