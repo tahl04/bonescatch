@@ -90,8 +90,15 @@ function Header() {
         who.SHELL === -1 ? <div className={hd.tyutyu}>튜토리얼 진행중</div> 
             :  */}
             <>
-                <button onClick={ranking}>랭킹</button>
-                <button onClick={toshop}>상점</button>
+              {
+                who && who.ID !== 1 ? 
+                <>
+                  <button onClick={ranking}>랭킹</button>
+                  <button onClick={toshop}>상점</button>
+                </>
+                : <>
+                </>
+              }
                 <button onClick={() => signOut()}>로그아웃</button>
             </>
           {/* } */}
