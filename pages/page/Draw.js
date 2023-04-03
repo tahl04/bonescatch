@@ -1,18 +1,30 @@
 import { useRouter } from "next/router";
 import { useRef, useEffect, useContext, useState } from "react";
-import { DataContext } from "../src/MyContext";
+import MyContext, { DataContext } from "../src/MyContext";
 import wr from "@/styles/draw.module.scss";
 
 const Draw = () => {
   const { pathname } = useRouter();
-  
+
   const [popCheck, setPop] = useState(false);
-  
+
   //색 셋팅
   let strokeCol = "#754d22";
-  const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726","#eeeeee", "#e48b26", strokeCol];
+  const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726", "#eeeeee", "#e48b26", strokeCol];
   const [parts, setParts] = useState([strokeCol, strokeCol, strokeCol, strokeCol]);
-  
+  const { mine } = useContext(DataContext);
+
+  const [pen, setPen] = useState();
+  const [paint, setPaint] = useState();
+
+  useEffect(() => {
+    if (mine !== undefined) {
+      setPen(mine.pen.split(","));
+      setPaint(mine.paint.split(","));
+    }
+  }, [mine]);
+
+  console.log(pen, paint);
 
   const emp = useRef([]),
     bla = useRef([]),
@@ -39,7 +51,7 @@ const Draw = () => {
   //디비
   const { dataFun, who } = useContext(DataContext);
   const router = useRouter();
-  const initial = { USER: "", DRAW: "", TITLE: "", STATE: "",RIGHTUSER:"" };
+  const initial = { USER: "", DRAW: "", TITLE: "", STATE: "", RIGHTUSER: "" };
   const [inputValue, setValue] = useState(initial);
 
   //그림판
@@ -163,12 +175,7 @@ const Draw = () => {
       ctx.stroke();
     };
     // setCtx(ctx);
-
-    
-    
   }, []);
-  
-  
 
   //파츠 클릭시
   function colorChange(keyColor, index) {
@@ -289,70 +296,67 @@ const Draw = () => {
     setValue({ ...inputValue, DRAW: imgDataUrl });
   }
 
-
   const drawSave = () => {
-    setValue({DRAW:canvasw.current.toDataURL("image/png"),
-    USER: who.ID, STATE: "미점령", USERCODE: who.CODENAME, TITLE: titleVal.current.value, RIGHTUSER:"없음"});
+    setValue({
+      DRAW: canvasw.current.toDataURL("image/png"),
+      USER: who.ID,
+      STATE: "미점령",
+      USERCODE: who.CODENAME,
+      TITLE: titleVal.current.value,
+      RIGHTUSER: "없음",
+    });
     setPop(!popCheck);
   };
 
-  function reDraw(){
+  function reDraw() {
     setPop(!popCheck);
   }
 
   //디비
-  async function uploadBonescatch(){
+  async function uploadBonescatch() {
     dataFun("post", inputValue);
     dataFun("get");
     await dataFun("get");
     router.push("/page/Main");
   }
 
-
   return (
     <>
-    {/* <div style={{display:'none'}} className={popCheck && wr.checkPop}> */}
-    <div className={popCheck ? `${wr.checkPop} ${wr.popActive} ` : wr.checkPop}>
-      <figure>
-        <nav>
-          <div></div>
-          <div>
-            <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
-            {
-              popCheck &&  <span style={{backgroundImage:`url(${inputValue.DRAW})`}} className={wr.bonescatch}></span>
-            }
-            <ul>
-              <li onClick={uploadBonescatch}>올리기 !</li>
-              <li onClick={reDraw}>다시 그리기 !</li>
-            </ul>
-          </div>
-          <div></div>
-        </nav>
-      </figure>
-    </div>
-
-
+      {/* <div style={{display:'none'}} className={popCheck && wr.checkPop}> */}
+      <div className={popCheck ? `${wr.checkPop} ${wr.popActive} ` : wr.checkPop}>
+        <figure>
+          <nav>
+            <div></div>
+            <div>
+              <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
+              {popCheck && <span style={{ backgroundImage: `url(${inputValue.DRAW})` }} className={wr.bonescatch}></span>}
+              <ul>
+                <li onClick={uploadBonescatch}>올리기 !</li>
+                <li onClick={reDraw}>다시 그리기 !</li>
+              </ul>
+            </div>
+            <div></div>
+          </nav>
+        </figure>
+      </div>
 
       <div className={wr.wrap}>
-
-
-        
         <div className={wr.drawBox}>
           <div className={wr.top} />
           <div className={wr.body}>
             <nav>
               <div className={wr.tool}>
-                <button className={wr.toolBtn} ref={(el) => (brushSize.current[0] = el)}>
-                  <img className={wr.toolThu}></img>
+                <button className={wr.toolBtn} ref={(el) => (brushSize.current[0] = el)} disabled={!(pen && pen.includes("4"))}>
+                  <img className={pen && pen.includes("4") ? wr.toolThu : wr.toolEmp} alt="tool_feather" />
                 </button>
-                <button className={wr.toolBtn} ref={(el) => (brushSize.current[1] = el)}>
-                  <img className={wr.toolOne}></img>
+                <button className={wr.toolBtn} ref={(el) => (brushSize.current[1] = el)} disabled={!(pen && pen.includes("1"))}>
+                  <img className={pen && pen.includes("1") ? wr.toolOne : wr.toolEmp} alt="tool_wood" />
                 </button>
-                <button className={wr.toolBtn} ref={(el) => (brushSize.current[2] = el)}>
-                  <img className={wr.toolTwo}></img>
+                <button className={wr.toolBtn} ref={(el) => (brushSize.current[2] = el)} disabled={!(pen && pen.includes("2"))}>
+                  <img className={pen && pen.includes("2") ? wr.toolTwo : wr.toolEmp} alt="tool_stone" />
                 </button>
-                <button className={wr.toolBtn} ref={(el) => (brushSize.current[3] = el)}>
-                  <img className={wr.toolTre}></img>
+                <button className={wr.toolBtn} ref={(el) => (brushSize.current[3] = el)} disabled={!(pen && pen.includes("3"))}>
+                  <img className={pen && pen.includes("3") ? wr.toolTre : wr.toolEmp} alt="tool_bone" />
                 </button>
                 {/* <button className={wr.toolBtn}>
                   <img className={wr.toolEmp}></img>
@@ -420,11 +424,10 @@ const Draw = () => {
         </div>
 
         <div className={wr.rightWrap}>
-
           <div className={wr.textBox}>
             <nav>
-                <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
-              <div onClick={drawSave}/>
+              <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
+              <div onClick={drawSave} />
             </nav>
           </div>
 
@@ -432,10 +435,16 @@ const Draw = () => {
             <div></div>
             <div>
               <h4> - 사용법</h4>
-              <h3>1. 좌측에 있는 석판에 그림을 기록합니다.
-                <br></br>&nbsp; 우리는 그것을 본스케치라고 부릅니다</h3>
-              <h3>2. 기록한 본스케치에 대한 제목을 우측 상단에<br></br>&nbsp; 입력합니다.</h3>
-              <h3>3. 1번과 2번을 완료한 뒤 확인을 눌러<br></br>&nbsp; 최종 본스케치를 확인합니다.</h3>
+              <h3>
+                1. 좌측에 있는 석판에 그림을 기록합니다.
+                <br></br>&nbsp; 우리는 그것을 본스케치라고 부릅니다
+              </h3>
+              <h3>
+                2. 기록한 본스케치에 대한 제목을 우측 상단에<br></br>&nbsp; 입력합니다.
+              </h3>
+              <h3>
+                3. 1번과 2번을 완료한 뒤 확인을 눌러<br></br>&nbsp; 최종 본스케치를 확인합니다.
+              </h3>
               <h4> - 그 외</h4>
               <h3>- 좌측 도구를 통해 붓의 굵기를 변경할 수 있습니다.</h3>
               <h3>- 하단 파레트에 재료를 넣어 색을 변경할 수 있습니다.</h3>
@@ -443,12 +452,7 @@ const Draw = () => {
             </div>
             <div></div>
           </div>
-
-
         </div>
-
-
-
       </div>
     </>
   );

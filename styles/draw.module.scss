@@ -1,215 +1,203 @@
-
-
 @mixin flex($a: space-around, $b: center) {
-    display: flex;
-    justify-content: $a;
-    align-items: $b;
-    @content;
+  display: flex;
+  justify-content: $a;
+  align-items: $b;
+  @content;
 }
 
 @keyframes m-trans0 {
-    50% {
-        background-image: url('/img/write-head1.png');
-    }
+  50% {
+    background-image: url("/img/write-head1.png");
+  }
 }
 
 @keyframes m-trans1 {
-    50% {
-        background-image: url('/img/write-body3.png');
-    }
+  50% {
+    background-image: url("/img/write-body3.png");
+  }
 }
 
 @keyframes m-trans2 {
-    50% {
-        background-image: url('/img/write-footer1.png');
-    }
+  50% {
+    background-image: url("/img/write-footer1.png");
+  }
 }
 @keyframes m-trans3 {
-    50% {
-        background-image: url('/img/draw/palette1.png');
-    }
+  50% {
+    background-image: url("/img/draw/palette1.png");
+  }
 }
 @keyframes m-trans4 {
-    50% {
-        background-image: url('/img/main-box1.png');
-    }
+  50% {
+    background-image: url("/img/main-box1.png");
+  }
 }
 @keyframes po-trans5 {
-    50% {
-        background-image: url('/img/post/input1.png');
-    }
+  50% {
+    background-image: url("/img/post/input1.png");
+  }
 }
 @keyframes po-trans6 {
-    50% {
-        background-image: url('/img/post/check1.png');
-    }
+  50% {
+    background-image: url("/img/post/check1.png");
+  }
 }
 @keyframes m-trans7 {
-    50% {
-        background-image: url('/img/list-head1.png');
-    }
+  50% {
+    background-image: url("/img/list-head1.png");
+  }
 }
 @keyframes m-trans8 {
-    50% {
-        background-image: url('/img/list-body1.png');
-    }
+  50% {
+    background-image: url("/img/list-body1.png");
+  }
 }
 @keyframes m-trans9 {
-    50% {
-        background-image: url('/img/list-footer1.png');
-    }
+  50% {
+    background-image: url("/img/list-footer1.png");
+  }
 }
 //tool
 
-
 @keyframes t-0 {
-    50% {
-        content: url('/img/draw/tool0-1.png')
-    }
+  50% {
+    content: url("/img/draw/tool0-1.png");
+  }
 }
 @keyframes t-1 {
-    50% {
-        content: url('/img/draw/tool1-1.png')
-    }
+  50% {
+    content: url("/img/draw/tool1-1.png");
+  }
 }
 @keyframes t-2 {
-    50% {
-        content: url('/img/draw/tool2-1.png')
-    }
+  50% {
+    content: url("/img/draw/tool2-1.png");
+  }
 }
 @keyframes t-3 {
-    50% {
-        content: url('/img/draw/tool3-1.png');
-    }
+  50% {
+    content: url("/img/draw/tool3-1.png");
+  }
 }
 @keyframes t-e {
-    50% {
-        content: url('/img/draw/tool-empty1.png')
-    }
+  50% {
+    content: url("/img/draw/tool-empty1.png");
+  }
 }
-
-
 
 //color
 
-
 @keyframes c-black {
-    50% {
-        content: url('/img/draw/color-black1.png');
-    }
+  50% {
+    content: url("/img/draw/color-black1.png");
+  }
 }
 @keyframes c-blue {
-    50% {
-        content: url('/img/draw/color-blue1.png');
-    }
+  50% {
+    content: url("/img/draw/color-blue1.png");
+  }
 }
 @keyframes c-red {
-    50% {
-        content: url('/img/draw/color-red1.png');
-    }
+  50% {
+    content: url("/img/draw/color-red1.png");
+  }
 }
 @keyframes c-green {
-    50% {
-        content: url('/img/draw/color-green1.png');
-    }
+  50% {
+    content: url("/img/draw/color-green1.png");
+  }
 }
 @keyframes c-yellow {
-    50% {
-        content: url('/img/draw/color-yellow1.png');
-    }
+  50% {
+    content: url("/img/draw/color-yellow1.png");
+  }
 }
 @keyframes c-white {
-    50% {
-        content: url('/img/draw/color-white1.png');
-    }
+  50% {
+    content: url("/img/draw/color-white1.png");
+  }
 }
 @keyframes c-orange {
-    50% {
-        content: url('/img/draw/color-orange1.png');
-    }
+  50% {
+    content: url("/img/draw/color-orange1.png");
+  }
 }
 @keyframes c-puple {
-    50% {
-        content: url('/img/draw/color-puple1.png');
-    }
+  50% {
+    content: url("/img/draw/color-puple1.png");
+  }
 }
 @keyframes c-e {
-    50% {
-        content: url('/img/draw/color-empty1.png')
-    }
+  50% {
+    content: url("/img/draw/color-empty1.png");
+  }
 }
 
 //parts
 
 @keyframes p-black {
-    50% {
-        content: url('/img/item/parts-black1.png')
-    }
+  50% {
+    content: url("/img/item/parts-black1.png");
+  }
 }
 @keyframes p-blue {
-    50% {
-        content: url('/img/item/parts-blue1.png')
-    }
+  50% {
+    content: url("/img/item/parts-blue1.png");
+  }
 }
 @keyframes p-red {
-    50% {
-        content: url('/img/item/parts-red1.png')
-    }
+  50% {
+    content: url("/img/item/parts-red1.png");
+  }
 }
 @keyframes p-green {
-    50% {
-        content: url('/img/item/parts-green1.png')
-    }
+  50% {
+    content: url("/img/item/parts-green1.png");
+  }
 }
 @keyframes p-puple {
-    50% {
-        content: url('/img/item/parts-puple1.png')
-    }
+  50% {
+    content: url("/img/item/parts-puple1.png");
+  }
 }
 @keyframes p-orange {
-    50% {
-        content: url('/img/item/parts-orange1.png')
-    }
+  50% {
+    content: url("/img/item/parts-orange1.png");
+  }
 }
 @keyframes p-yellow {
-    50% {
-        content: url('/img/item/parts-yellow1.png')
-    }
+  50% {
+    content: url("/img/item/parts-yellow1.png");
+  }
 }
 @keyframes p-white {
-    50% {
-        content: url('/img/item/parts-white1.png')
-    }
+  50% {
+    content: url("/img/item/parts-white1.png");
+  }
 }
 @keyframes p-e {
-    50% {
-        content: url('/img/item/parts-empty1.png')
-    }
+  50% {
+    content: url("/img/item/parts-empty1.png");
+  }
 }
 
+$c_width: 900px;
+$w_head: calc($c_width / 16.428);
+$w_body: calc($c_width / 1.945);
+$w-foot: calc($c_width / 4.36);
+$w-select-w: calc($c_width / 0.92);
+$w-select-h: calc($w-select-w / 5.657);
+$w-parts-w: calc($w-select-w * 0.08);
+$w-parts-h: $w-parts-w;
 
-
-$c_width : 900px;
-$w_head : calc($c_width / 16.428);
-$w_body : calc($c_width / 1.945);
-$w-foot : calc($c_width / 4.36);
-$w-select-w : calc($c_width / 0.92);
-$w-select-h : calc($w-select-w / 5.657);
-$w-parts-w : calc($w-select-w * 0.08);
-$w-parts-h : $w-parts-w;
-
-
-
-$check_width : 650px;
+$check_width: 650px;
 $check_head: calc($check_width / 14.75);
 $check_body: calc($check_width / 1.265);
 $check_foot: calc($check_width / 10.868);
 
-
-$l_width : 500px;
-$l_title : calc($l_width / 3.047);
-$l_input : calc($l_width/ 8.26);
-
+$l_width: 500px;
+$l_title: calc($l_width / 3.047);
+$l_input: calc($l_width/ 8.26);
 
 $sul_head: calc($l_width / 14.75);
 $sul_body: calc($l_width / 1.265);
@@ -218,483 +206,496 @@ $sul_foot: calc($l_width / 10.868);
 
 $total_width: $c_width + $l_width;
 
+$dr_bones: calc($check_width / 1.3);
+$dr_bones_h: calc($dr_bones/1.5);
 
-$dr_bones : calc($check_width / 1.3); 
-$dr_bones_h : calc($dr_bones/1.5); 
+$I_btn_w: calc($l_width / 5);
+$I_btn_h: calc($I_btn_w / 1.7065);
 
-
-
-$I_btn_w : calc($l_width / 5);
-$I_btn_h : calc($I_btn_w / 1.7065);
-
-
-@mixin CheckTop($a:$check_width, $b:$check_head) {
-    width: $a;
-    height: $b;
-    background-size: cover;
-    background-image: url('/img/list-head0.png');
-    animation: m-trans7 1.2s step-end infinite;
-    @content;
+@mixin CheckTop($a: $check_width, $b: $check_head) {
+  width: $a;
+  height: $b;
+  background-size: cover;
+  background-image: url("/img/list-head0.png");
+  animation: m-trans7 1.2s step-end infinite;
+  @content;
 }
-@mixin CheckBody($a:$check_width,$b:$check_body) {
-    width: $a;
-    height: $b;
-    background-size: cover;
-    background-image: url('/img/list-body0.png');
-    animation: m-trans8 1.7s step-end infinite;
-    @content;
+@mixin CheckBody($a: $check_width, $b: $check_body) {
+  width: $a;
+  height: $b;
+  background-size: cover;
+  background-image: url("/img/list-body0.png");
+  animation: m-trans8 1.7s step-end infinite;
+  @content;
 }
-@mixin CheckFoot($a:$check_width,$b:$check_foot) {
-    width: $a;
-    height: $b;
-    background-size: cover;
-    background-image: url('/img/list-footer0.png');
-    animation: m-trans9 1.5s step-end infinite;
-    @content;
+@mixin CheckFoot($a: $check_width, $b: $check_foot) {
+  width: $a;
+  height: $b;
+  background-size: cover;
+  background-image: url("/img/list-footer0.png");
+  animation: m-trans9 1.5s step-end infinite;
+  @content;
 }
-
 
 @mixin top() {
-    width: $c_width;
-    height: $w_head;
-    background-size: cover;
-    margin-top: 65px;
-    background-image: url('/img/write-head0.png');
-    animation: m-trans0 1.2s step-end infinite;
-    @content;
+  width: $c_width;
+  height: $w_head;
+  background-size: cover;
+  margin-top: 65px;
+  background-image: url("/img/write-head0.png");
+  animation: m-trans0 1.2s step-end infinite;
+  @content;
 }
 @mixin body() {
-    width: $c_width;
-    height: $w_body;
-    background-size: cover;
-    background-image: url('/img/write-body2.png');
-    animation: m-trans1 1.7s step-end infinite;
-    @content;
+  width: $c_width;
+  height: $w_body;
+  background-size: cover;
+  background-image: url("/img/write-body2.png");
+  animation: m-trans1 1.7s step-end infinite;
+  @content;
 }
 @mixin foot() {
-    width: $c_width;
-    height: $w_foot;
-    background-size: cover;
-    background-image: url('/img/write-footer0.png');
-    animation: m-trans2 1.5s step-end infinite;
-    @content;
+  width: $c_width;
+  height: $w_foot;
+  background-size: cover;
+  background-image: url("/img/write-footer0.png");
+  animation: m-trans2 1.5s step-end infinite;
+  @content;
 }
-@mixin select($a : $w-select-w, $b : $w-select-h) {
-    width: $a;
-    height: $b;
-    // width: $w-select-w;
-    // height: $w-select-h;
-    background-size: cover;
-    background-image: url('/img/draw/palette0.png');
-    animation: m-trans3 1.5s step-end infinite;
-    @content;
+@mixin select($a: $w-select-w, $b: $w-select-h) {
+  width: $a;
+  height: $b;
+  // width: $w-select-w;
+  // height: $w-select-h;
+  background-size: cover;
+  background-image: url("/img/draw/palette0.png");
+  animation: m-trans3 1.5s step-end infinite;
+  @content;
 }
 @mixin titleBox() {
-    width: $l_width;
-    height: $l_title;
-    background-size: cover;
-    background-image: url('/img/main-box0.png');
-    animation: m-trans4 1.7s step-end infinite;
-    padding-top: 50px;
-    @include flex(){}
-    @content;
+  width: $l_width;
+  height: $l_title;
+  background-size: cover;
+  background-image: url("/img/main-box0.png");
+  animation: m-trans4 1.7s step-end infinite;
+  padding-top: 50px;
+  @include flex() {
+  }
+  @content;
 }
 
 @mixin inputBox() {
-    width: $l_width;
-    height: $l_input;
-    background-size: cover;
-    background-image: url('/img/post/input0.png');
-    animation: po-trans5 1.5s step-end infinite;
-    @content;
+  width: $l_width;
+  height: $l_input;
+  background-size: cover;
+  background-image: url("/img/post/input0.png");
+  animation: po-trans5 1.5s step-end infinite;
+  @content;
 }
-@mixin inputBtn($a:$I_btn_w, $b:$I_btn_h) {
-    width: $a;
-    height: $b;
-    background-size: cover;
-    background-image: url('/img/post/check0.png');
-    animation: po-trans6 1.5s step-end infinite;
-    @content;
+@mixin inputBtn($a: $I_btn_w, $b: $I_btn_h) {
+  width: $a;
+  height: $b;
+  background-size: cover;
+  background-image: url("/img/post/check0.png");
+  animation: po-trans6 1.5s step-end infinite;
+  @content;
 }
 
-
-
-
-
-
-.wrap{
-    width: calc($total_width + 50px);
-    // height: 100vh;
-    padding-top: 70px;
-    margin: 0 auto;
-    @include flex(space-between){
-        // flex-direction: column;
-    }
+.wrap {
+  width: calc($total_width + 50px);
+  // height: 100vh;
+  padding-top: 70px;
+  margin: 0 auto;
+  @include flex(space-between) {
+    // flex-direction: column;
+  }
 }
-.drawBox{
-    // position: relative;
-    // padding-left: 100px;
-    @include flex(center, flex-start){
-        flex-direction: column;
+.drawBox {
+  // position: relative;
+  // padding-left: 100px;
+  @include flex(center, flex-start) {
+    flex-direction: column;
+  }
+  .top {
+    @include top() {
     }
-    .top{
-        @include top(){}
+  }
+  .body {
+    padding: 50px 0 0 35px;
+    @include body() {
     }
-    .body{
-        padding: 50px 0 0 35px;
-        @include body(){}
-        @include flex(center,flex-start){
-            flex-direction: column;
+    @include flex(center, flex-start) {
+      flex-direction: column;
+    }
+    nav {
+      padding-top: 20px;
+      @include flex() {
+      }
+      // border: 1px solid #f00;
+      .canWrap {
+        @include flex() {
+          flex-direction: column;
         }
-        nav{
-            padding-top: 20px;
-            @include flex(){}
-            // border: 1px solid #f00;
-            .canWrap{
-                @include flex(){
-                    flex-direction: column;
-                }
-                .paint{
-                    position: relative;
-                    border-radius: 4px;
-                    box-shadow: inset 4px 4px 6px rgba(70, 43, 17, .3), inset -4px -4px 4px rgba(243, 218, 200, 0.4);
-                }
-                .edit{
-                    @include flex(){}
-                    button{
-                        margin: 15px 10px 20px;
-                        transition: .2s;
-                        cursor: pointer;
-                        width: 100px;
-                        height: 40px;
-                        border-radius: 6px;
-                        border: 2px solid rgb(97, 71, 23);
-                        background-color: transparent;
-                        color: #4d3615;
-                        @include flex(){}
-                        &:hover{
-                            color: #fff;
-                            font-weight: normal;
-                            background-color: #745424;
-                            border: 2px solid rgb(61, 34, 16);
-                        }
-                        position: relative;
-                    }
-                }
-            }
-            .tool{
-                padding-left: 10px;
-                @include flex(center,center){
-                    flex-direction: column;
-                }
-                // border: 1px solid #f0f;
-                .toolBtn{
-                    position: relative;
-                    border: none;
-                    background: transparent;
-                    width: 190px;
-                    cursor: pointer;
-                    // height: 20px;
-                    img{
-                        width: 100%;
-                        height: auto;
-                    }
-                    .toolOne{
-                        content: url('/img/draw/tool0-0.png');
-                        animation: t-0 1.5s step-end infinite;
-                    }
-                    .toolTwo{
-                        content: url('/img/draw/tool2-0.png');
-                        animation: t-2 1.5s step-end infinite;
-                    }
-                    .toolTre{
-                        content: url('/img/draw/tool1-0.png');
-                        animation: t-1 1.5s step-end infinite;
-                    }
-                    .toolThu{
-                        content: url('/img/draw/tool3-0.png');
-                        animation: t-3 1.5s step-end infinite;
-                    }
-                    .toolEmp{
-                        content: url('/img/draw/tool-empty0.png');
-                        animation: t-e 1.5s step-end infinite;
-                    }
-                }
-            }
+        .paint {
+          position: relative;
+          border-radius: 4px;
+          box-shadow: inset 4px 4px 6px rgba(70, 43, 17, 0.3), inset -4px -4px 4px rgba(243, 218, 200, 0.4);
         }
-    }
-    .pallet{
-        @include foot(){}
-        @include flex(){}
-        padding: 0 35px 25px 35px;
-        .color{
-            position: relative;
-            width: 200px;
+        .edit {
+          @include flex() {
+          }
+          button {
+            margin: 15px 10px 20px;
+            transition: 0.2s;
             cursor: pointer;
-            border: none;
-            background: transparent;
-            img{
-                width: 100%;
-                height: auto;
-            }
-            .colorBla{
-                content: url('/img/draw/color-black0.png');
-                animation: c-black 1.5s step-end infinite;
-            }
-            .colorRed{
-                content: url('/img/draw/color-red0.png');
-                animation: c-red 1.5s step-end infinite;
-            }
-            .colorGre{
-                content: url('/img/draw/color-green0.png');
-                animation: c-green 1.5s step-end infinite;
-            }
-            .colorPup{
-                color: #aa34d8;
-                content: url('/img/draw/color-puple0.png');
-                animation: c-puple 1.5s step-end infinite;
-            }
-            .colorBlu{
-                color: #3468d8;
-                content: url('/img/draw/color-blue0.png');
-                animation: c-blue 1.5s step-end infinite;
-            }
-            .colorYel{
-                color: #e2d51c;
-                content: url('/img/draw/color-yellow0.png');
-                animation: c-yellow 1.5s step-end infinite;
-            }
-            .colorWhi{
-                color: transparent;
-                content: url('/img/draw/color-white0.png');
-                animation: c-white 1.5s step-end infinite;
-            }
-            .colorOra{
-                color: transparent;
-                content: url('/img/draw/color-orange0.png');
-                animation: c-orange 1.5s step-end infinite;
-            }
-            .colorEmp{
-                color: transparent;
-                content: url('/img/draw/color-empty0.png');
-                animation: c-e 1.5s step-end infinite;
-            }
-            &:nth-child(2){
-                ul{
-                    left: -150px;
-                }
-            }
-            &:nth-child(3){
-                ul{
-                    left: -300px;
-                }
-            }
-            &:nth-child(4){
-                ul{
-                    left: -450px;
-                }
-            }
-            ul{
-                position: absolute;
-                top: calc(60px - $w-select-h);
-                left: 0;
-                overflow: hidden;
-                padding: 0 10px;
-                z-index: 90;
-                
-                @include select(0,0){}
-                li{
-                    width: $w-parts-w;
-                    height: $w-parts-h;
-                    &:hover{
-                        transform: scale(1.8);
-                    }
-                    img{
-                        width: 100%;
-                    }
-                    &:nth-child(1){
-                        animation: p-black 1.5s step-end infinite;
-                    }
-                    &:nth-child(2){
-                        animation: p-blue 1.5s step-end infinite;
-                    }
-                    &:nth-child(3){
-                        animation: p-red 1.5s step-end infinite;
-                    }
-                    &:nth-child(4){
-                        animation: p-green 1.5s step-end infinite;
-                    }
-                    &:nth-child(5){
-                        animation: p-puple 1.5s step-end infinite;
-                    }
-                    &:nth-child(6){
-                        animation: p-yellow 1.5s step-end infinite;
-                    }
-                    &:nth-child(7){
-                        animation: p-white 1.5s step-end infinite;
-                    }
-                    &:nth-child(8){
-                        animation: p-orange 1.5s step-end infinite;
-                    }
-                    &:nth-child(9){
-                        animation: p-e 1.5s step-end infinite;
-                    }
-
-                }
-            }
-            &:hover{
-                ul{
-                    transition-delay: .3s;
-                    @include select(){}
-                    @include flex(){}
-                }
-            }
-        }
-    }
-}
-
-.rightWrap{
-    @include flex(){
-        flex-direction: column;
-    }
-}
-.textBox{
-    // margin-left: 100px;
-    @include titleBox(){}
-    nav{
-        width: 100%;
-        padding: 0 20px 0 30px;
-        @include flex(){}
-        @include inputBox(){}
-        input{
-            width: calc($l_width / 1.55);
-            height: 45px;
-            border: none;
-            position: relative;
-            background-color: transparent;
-            font-size: 22px;
-            padding-left: 30px;
-            &::placeholder{
-                color: #251b07;
-            }
-        }
-        div{
+            width: 100px;
             height: 40px;
-            width: 20%;
+            border-radius: 6px;
+            border: 2px solid rgb(97, 71, 23);
+            background-color: transparent;
+            color: #4d3615;
+            @include flex() {
+            }
+            &:hover {
+              color: #fff;
+              font-weight: normal;
+              background-color: #745424;
+              border: 2px solid rgb(61, 34, 16);
+            }
             position: relative;
-            @include inputBtn(){}
-            cursor: pointer;
-            border: none;
+          }
         }
-    }
-}
-.sulMyung{
-    @include flex(){
-        flex-direction: column;
-    }
-    div{
-        &:nth-child(1){
-            @include CheckTop($l_width,$sul_head){}
+      }
+      .tool {
+        padding-left: 10px;
+        @include flex(center, center) {
+          flex-direction: column;
         }
-        &:nth-child(2){
-            @include CheckBody($l_width,$sul_body){}
-            @include flex(center, flex-start){ 
-                flex-direction: column;
-            }
-            padding: 0 50px;
-        }
-        &:nth-child(3){
-            @include CheckFoot($l_width,$sul_foot){}
-    
-        }
-        h4{
-            font-size: 26px;
-            padding: 5px;
-        }
-        h3{
-            font-size: 18px;
-            padding: 6px 0;
-        }
-    }
-}
-.checkPop{
-    display: none;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    overflow: hidden;
-    top: 0;
-    left: 0;
-    z-index: 80;
-    background-color: rgba(0,0,0,.5);
-    figure{
-        width: $check_width;
-        position: absolute;
-        // background-color: #fff;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        nav{
-            // border: 1px solid #f00;
-            width: 100%;
-            height: 100%;
-            @include flex(){ 
-                flex-direction: column;
-            }
-            div{
-                &:nth-child(1){
-                    @include CheckTop(){}
-                }
-                &:nth-child(2){
-                    @include CheckBody(){}
-                    @include flex(){ 
-                        flex-direction: column;
-                    }
-                }
-                &:nth-child(3){
-                    @include CheckFoot(){}
+        // border: 1px solid #f0f;
+        .toolBtn {
+          position: relative;
+          border: none;
+          background: transparent;
+          width: 190px;
 
-                }
-                h2{
-                    font-size: 40px;
-                    color: #f7e5c6;
-                    text-shadow: 3px 1px 2px rgb(65, 49, 17);
-                    font-weight: bold;
-                }
-                ul{
-                    width: 100%;
-                    padding: 0 30px;
-                    @include flex(){}
-                    li{
-                        cursor: pointer;
-                        width: 45%;
-                        height: 40px;
-                        border-radius: 4px;
-                        border: 3px solid rgb(61, 34, 16);
-                        background-color: #d3ba94;
-                        color: #4d3615;
-                        @include flex(){}
-                        &:hover{
-                            color: #fff;
-                            font-weight: normal;
-                            background-color: #745424;
-                            border-radius: 4px;
-                            border: 3px solid rgb(61, 34, 16);
-                        }
-                    }
-                }
-            }
+          cursor: pointer;
+          // height: 20px;
+          &.toolBtn_on {
+          }
+          img {
+            width: 100%;
+            height: auto;
+          }
+          .toolOne {
+            content: url("/img/draw/tool0-0.png");
+            animation: t-0 1.5s step-end infinite;
+          }
+          .toolTwo {
+            content: url("/img/draw/tool2-0.png");
+            animation: t-2 1.5s step-end infinite;
+          }
+          .toolTre {
+            content: url("/img/draw/tool1-0.png");
+            animation: t-1 1.5s step-end infinite;
+          }
+          .toolThu {
+            content: url("/img/draw/tool3-0.png");
+            animation: t-3 1.5s step-end infinite;
+          }
+          .toolEmp {
+            content: url("/img/draw/tool-empty0.png");
+            animation: t-e 1.5s step-end infinite;
+          }
         }
+      }
     }
+  }
+  .pallet {
+    @include foot() {
+    }
+    @include flex() {
+    }
+    padding: 0 35px 25px 35px;
+    .color {
+      position: relative;
+      width: 200px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      img {
+        width: 100%;
+        height: auto;
+      }
+      .colorBla {
+        content: url("/img/draw/color-black0.png");
+        animation: c-black 1.5s step-end infinite;
+      }
+      .colorRed {
+        content: url("/img/draw/color-red0.png");
+        animation: c-red 1.5s step-end infinite;
+      }
+      .colorGre {
+        content: url("/img/draw/color-green0.png");
+        animation: c-green 1.5s step-end infinite;
+      }
+      .colorPup {
+        color: #aa34d8;
+        content: url("/img/draw/color-puple0.png");
+        animation: c-puple 1.5s step-end infinite;
+      }
+      .colorBlu {
+        color: #3468d8;
+        content: url("/img/draw/color-blue0.png");
+        animation: c-blue 1.5s step-end infinite;
+      }
+      .colorYel {
+        color: #e2d51c;
+        content: url("/img/draw/color-yellow0.png");
+        animation: c-yellow 1.5s step-end infinite;
+      }
+      .colorWhi {
+        color: transparent;
+        content: url("/img/draw/color-white0.png");
+        animation: c-white 1.5s step-end infinite;
+      }
+      .colorOra {
+        color: transparent;
+        content: url("/img/draw/color-orange0.png");
+        animation: c-orange 1.5s step-end infinite;
+      }
+      .colorEmp {
+        color: transparent;
+        content: url("/img/draw/color-empty0.png");
+        animation: c-e 1.5s step-end infinite;
+      }
+      &:nth-child(2) {
+        ul {
+          left: -150px;
+        }
+      }
+      &:nth-child(3) {
+        ul {
+          left: -300px;
+        }
+      }
+      &:nth-child(4) {
+        ul {
+          left: -450px;
+        }
+      }
+      ul {
+        position: absolute;
+        top: calc(60px - $w-select-h);
+        left: 0;
+        overflow: hidden;
+        padding: 0 10px;
+        z-index: 90;
+
+        @include select(0, 0) {
+        }
+        li {
+          width: $w-parts-w;
+          height: $w-parts-h;
+          &:hover {
+            transform: scale(1.8);
+          }
+          img {
+            width: 100%;
+          }
+          &:nth-child(1) {
+            animation: p-black 1.5s step-end infinite;
+          }
+          &:nth-child(2) {
+            animation: p-blue 1.5s step-end infinite;
+          }
+          &:nth-child(3) {
+            animation: p-red 1.5s step-end infinite;
+          }
+          &:nth-child(4) {
+            animation: p-green 1.5s step-end infinite;
+          }
+          &:nth-child(5) {
+            animation: p-puple 1.5s step-end infinite;
+          }
+          &:nth-child(6) {
+            animation: p-yellow 1.5s step-end infinite;
+          }
+          &:nth-child(7) {
+            animation: p-white 1.5s step-end infinite;
+          }
+          &:nth-child(8) {
+            animation: p-orange 1.5s step-end infinite;
+          }
+          &:nth-child(9) {
+            animation: p-e 1.5s step-end infinite;
+          }
+        }
+      }
+      &:hover {
+        ul {
+          transition-delay: 0.3s;
+          @include select() {
+          }
+          @include flex() {
+          }
+        }
+      }
+    }
+  }
 }
-.popActive{
-    display: block;
+
+.rightWrap {
+  @include flex() {
+    flex-direction: column;
+  }
 }
-.bonescatch{
-    border-radius: 4px;
-    box-shadow: inset 4px 4px 20px rgba(70, 43, 17, .3), inset -4px -4px 7px rgba(243, 218, 200, 0.4);
-    background-size: cover;
-    background-position: 50% 50%;
-    width: $dr_bones;
-    height: $dr_bones_h;
+.textBox {
+  // margin-left: 100px;
+  @include titleBox() {
+  }
+  nav {
+    width: 100%;
+    padding: 0 20px 0 30px;
+    @include flex() {
+    }
+    @include inputBox() {
+    }
+    input {
+      width: calc($l_width / 1.55);
+      height: 45px;
+      border: none;
+      position: relative;
+      background-color: transparent;
+      font-size: 22px;
+      padding-left: 30px;
+      &::placeholder {
+        color: #251b07;
+      }
+    }
+    div {
+      height: 40px;
+      width: 20%;
+      position: relative;
+      @include inputBtn() {
+      }
+      cursor: pointer;
+      border: none;
+    }
+  }
+}
+.sulMyung {
+  @include flex() {
+    flex-direction: column;
+  }
+  div {
+    &:nth-child(1) {
+      @include CheckTop($l_width, $sul_head) {
+      }
+    }
+    &:nth-child(2) {
+      @include CheckBody($l_width, $sul_body) {
+      }
+      @include flex(center, flex-start) {
+        flex-direction: column;
+      }
+      padding: 0 50px;
+    }
+    &:nth-child(3) {
+      @include CheckFoot($l_width, $sul_foot) {
+      }
+    }
+    h4 {
+      font-size: 26px;
+      padding: 5px;
+    }
+    h3 {
+      font-size: 18px;
+      padding: 6px 0;
+    }
+  }
+}
+.checkPop {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  background-color: rgba(0, 0, 0, 0.5);
+  figure {
+    width: $check_width;
+    position: absolute;
+    // background-color: #fff;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    nav {
+      // border: 1px solid #f00;
+      width: 100%;
+      height: 100%;
+      @include flex() {
+        flex-direction: column;
+      }
+      div {
+        &:nth-child(1) {
+          @include CheckTop() {
+          }
+        }
+        &:nth-child(2) {
+          @include CheckBody() {
+          }
+          @include flex() {
+            flex-direction: column;
+          }
+        }
+        &:nth-child(3) {
+          @include CheckFoot() {
+          }
+        }
+        h2 {
+          font-size: 40px;
+          color: #f7e5c6;
+          text-shadow: 3px 1px 2px rgb(65, 49, 17);
+          font-weight: bold;
+        }
+        ul {
+          width: 100%;
+          padding: 0 30px;
+          @include flex() {
+          }
+          li {
+            cursor: pointer;
+            width: 45%;
+            height: 40px;
+            border-radius: 4px;
+            border: 3px solid rgb(61, 34, 16);
+            background-color: #d3ba94;
+            color: #4d3615;
+            @include flex() {
+            }
+            &:hover {
+              color: #fff;
+              font-weight: normal;
+              background-color: #745424;
+              border-radius: 4px;
+              border: 3px solid rgb(61, 34, 16);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+.popActive {
+  display: block;
+}
+.bonescatch {
+  border-radius: 4px;
+  box-shadow: inset 4px 4px 20px rgba(70, 43, 17, 0.3), inset -4px -4px 7px rgba(243, 218, 200, 0.4);
+  background-size: cover;
+  background-position: 50% 50%;
+  width: $dr_bones;
+  height: $dr_bones_h;
 }
