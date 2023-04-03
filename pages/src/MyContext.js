@@ -13,6 +13,7 @@ const MyContext = ({ children }) => {
   const [who, setWho] = useState();
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [mine, setMine] = useState();
 
   async function dataShell(type, obj) {
     let transe;
@@ -21,7 +22,6 @@ const MyContext = ({ children }) => {
     }
     setData(transe);
   }
-
 
   async function dataPost(type, obj) {
     let transw;
@@ -52,8 +52,8 @@ const MyContext = ({ children }) => {
     dataPost("get");
   }, []);
 
-  function sessionWho(){
-
+  function sessionWho() {
+    console.log("정보갱신");
     if (session !== undefined && session !== null) {
       axios
         .get("/api/who", {
@@ -66,21 +66,26 @@ const MyContext = ({ children }) => {
         });
     }
   }
-  useEffect(() => {
-    // sessionWho();
-    if (session !== undefined && session !== null) {
+  function sessionMine() {
+    if (session != undefined && session !== null) {
       axios
-        .get("/api/who", {
+        .get("/api/mine", {
           params: {
             id: session.user[0].ID,
           },
         })
         .then((res) => {
-          setWho(res.data);
+          setMine({ pen: res.data.pen[0].PEN, paint: res.data.paint[0].PAINT });
         });
     }
-    
+  }
+
+  useEffect(() => {
+    sessionWho();
+    sessionMine();
   }, [session]);
+
+  useEffect(() => {}, [session]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -89,7 +94,7 @@ const MyContext = ({ children }) => {
   }, [status]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho }}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho, sessionMine, mine }}>
       <Header />
       <Lantern />
       {children}

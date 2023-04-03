@@ -23,12 +23,8 @@
 $shop_h: calc(100vh - 150px);
 $shop_w: calc($shop_h / 0.1852);
 
-.shop_btn {
-  position: relative;
-  margin-top: 200px;
-}
-
 .shop_main {
+  height: 100vh;
   position: relative;
   z-index: 1;
   .shop {
@@ -113,5 +109,12 @@ $shop_w: calc($shop_h / 0.1852);
         }
       }
     }
+  }
+  .shop_btn {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    z-index: 10;
+    transform: translate(-50%, -50%);
   }
 }
