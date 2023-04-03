@@ -7,7 +7,7 @@ const ShopItems = ({ item }) => {
   const { who, sessionWho, mine, sessionMine } = useContext(DataContext);
 
   async function purchase() {
-    if (item.PRICE < who.SHELL) {
+    if (item.PRICE <= who.SHELL) {
       let penArr = mine.pen.split(",");
       let paintArr = mine.paint.split(",");
 

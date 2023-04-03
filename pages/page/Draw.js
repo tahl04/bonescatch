@@ -179,6 +179,7 @@ const Draw = () => {
 
   //파츠 클릭시
   function colorChange(keyColor, index) {
+    console.log(index);
     if (paint && paint.includes((index + 1).toString())) {
       const copyParts = parts;
       copyParts[keyColor] = pallet[index];
@@ -282,6 +283,24 @@ const Draw = () => {
           yel.current[key].style.display = "none";
           whi.current[key].style.display = "none";
           ora.current[key].style.display = "block";
+          return;
+        }
+      });
+    } else if (index == 8) {
+      const copyParts = parts;
+      copyParts[keyColor] = pallet[index];
+      canvasw.current.getContext("2d").strokeStyle = pallet[index];
+      parts.map((obj, key) => {
+        if (obj === "#754d22") {
+          emp.current[key].style.display = "block";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
           return;
         }
       });
