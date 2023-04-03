@@ -496,6 +496,10 @@ $I_btn_h: calc($I_btn_w / 1.7065);
         li {
           width: $w-parts-w;
           height: $w-parts-h;
+          filter: brightness(0.3) grayscale(1);
+          &.on {
+            filter: brightness(1) grayscale(0);
+          }
           &:hover {
             transform: scale(1.8);
           }
