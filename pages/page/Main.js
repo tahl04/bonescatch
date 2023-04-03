@@ -57,8 +57,8 @@ function Main() {
             <div className={postReport !== "활성" ? m.reportPop : m.reportHide}>
               <figure>
                 <nav>
-              <div className={m.Mtop}></div>
-              <div className={m.Mmid}>
+              <div className={m.reTop}></div>
+              <div className={m.reMid}>
                   <form onSubmit={putReport}>
                     <ul>
                       사유를 선택해주세요.
@@ -70,7 +70,7 @@ function Main() {
                     </ul>
                   </form>
                   </div>
-                  {/* <div className={MFooter}></div> */}
+                  <div className={m.reFoot}></div>
                 </nav>
               </figure>
             </div>

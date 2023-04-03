@@ -28,6 +28,18 @@ $l_underline-w : calc($c_width / 1.1);
 $l_underline-h : calc($l-underline-w / 29.5);
 
 
+//신고
+$re_w : 600px;
+$re_top_h : calc(600px / 14.75);
+$re_mid_h : calc(600px / 1.945);
+$re_foot_h : calc(600px / 10.8684);
+
+
+$re_w : 600px;
+$re_top_h : calc(600px / 14.75);
+$re_mid_h : calc(600px / 1.945);
+$re_foot_h : calc(600px / 10.8684);
+
 
 @keyframes m-trans0 {
     50% {
@@ -461,6 +473,7 @@ $l_underline-h : calc($l-underline-w / 29.5);
     background-color: rgba(0,0,0,.5);
     @include flex(){}
     figure{
+        
     }
 }
 .reportHide{

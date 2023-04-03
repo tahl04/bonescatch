@@ -93,7 +93,7 @@ const Draw = () => {
     brushSize.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {
-          ctx.lineWidth = 5;
+          ctx.lineWidth = 7;
         } else {
           ctx.lineWidth = key * 4 + 3;
         }
