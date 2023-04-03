@@ -179,7 +179,6 @@ const Draw = () => {
 
   //파츠 클릭시
   function colorChange(keyColor, index) {
-    console.log(index);
     if (paint && paint.includes((index + 1).toString())) {
       const copyParts = parts;
       copyParts[keyColor] = pallet[index];
