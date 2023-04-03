@@ -179,113 +179,117 @@ const Draw = () => {
 
   //파츠 클릭시
   function colorChange(keyColor, index) {
-    const copyParts = parts;
-    copyParts[keyColor] = pallet[index];
-    canvasw.current.getContext("2d").strokeStyle = pallet[index];
+    if (paint && paint.includes((index + 1).toString())) {
+      const copyParts = parts;
+      copyParts[keyColor] = pallet[index];
+      canvasw.current.getContext("2d").strokeStyle = pallet[index];
+      parts.map((obj, key) => {
+        if (obj === "#754d22") {
+          emp.current[key].style.display = "block";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "black") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "block";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#2951d4") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "block";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#d43d29") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "block";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#42ad27") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "block";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#982cca") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "block";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#e4d726") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "block";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#eeeeee") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "block";
+          ora.current[key].style.display = "none";
+          return;
+        } else if (obj === "#e48b26") {
+          emp.current[key].style.display = "none";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "block";
+          return;
+        }
+      });
+    } else {
+      console.log("미보유 색상");
+    }
 
     // 그릇 변경
-    parts.map((obj, key) => {
-      if (obj === "#754d22") {
-        emp.current[key].style.display = "block";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "black") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "block";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#2951d4") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "block";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#d43d29") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "block";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#42ad27") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "block";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#982cca") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "block";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#e4d726") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "block";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#eeeeee") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "block";
-        ora.current[key].style.display = "none";
-        return;
-      } else if (obj === "#e48b26") {
-        emp.current[key].style.display = "none";
-        bla.current[key].style.display = "none";
-        blu.current[key].style.display = "none";
-        red.current[key].style.display = "none";
-        gre.current[key].style.display = "none";
-        pup.current[key].style.display = "none";
-        yel.current[key].style.display = "none";
-        whi.current[key].style.display = "none";
-        ora.current[key].style.display = "block";
-        return;
-      }
-    });
   }
 
   //사진 배열에 넣기
@@ -389,31 +393,63 @@ const Draw = () => {
                   <img ref={(el) => (ora.current[key] = el)} className={wr.colorOra} style={{ display: "none" }}></img>
                   <img ref={(el) => (emp.current[key] = el)} className={wr.colorEmp}></img>
                   <ul>
-                    <li onClick={() => colorChange(key, 0)} ref={(el) => (selectParts.current[0] = el)}>
+                    <li
+                      className={paint && paint.includes("1") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 0)}
+                      ref={(el) => (selectParts.current[0] = el)}
+                    >
                       <img src="/img/item/parts-black0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 1)} ref={(el) => (selectParts.current[1] = el)}>
+                    <li
+                      className={paint && paint.includes("2") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 1)}
+                      ref={(el) => (selectParts.current[1] = el)}
+                    >
                       <img src="/img/item/parts-blue0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 2)} ref={(el) => (selectParts.current[2] = el)}>
+                    <li
+                      className={paint && paint.includes("3") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 2)}
+                      ref={(el) => (selectParts.current[2] = el)}
+                    >
                       <img src="/img/item/parts-red0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 3)} ref={(el) => (selectParts.current[3] = el)}>
+                    <li
+                      className={paint && paint.includes("4") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 3)}
+                      ref={(el) => (selectParts.current[3] = el)}
+                    >
                       <img src="/img/item/parts-green0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 4)} ref={(el) => (selectParts.current[4] = el)}>
+                    <li
+                      className={paint && paint.includes("5") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 4)}
+                      ref={(el) => (selectParts.current[4] = el)}
+                    >
                       <img src="/img/item/parts-puple0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 5)} ref={(el) => (selectParts.current[5] = el)}>
+                    <li
+                      className={paint && paint.includes("6") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 5)}
+                      ref={(el) => (selectParts.current[5] = el)}
+                    >
                       <img src="/img/item/parts-yellow0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 6)} ref={(el) => (selectParts.current[6] = el)}>
+                    <li
+                      className={paint && paint.includes("7") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 6)}
+                      ref={(el) => (selectParts.current[6] = el)}
+                    >
                       <img src="/img/item/parts-white0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 7)} ref={(el) => (selectParts.current[7] = el)}>
+                    <li
+                      className={paint && paint.includes("8") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
+                      onClick={() => colorChange(key, 7)}
+                      ref={(el) => (selectParts.current[7] = el)}
+                    >
                       <img src="/img/item/parts-orange0.png"></img>
                     </li>
-                    <li onClick={() => colorChange(key, 8)} ref={(el) => (selectParts.current[8] = el)}>
+                    <li className={`${wr.selectColor} ${wr.on}`} onClick={() => colorChange(key, 8)} ref={(el) => (selectParts.current[8] = el)}>
                       <img src="/img/item/parts-empty0.png"></img>
                     </li>
                   </ul>
