@@ -18,7 +18,7 @@ const MyContext = ({ children }) => {
   async function dataShell(type, obj) {
     let transe;
     if (type == "put") {
-      transe = await axios.put("http://localhost:3000/api/shell", obj);
+      transe = await axios.put("/api/shell", obj);
     }
     setData(transe);
   }
@@ -28,9 +28,9 @@ const MyContext = ({ children }) => {
     if (type == "get") {
       await axios.get("/api").then((res) => (transw = res.data));
     } else if (type == "post") {
-      transw = await axios.post("http://localhost:3000/api/comment", obj);
+      transw = await axios.post("/api/comment", obj);
     } else if (type == "put") {
-      transw = await axios.put("http://localhost:3000/api/comment", obj);
+      transw = await axios.put("/api/comment", obj);
     }
     setData(transw);
   }
@@ -42,7 +42,7 @@ const MyContext = ({ children }) => {
     } else if (type == "post") {
       // console.log(obj);
       //   trans = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api", obj);
-      trans = await axios.post("http://localhost:3000/api", obj);
+      trans = await axios.post("/api", obj);
     }
     setData(trans);
   }
