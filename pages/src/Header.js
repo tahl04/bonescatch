@@ -60,6 +60,9 @@ function Header() {
   function shhhhop(){
     router.push("/page/Dong");
   }
+  function reportMana(){
+    router.push("/page/Manager")
+  }
 
   return (
     <header className={hd.header}>
@@ -91,14 +94,13 @@ function Header() {
             :  */}
             <>
               {
-                who && who.ID !== 1 ? 
-                <>
-                  <button onClick={ranking}>랭킹</button>
-                  <button onClick={toshop}>상점</button>
-                </>
+                who && who.ID == 1 ? 
+                  <button onClick={reportMana}>신고</button>
                 : <>
                 </>
               }
+                <button onClick={ranking}>랭킹</button>
+                <button onClick={toshop}>상점</button>
                 <button onClick={() => signOut()}>로그아웃</button>
             </>
           {/* } */}

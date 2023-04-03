@@ -37,7 +37,7 @@ $re_foot_h : calc(600px / 10.8684);
 
 $re_w : 600px;
 $re_top_h : calc(600px / 14.75);
-$re_mid_h : calc(600px / 1.945);
+$re_mid_h : calc(600px / 1.7463);
 $re_foot_h : calc(600px / 10.8684);
 
 
@@ -125,6 +125,11 @@ $re_foot_h : calc(600px / 10.8684);
 @keyframes m-trans34 {
     50% {
         content: url('/img/element/pipe1.png');
+    }
+}
+@keyframes m-trans35 {
+    50% {
+        background-image: url('/img/list-body7.png');
     }
 }
 
@@ -464,7 +469,9 @@ $re_foot_h : calc(600px / 10.8684);
 }
 
 
+//신고
 .reportPop{
+    z-index: 80;
     position: fixed;
     width: 100%;
     height: 100vh;
@@ -473,7 +480,94 @@ $re_foot_h : calc(600px / 10.8684);
     background-color: rgba(0,0,0,.5);
     @include flex(){}
     figure{
-        
+        nav{
+            position: relative;
+            .reTop{
+                width: $re_w;
+                height: $re_top_h;
+                background-size: cover;
+                background-image: url('/img/list-head0.png');
+                animation: m-trans0 1.2s step-end infinite;
+            }
+            .reMid{
+                width: $re_w;
+                height: $re_mid_h;
+                background-size: cover;
+                background-image: url('/img/list-body6.png');
+                animation: m-trans35 1.3s step-end infinite;
+                padding: 0px 50px;
+                ul{
+                    padding: 5px 15px;
+                    font-size: 25px;
+                    li{
+                        &:first-child{
+                            padding-top: 20px;
+                        }
+                        width: 100%;
+                        @include flex(flex-start,flex-start){}
+                        padding: 5px 0;
+                        label{
+                            @include flex(center, flex-start){
+                                flex-direction: column;
+                            }
+                            padding: 0 10px;
+                            font-size: 18px;
+                            input{
+                                margin-top: 10px;
+                                &::placeholder{
+                                    color: #fff;
+                                    font-weight: normal;
+                                    font-size: 18px;
+                                }
+                                font-size: 18px;
+                                font-weight: normal;
+                                background-color: #836d42;
+                                border: 3px solid #2b1f07;
+                                color: #fff;
+                                width: 400px;
+                                height: 100px;
+                            }
+                        }
+                    }
+                }
+            
+            }
+            .reFoot{
+                width: $re_w;
+                height: $re_foot_h;
+                background-size: cover;
+                background-image: url('/img/list-footer0.png');
+                animation: m-trans2 1.4s step-end infinite;
+            
+            }
+            .buttonWrap{
+                @include flex(flex-end){}
+                input{
+                    cursor: pointer;
+                    width: 90px;
+                    height: 40px;
+                    border-radius: 4px;
+                    font-weight: normal;
+                    font-size: 22px;
+                    background-color: #553f12;
+                    border: 3px solid #2b1f07;
+                    color: #fff;
+                }
+                div{
+                    cursor: pointer;
+                    @include flex(){}
+                    margin-left: 10px;
+                    width: 90px;
+                    height: 40px;
+                    border-radius: 4px;
+                    font-weight: normal;
+                    font-size: 22px;
+                    background-color: #553f12;
+                    border: 3px solid #2b1f07;
+                    color: #fff;
+                }
+            }
+        }
     }
 }
 .reportHide{

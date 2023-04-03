@@ -13,7 +13,8 @@ async function handler(req, res) {
       'insert into TBL_COMMENT (USER,COUNT,COMMENT,POST,CODENAME,TRIBE) value (?,?,?,?,?,?)',
       [USER,COUNT,COMMENT,POST,CODENAME,TRIBE]
     );
-    res.json({...USER, ...POST, COMMENT:data})
+    // res.json({...USER, ...POST, COMMENT:data})
+    // res.json({...USER, ...POST, ...REPORT, COMMENT:data})
   }
 
   const updateProduct = async () => {

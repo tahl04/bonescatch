@@ -34,6 +34,15 @@ const MyContext = ({ children }) => {
     }
     setData(transw);
   }
+  async function reportPutData(type, obj) {
+    let transq;
+    if (type == "get") {
+      await axios.get("/api").then((res) => (transq = res.data));
+    } else if (type == "post") {
+      transq = await axios.post("/api/manager", obj);
+    }
+    setData(transq);
+  }
 
   async function dataFun(type, obj) {
     let trans;
@@ -93,7 +102,7 @@ const MyContext = ({ children }) => {
   }, [status]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho, sessionMine, mine}}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho, sessionMine, mine, reportPutData}}>
       <Header />
       <Lantern />
       {children}

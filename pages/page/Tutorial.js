@@ -51,6 +51,10 @@ function Tutorial() {
     setFirstGet("활성");
   }
 
+  function firstClose(){
+    setFirstGet("비활성");
+    setSecondGet("활성");
+  }
 
   async function secondClose() {
     setTalk("END");

@@ -24,7 +24,7 @@ const handler = async (req, res) => {
         obj.DRAW = base64String;
         return obj;
       });
-      res.json({ USER: arry, POST: datas, COMMENT: datass, REPORT: datasss});
+      res.json({ USER: arry, POST: datas, COMMENT: datass, MANAGER: datasss});
     } catch (err) {
       res.send(err);
     }
@@ -42,7 +42,8 @@ const handler = async (req, res) => {
     //   [ID,DATE,USER,COUNT,COMMENT]
     // );
     // console.log(body);
-    res.json({...USER,...COMMENT, POST:datas})
+
+    // res.json({...USER,...COMMENT, ...REPORT, POST:datas})
   }
 
 

@@ -66,7 +66,6 @@ const Draw = () => {
     canvas.height = 400;
     var mouse = { x: 0, y: 0 };
 
-    /* Mouse Capturing Work */
     canvas.addEventListener(
       "mousemove",
       function (e) {
@@ -76,7 +75,6 @@ const Draw = () => {
       false
     );
 
-    /* Drawing on Paint App */
     ctx.lineJoin = "round";
     ctx.lineCap = "round";
 
@@ -89,11 +87,11 @@ const Draw = () => {
     });
     ctx.strokeStyle = strokeCol;
 
-    ctx.lineWidth = 5;
+    ctx.lineWidth = 7;
     brushSize.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {
-          ctx.lineWidth = 7;
+          ctx.lineWidth = 4;
         } else {
           ctx.lineWidth = key * 4 + 3;
         }
@@ -183,7 +181,7 @@ const Draw = () => {
       const copyParts = parts;
       copyParts[keyColor] = pallet[index];
       canvasw.current.getContext("2d").strokeStyle = pallet[index];
-      parts.map((obj, key) => {
+      copyParts.map((obj, key) => {
         if (obj === "#754d22") {
           emp.current[key].style.display = "block";
           bla.current[key].style.display = "none";
@@ -292,13 +290,6 @@ const Draw = () => {
     // 그릇 변경
   }
 
-  //사진 배열에 넣기
-  function saveImage() {
-    var canvas = canvasw.current;
-    var imgDataUrl = canvas.toDataURL("image/png");
-    console.log(imgDataUrl);
-    setValue({ ...inputValue, DRAW: imgDataUrl });
-  }
 
   const drawSave = () => {
     setValue({
@@ -403,53 +394,46 @@ const Draw = () => {
                     <li
                       className={paint && paint.includes("2") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 1)}
-                      ref={(el) => (selectParts.current[1] = el)}
                     >
                       <img src="/img/item/parts-blue0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("3") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 2)}
-                      ref={(el) => (selectParts.current[2] = el)}
                     >
                       <img src="/img/item/parts-red0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("4") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 3)}
-                      ref={(el) => (selectParts.current[3] = el)}
                     >
                       <img src="/img/item/parts-green0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("5") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 4)}
-                      ref={(el) => (selectParts.current[4] = el)}
                     >
                       <img src="/img/item/parts-puple0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("6") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 5)}
-                      ref={(el) => (selectParts.current[5] = el)}
                     >
                       <img src="/img/item/parts-yellow0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("7") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 6)}
-                      ref={(el) => (selectParts.current[6] = el)}
                     >
                       <img src="/img/item/parts-white0.png"></img>
                     </li>
                     <li
                       className={paint && paint.includes("8") ? `${wr.selectColor} ${wr.on}` : wr.selectColor}
                       onClick={() => colorChange(key, 7)}
-                      ref={(el) => (selectParts.current[7] = el)}
                     >
                       <img src="/img/item/parts-orange0.png"></img>
                     </li>
-                    <li className={`${wr.selectColor} ${wr.on}`} onClick={() => colorChange(key, 8)} ref={(el) => (selectParts.current[8] = el)}>
+                    <li className={`${wr.selectColor} ${wr.on}`} onClick={() => colorChange(key, 8)}>
                       <img src="/img/item/parts-empty0.png"></img>
                     </li>
                   </ul>

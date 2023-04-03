@@ -183,6 +183,11 @@ $item_pop_img: calc(700px / 3);
     animation: m-trans18 1.2s step-end infinite;
 }
 .talk{
+    -ms-user-select: none; 
+    -moz-user-select: -moz-none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
     width: $g_talk_w;
     height: $g_talk_h;
     background-size: cover;

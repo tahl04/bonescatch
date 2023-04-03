@@ -1,6 +1,6 @@
 // import React,{ useRef, useEffect, useContext, useState } from 'react'
 // import axios from 'axios'
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { useRouter } from "next/router";
 import m from "@/styles/main.module.scss";
 import Link from "next/link";
@@ -13,12 +13,24 @@ import Tutorial from "./Tutorial";
 
 function Main() {
   const router = useRouter();
-  const { data, who, dataPost, dataShell, sessionWho, nyubi } = useContext(DataContext);
+  const { data, who, reportPutData, dataPost } = useContext(DataContext);
   const { data: session, status } = useSession();
   const [mainSwc, setSwc] = useState("전체");
   const [postReport, setReport] = useState("비활성");
-  const resres = {DRAW:"",USER:""}
+  const resres = {ID:"",USER:""}
   const [getRes, setRes] = useState(resres);
+  const [repVal, setReVal] = useState({
+    REPORT_USER:"",
+    REPORT_DETAIL:"",
+    REPORT_POST:"",
+  });
+  const reportForm = useRef();
+  const res1 = useRef();
+  const res2 = useRef();
+  const res3 = useRef();
+  const res4 = useRef();
+  const res5 = useRef();
+  const res6 = useRef();
 
 
   function stateAll(){
@@ -31,14 +43,50 @@ function Main() {
     setSwc("점령");
   }
 
-  function resNumPost(hi){
-    // setReport("비활성");
-    console.log(hi);
+  async function putReport(){
+    let totalVal = [];
+    if(res1.current.checked){
+      totalVal.push("부적절한 언어가 포함된 게시물");
+      // totalVal = totalVal+"부적절한 언어가 포함된 게시물, "
+    }
+    if(res2.current.checked){
+      totalVal.push("선정적인 게시물");
+      // totalVal = totalVal+"선정적인 게시물, "
+    }
+    if(res3.current.checked){
+      totalVal.push("조개 획득을 위한 무분별한 게시물 포스팅");
+      // totalVal = totalVal+"조개 획득을 위한 무분별한 게시물 포스팅, "
+    }
+    if(res4.current.checked){
+      totalVal.push("그림과 정답이 일치하지 않음");
+      // totalVal = totalVal+"그림과 정답이 일치하지 않음, "
+    }
+    if(res5.current.checked){
+      totalVal.push(res6.current.value);
+      // totalVal = totalVal+"직접입력) "+res6.current.value;
+    }
+    setReVal({
+      // ...totalVal,
+      REPORT_USER:getRes.USER,
+      REPORT_DETAIL: totalVal.toString(),
+      REPORT_POST:getRes.ID,
+    })
+    setReport("비활성");
+    res1.current.checked = false ;
+    res2.current.checked = false ;
+    res3.current.checked = false ;
+    res4.current.checked = false ;
+    res5.current.checked = false ;
+    res6.current.value = "";
+    // dataPost("get");
   }
-  function putReport(){
-    // setReport("비활성");
-  }
-  console.log(getRes)
+
+  useEffect(()=>{
+    if(repVal.REPORT_USER !== ''){
+      reportPutData("post", repVal);
+    }
+  },[repVal])
+
 
   console.log(data);
   if (!data) return <div className="bonebone">
@@ -46,34 +94,12 @@ function Main() {
   </div>
   return (
     <>
-      {
-      who && who.ID !== 1 ? <>
-
         {
           who && who.SHELL === -1 ? 
             <Tutorial/>
           :
           <>
-            <div className={postReport !== "활성" ? m.reportPop : m.reportHide}>
-              <figure>
-                <nav>
-              <div className={m.reTop}></div>
-              <div className={m.reMid}>
-                  <form onSubmit={putReport}>
-                    <ul>
-                      사유를 선택해주세요.
-                      <li>욕설이 포함된 게시물</li>
-                      <li>선정적인 게시물</li>
-                      <li>조개 획득을 위한 무분별한 게시물 포스팅</li>
-                      <li>그림과 정답이 일치하지 않음</li>
-                      <input type="text" placeholder="직접 입력하기" name="COMMENT" autoComplete="off"></input>
-                    </ul>
-                  </form>
-                  </div>
-                  <div className={m.reFoot}></div>
-                </nav>
-              </figure>
-            </div>
+            
 
             {/* <div className={secondGet == "활성" ? tu.addItemOne : tu.hideItem}>
             <figure onClick={secondClose}>
@@ -124,7 +150,7 @@ function Main() {
                       {res.STATE == "미점령" && <h5>정답을 맞춰서 본스케치를 점령 해보세요!</h5>}
                       <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
@@ -156,7 +182,7 @@ function Main() {
                       {res.STATE == 3 && <p>밤족 점령</p>}
                       <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
@@ -183,7 +209,7 @@ function Main() {
                         {res.STATE == "미점령" && <p>정답을 맞춰서 본스케치를 점령 해보세요!</p>}
                         <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                           <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
@@ -204,14 +230,52 @@ function Main() {
               <div className={m.test}></div>
             </div>
             <div className={m.footer}></div>
+
+            
+            <div className={postReport == "활성" ? m.reportPop : m.reportHide}>
+              <figure>
+                <nav>
+                <div className={m.reTop}></div>
+                <div className={m.reMid}>
+                    <ul>
+                      사유를 선택해주세요.(중복 선택 가능)
+                      <li>
+                        <input type="checkbox" ref={res1} id="re1"></input>
+                        <label for="re1">부적절한 언어가 포함된 게시물</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" ref={res2} id="re2"></input>
+                        <label for="re2">선정적인 게시물</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" ref={res3} id="re3"></input>
+                        <label for="re3">조개 획득을 위한 무분별한 게시물 포스팅</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" ref={res4} id="re4"></input>
+                        <label for="re4">그림과 정답이 일치하지 않음</label>
+                      </li>
+                      <li>
+                        <input type="checkbox" ref={res5} id="re5"></input>
+                        <label for="re5">
+                          직접 입력하기
+                          <input type="text" ref={res6} for="re5" placeholder="사유 입력"></input>
+                        </label>
+                        
+                      </li>
+                    </ul>
+                    <div className={m.buttonWrap}>
+                      <div onClick={putReport}>제출하기</div>
+                      <div onClick={()=>{setReport("비활성");res1.current.checked = false;res2.current.checked = false;res3.current.checked = false;res4.current.checked = false;res5.current.checked = false;res6.current.value="";}}>닫기</div>
+                    </div>
+                  </div>
+                  <div className={m.reFoot}></div>
+                </nav>
+              </figure>
+            </div>
           </>
         }
       </>
-      :
-      <Manager/>
-      }
-  {/* 튜토리얼 */}
-    </>
   );
 }
 

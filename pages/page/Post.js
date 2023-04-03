@@ -129,6 +129,7 @@ function Post() {
       // router.push("/page/Main");
     }
     setWrong(false);
+    // router.reload();
   }
 
   async function outPost(){
@@ -212,7 +213,7 @@ function Post() {
                       </div>
                       }
                       {
-                        obj.STATE === "미점령" && obj.USER != who.ID
+                        who && obj.STATE === "미점령" && obj.USER != who.ID
                         ? 
                         <fieldset>
                         나의 댓글 횟수 : &nbsp;
@@ -251,7 +252,7 @@ function Post() {
 
                   <div className={po.boxTop}></div>
                   {
-                        obj.STATE === "미점령" && obj.USER != who.ID
+                        who && obj.STATE === "미점령" && obj.USER != who.ID
                         ? 
                         <div className={po.titleState}>
                         <nav>
