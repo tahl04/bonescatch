@@ -285,6 +285,24 @@ const Draw = () => {
           return;
         }
       });
+    } else if (index == 8) {
+      const copyParts = parts;
+      copyParts[keyColor] = pallet[index];
+      canvasw.current.getContext("2d").strokeStyle = pallet[index];
+      parts.map((obj, key) => {
+        if (obj === "#754d22") {
+          emp.current[key].style.display = "block";
+          bla.current[key].style.display = "none";
+          blu.current[key].style.display = "none";
+          red.current[key].style.display = "none";
+          gre.current[key].style.display = "none";
+          pup.current[key].style.display = "none";
+          yel.current[key].style.display = "none";
+          whi.current[key].style.display = "none";
+          ora.current[key].style.display = "none";
+          return;
+        }
+      });
     } else {
       console.log("미보유 색상");
     }
