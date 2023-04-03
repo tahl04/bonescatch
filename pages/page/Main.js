@@ -13,9 +13,12 @@ import Tutorial from "./Tutorial";
 
 function Main() {
   const router = useRouter();
-  const { data, who, dataPost, dataShell, sessionWho } = useContext(DataContext);
+  const { data, who, dataPost, dataShell, sessionWho, nyubi } = useContext(DataContext);
   const { data: session, status } = useSession();
   const [mainSwc, setSwc] = useState("전체");
+  const [postReport, setReport] = useState("비활성");
+  const resres = {DRAW:"",USER:""}
+  const [getRes, setRes] = useState(resres);
 
 
   function stateAll(){
@@ -28,6 +31,16 @@ function Main() {
     setSwc("점령");
   }
 
+  function resNumPost(hi){
+    // setReport("비활성");
+    console.log(hi);
+  }
+  function putReport(){
+    // setReport("비활성");
+  }
+  console.log(getRes)
+
+  console.log(data);
   if (!data) return <div className="bonebone">
     돌 날카롭게 깎는중...
   </div>
@@ -41,6 +54,40 @@ function Main() {
             <Tutorial/>
           :
           <>
+            <div className={postReport !== "활성" ? m.reportPop : m.reportHide}>
+              <figure>
+                <nav>
+              <div className={m.Mtop}></div>
+              <div className={m.Mmid}>
+                  <form onSubmit={putReport}>
+                    <ul>
+                      사유를 선택해주세요.
+                      <li>욕설이 포함된 게시물</li>
+                      <li>선정적인 게시물</li>
+                      <li>조개 획득을 위한 무분별한 게시물 포스팅</li>
+                      <li>그림과 정답이 일치하지 않음</li>
+                      <input type="text" placeholder="직접 입력하기" name="COMMENT" autoComplete="off"></input>
+                    </ul>
+                  </form>
+                  </div>
+                  {/* <div className={MFooter}></div> */}
+                </nav>
+              </figure>
+            </div>
+
+            {/* <div className={secondGet == "활성" ? tu.addItemOne : tu.hideItem}>
+            <figure onClick={secondClose}>
+                    <nav className={tu.shellCoinGet}>
+                      <img></img>
+                      <div>
+                        <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}10개{`)`}를 획득<br/> 했습니다.</h6>
+                      </div>
+                    </nav>
+              <h1>석판을 클릭하면 창이 닫힙니다.</h1>
+              </figure>
+            </div> */}
+
+
             <Link className={m.Write} href="/page/Draw"></Link>
             <div className={m.Mwrap}>
               <div className={m.titleBox}>
@@ -76,6 +123,10 @@ function Main() {
                       {res.STATE == 3 && <p><b className={m.bamB}>밤</b>족 점령 !</p>}
                       {res.STATE == "미점령" && <h5>정답을 맞춰서 본스케치를 점령 해보세요!</h5>}
                       <nav>
+                          <div>
+                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <p>신고하기</p>
+                          </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
                           {" "}
                           바로가기{" "}
@@ -104,6 +155,10 @@ function Main() {
                       {res.STATE == 2 && <p>바위족 점령</p>}
                       {res.STATE == 3 && <p>밤족 점령</p>}
                       <nav>
+                          <div>
+                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <p>신고하기</p>
+                          </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
                           {" "}
                           바로가기{" "}
@@ -127,6 +182,10 @@ function Main() {
                         </div>
                         {res.STATE == "미점령" && <p>정답을 맞춰서 본스케치를 점령 해보세요!</p>}
                         <nav>
+                          <div>
+                            <img onClick={()=>{setRes({USER:res.USER, DRAW:res.DRAW})}} className={m.report}></img>
+                            <p>신고하기</p>
+                          </div>
                           <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
                             {" "}
                             바로가기{" "}

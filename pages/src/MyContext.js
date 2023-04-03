@@ -85,7 +85,6 @@ const MyContext = ({ children }) => {
     sessionMine();
   }, [session]);
 
-  useEffect(() => {}, [session]);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -94,7 +93,7 @@ const MyContext = ({ children }) => {
   }, [status]);
 
   return (
-    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho, sessionMine, mine }}>
+    <DataContext.Provider value={{ data, dataFun, who, pageChange, setClose, dataPost, dataShell, sessionWho, sessionMine, mine}}>
       <Header />
       <Lantern />
       {children}

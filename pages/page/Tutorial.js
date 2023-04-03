@@ -63,10 +63,10 @@ function Tutorial() {
       async function secondClose (){
         setTalk("END");
         // setBug("활성화")
+        // sessionWho();
         setSecondGet("비활성");
         dataShell("put", {SHELL:10, ID:who.ID});
         await sessionWho();
-        sessionWho();
       }
 
 
