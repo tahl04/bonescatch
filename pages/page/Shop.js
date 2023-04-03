@@ -4,7 +4,7 @@ import ShopItems from "../src/ShopItems";
 import axios from "axios";
 
 const Shop = () => {
-  const [item, setItem] = useState("");
+  const [item, setItem] = useState("PEN");
   const [data, setData] = useState([]);
 
   function getPenData() {
@@ -28,6 +28,19 @@ const Shop = () => {
       .then((res) => {
         setData(res.data);
       });
+  }
+
+  function itemSelect() {
+    switch (item) {
+      case "PEN":
+        setItem("PAINT");
+        break;
+      case "PAINT":
+        setItem("PEN");
+        break;
+      default:
+        return;
+    }
   }
   // 버튼 클릭시 아이템 리스트 전환
   useEffect(() => {
@@ -63,11 +76,8 @@ const Shop = () => {
             </div>
           </div>
         </div>
-        <button className={sh.shop_btn} onClick={() => setItem("PEN")}>
-          팬
-        </button>
-        <button className={sh.shop_btn} onClick={() => setItem("PAINT")}>
-          염료
+        <button className={sh.shop_btn} onClick={itemSelect}>
+          {item === "PEN" ? "염료 보러가기" : "도구 보러가기"}
         </button>
       </main>
     </>
