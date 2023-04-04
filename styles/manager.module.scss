@@ -14,23 +14,57 @@
     h1{
         color:  #fff;
         padding-bottom: 10px;
+        position: relative;
     }
     .report{
+        overflow-y: scroll;
         // position: relative;
         // overflow: scroll;
         width: 1000px;
+        height: 550px;
         // height: 400px;
         background-color: #727272;
-        padding: 10px;
-        @include flex(){
-            flex-direction: column;
-        }
+        padding: 10px 40px;
+        // @include flex(){
+        //     flex-direction: column;
+        // }
         .reList{
             position: relative;
             width: 100%;
-            height: 100px;
-            background-color: #fff;
+            height: 400px;
+            background-color: #edefef;
             margin: 10px 0;
+            padding: 20px 60px;
+            @include flex(space-between){}
+            .reLwrap{
+                @include flex(space-between, flex-start){
+                    flex-direction: column;
+                }
+                
+                height: 100%;
+            }
+            .reRwrap{
+                @include flex(center,flex-end){
+                    flex-direction: column;
+                }
+                .delBtn{
+                    cursor: pointer;
+                    width: 180px;
+                    height: 50px;
+                    @include flex(){}
+                    background-color: #cc4b4b;
+                    color: #fff;
+                    margin: 10px 0;
+                    &:nth-child(2){
+                        background-color: #4bcc56;
+                    }
+                }
+            }
+            img{
+                border: 2px solid #000;
+                width: 350px;
+                height: auto;
+            }
         }
     }
 }

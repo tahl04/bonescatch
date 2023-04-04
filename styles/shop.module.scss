@@ -6,6 +6,19 @@
   @content;
 }
 
+@keyframes talkOpen {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: .9;
+  }
+}
+
+
+$talk_w: 450px;
+$talk_h: calc($talk_w / 1.833);
+
 @keyframes move0 {
   0% {
     bottom: -2000px;
@@ -19,10 +32,120 @@
     background-image: url("/img/shop/shop-bg1.png");
   }
 }
+@keyframes sh-trans1 {
+  50% {
+    content: url('/img/item/tool0-1.png');
+  }
+}
+@keyframes sh-trans2 {
+  50% {
+    content: url('/img/item/tool1-1.png');
+  }
+}
+@keyframes sh-trans3 {
+  50% {
+    content: url('/img/item/tool2-1.png');
+  }
+}
+@keyframes sh-trans4 {
+  50% {
+    content: url('/img/item/tool3-1.png');
+  }
+}
+
+@keyframes sh-trans5 {
+  50% {
+    content: url('/img/item/parts-black1.png');
+  }
+}
+@keyframes sh-trans6 {
+  50% {
+    content: url('/img/item/parts-blue1.png');
+  }
+}
+@keyframes sh-trans7 {
+  50% {
+    content: url('/img/item/parts-red1.png');
+  }
+}
+@keyframes sh-trans8 {
+  50% {
+    content: url('/img/item/parts-green1.png');
+  }
+}
+@keyframes sh-trans9 {
+  50% {
+    content: url('/img/item/parts-puple1.png');
+  }
+}
+@keyframes sh-trans10 {
+  50% {
+    content: url('/img/item/parts-yellow1.png');
+  }
+}
+@keyframes sh-trans11 {
+  50% {
+    content: url('/img/item/parts-white1.png');
+  }
+}
+@keyframes sh-trans12 {
+  50% {
+    content: url('/img/item/parts-orange1.png');
+  }
+}
+@keyframes sh-trans13 {
+  50% {
+    content: url('/img/shop/none1.png');
+  }
+}
+@keyframes sh-trans14 {
+  50% {
+    background-image: url('/img/element/s-talk1.png');
+  }
+}
+@keyframes sh-trans15 {
+  50% {
+    content: url('/img/item/wallet1.png');
+    filter: drop-shadow(5px 5px 30px #cfcdb4);
+  }
+}
 
 $shop_h: calc(100vh - 150px);
 $shop_w: calc($shop_h / 0.1852);
 
+.myShell{
+  // top: 50%;
+  // transform: translateY(-50%);
+  position: fixed;
+  z-index: 2;
+  height: 200px;
+  bottom: -40px;
+  left: -50px;
+  @include flex(space-between){}
+  img{
+    width: 300px;
+    height: auto;
+    content: url('/img/item/wallet0.png');
+    animation: sh-trans15 1.5s step-end infinite;
+    filter: drop-shadow(5px 5px 15px #cfcdb4);
+  }
+  nav{
+    @include flex(space-between,flex-end){}
+    h3{
+      padding-top: 50px;
+      font-size: 45px;
+      color: #fff;
+      text-shadow: 2px 2px 2px #2b1f07;
+    }
+    h4{
+      padding: 0 0 5px 7px;
+      padding-top: 50px;
+      font-size: 26px;
+      color: #949494;
+      text-shadow: 2px 2px 2px #2b1f07;  
+    }
+  }
+}
 .shop_main {
   height: 100vh;
   position: relative;
@@ -44,11 +167,31 @@ $shop_w: calc($shop_h / 0.1852);
       animation: move0 1.5s forwards;
 
       .doduzi {
+        position: relative;
         width: 100%;
         height: 100%;
         background-size: cover;
         background-image: url("/img/shop/shop-bg0.png");
         animation: trans0 1.5s step-end infinite;
+
+
+        
+        .talk{
+          width: $talk_w;
+          height: $talk_h;
+          position: absolute;
+          top: -30px;
+          left: 52%;
+          background-image: url('/img/element/s-talk0.png');
+          background-size: cover;
+          animation: sh-trans14 1.2s step-end infinite;
+          opacity: 0.9;
+          @include flex(){}
+          p{
+            font-size: 22px;
+            word-break:break-all;
+          }
+        }
 
         .shop_section {
           width: 90vh;
@@ -65,8 +208,9 @@ $shop_w: calc($shop_h / 0.1852);
             flex-wrap: wrap;
             justify-content: center;
             .pen {
+              cursor: pointer;
               width: 40%;
-              height: 50%;
+              height: 47%;
               position: relative;
               cursor: pointer;
 
@@ -78,6 +222,9 @@ $shop_w: calc($shop_h / 0.1852);
                 height: 100%;
                 position: relative;
                 > img {
+                  &:hover{
+                    transform: scale(1.3);
+                  }
                   margin: 0 auto;
                   height: 100%;
                   object-fit: cover;
@@ -98,6 +245,9 @@ $shop_w: calc($shop_h / 0.1852);
               .shop_item_image_space {
                 height: 100%;
                 > img {
+                  &:hover{
+                    transform: scale(1.3);
+                  }
                   margin: 0 auto;
                   height: 100%;
                   object-fit: cover;
@@ -109,12 +259,83 @@ $shop_w: calc($shop_h / 0.1852);
         }
       }
     }
+    // mine.pen.match(/1/g) == "1"
   }
   .shop_btn {
     position: absolute;
+    width: 130px;
+    height: 50px;
     left: 50%;
     bottom: 5%;
     z-index: 10;
+    font-size: 16px;
+    background-color: #5c3d1a;
+    color: #fff;
+    border-radius: 16px;
+    box-shadow: 0 0 8px rgba(0,0,0,.5);
+    border: 2px solid rgb(53, 30, 9);
     transform: translate(-50%, -50%);
+    cursor: pointer;
+    &:hover{
+      background-color: #422b10;
+      box-shadow: 0 0 8px rgba(0,0,0,.5);
+      border: 2px solid rgb(32, 18, 5);
+    }
   }
+}
+
+
+.tool0{
+  content: url('/img/item/tool1-0.png');
+  animation: sh-trans2 1.5s step-end infinite;
+}
+.tool1{
+  content: url('/img/item/tool2-0.png');
+  animation: sh-trans3 1.5s step-end infinite;
+}
+.tool2{
+  content: url('/img/item/tool3-0.png');
+  animation: sh-trans4 1.5s step-end infinite;
+}
+.tool3{
+  content: url('/img/item/tool0-0.png');
+  animation: sh-trans1 1.5s step-end infinite;
+}
+
+.col0{
+  content: url('/img/item/parts-black0.png');
+  animation: sh-trans5 1.5s step-end infinite;
+}
+.col1{
+  content: url('/img/item/parts-blue0.png');
+  animation: sh-trans6 1.5s step-end infinite;
+}
+.col2{
+  content: url('/img/item/parts-red0.png');
+  animation: sh-trans7 1.5s step-end infinite;
+}
+.col3{
+  content: url('/img/item/parts-green0.png');
+  animation: sh-trans8 1.5s step-end infinite;
+}
+.col4{
+  content: url('/img/item/parts-puple0.png');
+  animation: sh-trans9 1.5s step-end infinite;
+}
+.col5{
+  content: url('/img/item/parts-yellow0.png');
+  animation: sh-trans10 1.5s step-end infinite;
+}
+.col6{
+  content: url('/img/item/parts-white0.png');
+  animation: sh-trans11 1.5s step-end infinite;
+}
+.col7{
+  content: url('/img/item/parts-orange0.png');
+  animation: sh-trans12 1.5s step-end infinite;
+}
+
+.none{
+  content: url('/img/shop/none0.png');
+  animation: sh-trans13 1.5s step-end infinite;
 }

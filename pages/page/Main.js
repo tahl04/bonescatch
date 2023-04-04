@@ -17,12 +17,13 @@ function Main() {
   const { data: session, status } = useSession();
   const [mainSwc, setSwc] = useState("전체");
   const [postReport, setReport] = useState("비활성");
-  const resres = {ID:"",USER:""}
+  const resres = {ID:"",USER:"",CODENAME:""}
   const [getRes, setRes] = useState(resres);
   const [repVal, setReVal] = useState({
     REPORT_USER:"",
     REPORT_DETAIL:"",
     REPORT_POST:"",
+    REPORT_CODENAME:"",
   });
   const reportForm = useRef();
   const res1 = useRef();
@@ -66,10 +67,10 @@ function Main() {
       // totalVal = totalVal+"직접입력) "+res6.current.value;
     }
     setReVal({
-      // ...totalVal,
       REPORT_USER:getRes.USER,
       REPORT_DETAIL: totalVal.toString(),
       REPORT_POST:getRes.ID,
+      REPORT_CODENAME:getRes.CODENAME,
     })
     setReport("비활성");
     res1.current.checked = false ;
@@ -84,6 +85,7 @@ function Main() {
   useEffect(()=>{
     if(repVal.REPORT_USER !== ''){
       reportPutData("post", repVal);
+      console.log(repVal);
     }
   },[repVal])
 
@@ -150,7 +152,7 @@ function Main() {
                       {res.STATE == "미점령" && <h5>정답을 맞춰서 본스케치를 점령 해보세요!</h5>}
                       <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID, CODENAME:res.USERCODE});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
@@ -182,7 +184,7 @@ function Main() {
                       {res.STATE == 3 && <p>밤족 점령</p>}
                       <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID, CODENAME:res.USERCODE});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                         <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>
@@ -209,7 +211,7 @@ function Main() {
                         {res.STATE == "미점령" && <p>정답을 맞춰서 본스케치를 점령 해보세요!</p>}
                         <nav>
                           <div>
-                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID});setReport("활성")}} className={m.report}></img>
+                            <img onClick={()=>{setRes({USER:res.USER, ID:res.ID, CODENAME:res.USERCODE});setReport("활성")}} className={m.report}></img>
                             <p>신고하기</p>
                           </div>
                           <Link className={m.linkDetail} href={{ pathname: "/page/Post/", query: { id: res.ID } }}>

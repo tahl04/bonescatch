@@ -8,10 +8,10 @@ async function handler(req, res) {
   
     const managerPost = async () => {
       
-      let {REPORT_USER,REPORT_DETAIL,REPORT_POST} = body;
-      let dataq = await executeQuery(
-        'insert into TBL_MANAGER (REPORT_USER,REPORT_DETAIL,REPORT_POST) value (?,?,?)',
-        [REPORT_USER,REPORT_DETAIL,REPORT_POST]
+      let {REPORT_USER,REPORT_DETAIL,REPORT_POST,REPORT_CODENAME} = body;
+      await executeQuery(
+        'insert into TBL_MANAGER (REPORT_USER,REPORT_DETAIL,REPORT_POST,REPORT_CODENAME) value (?,?,?,?)',
+        [REPORT_USER,REPORT_DETAIL,REPORT_POST,REPORT_CODENAME]
       );
 }
 

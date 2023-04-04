@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import sh from "@/styles/shop.module.scss";
 import ShopItems from "../src/ShopItems";
 import axios from "axios";
+import { DataContext } from "../src/MyContext";
 
 const Shop = () => {
   const [item, setItem] = useState("PEN");
   const [data, setData] = useState([]);
+  const taekulrook = useRef();
+  const { mine, who } = useContext(DataContext);
 
   function getPenData() {
     axios
@@ -56,17 +59,37 @@ const Shop = () => {
     }
   }, [item]);
 
+  function taekulrookTalk(www){
+    taekulrook.current.innerHTML = www;
+  }
+
+
+
   return (
     <>
+              <div className={sh.myShell}>
+                <img></img>
+                <nav>
+                <h3>X {who && who.SHELL}</h3>
+                <h4>조개</h4>
+                </nav>
+              </div>
+
       <main className={sh.shop_main}>
         <div className={sh.shop}>
           <div className={sh.wrap}>
             <div className={sh.doduzi}>
+
+              <div className={sh.talk}>
+                <p ref={taekulrook}>안녕! 여긴 두더지 상회야!<br/>
+                많은 물건들이 있으니,<br/> 천천히 구경해봐!</p>
+              </div>
+
               <section className={sh.shop_section}>
                 {data && data.length ? (
                   <article className={sh.shop_item}>
                     {data.map((item, key) => {
-                      return <ShopItems key={key} item={item}></ShopItems>;
+                      return <ShopItems key={key} item={item} taekulrookTalk={taekulrookTalk}></ShopItems>
                     })}
                   </article>
                 ) : (

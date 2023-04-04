@@ -87,7 +87,7 @@ const Draw = () => {
     });
     ctx.strokeStyle = strokeCol;
 
-    ctx.lineWidth = 7;
+    ctx.lineWidth = 15;
     brushSize.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {

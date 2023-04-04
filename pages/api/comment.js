@@ -9,7 +9,7 @@ async function handler(req, res) {
   const commentPost = async () => {
     
     let {USER, COUNT, COMMENT, POST, CODENAME,TRIBE} = body;
-    let data = await executeQuery(
+    await executeQuery(
       'insert into TBL_COMMENT (USER,COUNT,COMMENT,POST,CODENAME,TRIBE) value (?,?,?,?,?,?)',
       [USER,COUNT,COMMENT,POST,CODENAME,TRIBE]
     );

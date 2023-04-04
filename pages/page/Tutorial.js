@@ -10,6 +10,7 @@ function Tutorial() {
   const [talkPage, setTalk] = useState("첫장");
   const [firstGet, setFirstGet] = useState("비활성");
   const [secondGet, setSecondGet] = useState("비활성");
+  const [thirdGet, setThirdGet] = useState("비활성");
 
   function page1() {
     setTalk("첫장");
@@ -57,10 +58,14 @@ function Tutorial() {
   }
 
   async function secondClose() {
+    setSecondGet("비활성");
+    setThirdGet("활성")
+  }
+  async function thirdClose() {
     setTalk("END");
     // setBug("활성화")
     setSecondGet("비활성");
-    dataShell("put", { SHELL: 10, ID: who.ID });
+    dataShell("put", { SHELL: 20, ID: who.ID });
     await sessionWho();
     router.reload();
   }
@@ -105,7 +110,7 @@ function Tutorial() {
             <figure>
               <div>
                 <h3>
-                  이 룰 안에서 모든 그림들은 {`"`}본스케치{`"`} 라고 불러
+                  이 룰 안에서 모든 그림들은 <b>{`'`}본스케치{`'`}</b> 라고 불러
                 </h3>
                 <h3>그렇기에 종족에 본스케치의 갯수는 그 부족이 얼마나</h3>
                 <h3>번성한지 알수있는 지표야.</h3>
@@ -150,11 +155,14 @@ function Tutorial() {
           </>
         )}
         {talkPage == "여섯번째장" && (
+          <>
+          <div className={tu.tyuReport}></div>
           <div className={tu.talk}>
             <figure>
               <div>
                 <h3>기록한 본스케치는 자동으로 모두의 본스케치에 전시될거야.</h3>
                 <h3>그러니 부족에 피해가 가는 이상한 그림이나 욕설은 기록하면 안돼.</h3>
+                <h3>부적절한 게시물들이 보이면 신고버튼을 통해 신고할 수 있어.</h3>
               </div>
               <nav>
                 <h4 onClick={page5}>뒤로</h4>
@@ -162,6 +170,7 @@ function Tutorial() {
               </nav>
             </figure>
           </div>
+          </>
         )}
         {talkPage == "일곱번째장" && (
           <>
@@ -226,7 +235,7 @@ function Tutorial() {
                 <div>
                   <h3>본스케치에 정답이 아닌 글 들이 쌓일수록 맞출 시</h3>
                   <h3>
-                    얻을 수 있는 {`"`}조개{`"`}가 늘어날거야.
+                    얻을 수 있는 <b>{`'`}조개{`'`}</b>가 늘어날거야.
                   </h3>
                   <h3>여기서 조개는 우리들의 화폐 단위야.</h3>
                 </div>
@@ -250,7 +259,7 @@ function Tutorial() {
             <div className={tu.talk}>
               <figure>
                 <div>
-                  <h3>조개는 상점에서 그림도구나 염료등으로 교환 할 수 있어.</h3>
+                  <h3>조개는 상점에서 <b>{`'`}그리기 도구{`'`}</b>나 <b>{`'`}염료{`'`}</b>등으로 교환 할 수 있어.</h3>
                   <h3>문제를 맞춰 조개를 얻어 도구와 염료로 교환하고,</h3>
                   <h3>늘어난 재료들로 더 좋은 본스케치를 만드는 거야!</h3>
                 </div>
@@ -342,8 +351,23 @@ function Tutorial() {
                   <div>
                     <h6>
                       &nbsp;- 화폐 <br />
-                      모든 부족에게 통용된 화폐인 조개{`(`}10개{`)`}를 획득
+                      모든 부족에게 통용된 화폐인 조개{`(`}20개{`)`}를 획득
                       <br /> 했습니다.
+                    </h6>
+                  </div>
+                </nav>
+                <h1>석판을 클릭하면 창이 닫힙니다.</h1>
+              </figure>
+            </div>
+
+            <div className={thirdGet == "활성" ? tu.addItemOne : tu.hideItem}>
+              <figure onClick={thirdClose}>
+                <nav className={tu.boneGet}>
+                  <img></img>
+                  <div>
+                    <h6>
+                      &nbsp;- 그리기 도구 <br />
+                      대왕 도마뱀의 넓적 다리 뼈를 획득 했습니다.
                     </h6>
                   </div>
                 </nav>
@@ -354,9 +378,9 @@ function Tutorial() {
             <div className={tu.talk}>
               <figure>
                 <div>
-                  <h3>너에게 우리 부족의 특산물과 조개 10개를 줄게.</h3>
-                  <h3>우리 부족은 너에게 거는 기대가 커!</h3>
-                  <h3>힘내 {who.CODENAME} !</h3>
+                  <h3>너에게 우리 부족의 특산물과 조개 20개,</h3>
+                  <h3>그리고 그림을 그릴 수 있는 그리기도구 하나를 줄게.</h3>
+                  <h3>우리 부족은 너에게 거는 기대가 커! 힘내 {who.CODENAME} !</h3>
                 </div>
                 <nav>
                   <h4 onClick={page11}>뒤로</h4>

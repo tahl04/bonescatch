@@ -20,13 +20,28 @@ console.log(data)
         <h1>신고 리스트</h1>
         <div className={sin.report}>
           {
-              data["MANAGER"].map((resw) => {
+              data["MANAGER"].map((res) => {
                 // data["POST"].map((resw) => {
                 //   return <h1>asd</h1>
                 // })
                 return <div className={sin.reList}>
-                  
-                </div>
+                  <div className={sin.reLwrap}>
+                    <h2>신고 받은 아이디 {`:`} {res.REPORT_CODENAME}</h2>
+                      {
+                        data["POST"].map((resw) => {
+                          if(res.REPORT_POST == resw.ID){
+                            return <img src={resw.DRAW}></img>
+                          }
+                        })
+                      }
+                      <h3>신고 사유 : </h3>
+                      <h4>{res.REPORT_DETAIL}</h4>
+                    </div>
+                    <div className={sin.reRwrap}>
+                      <div className={sin.delBtn}>해당 게시물 삭제하기</div>
+                      <div className={sin.delBtn}>해당 신고 삭제하기</div>
+                    </div>
+                  </div>
               })
           }
         </div>

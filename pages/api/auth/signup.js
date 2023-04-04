@@ -36,24 +36,27 @@ async function handler(req, res) {
 
           switch (body.data.TRIBE) {
             case 0:
-              color = "9,7,2";
+              color = "9,2";
               break;
             case 1:
-              color = "9,7,1";
+              color = "9,1";
               break;
             case 2:
-              color = "9,7,8";
+              color = "9,8";
               break;
             case 3:
-              color = "9,7,5";
+              color = "9,5";
               break;
             default:
               return;
           }
 
           if (createUser) {
-            const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "1", color, -1]);
+            const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "3", color, -1]);
           }
+          // if (createUser) {
+          //   const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "3", color, -1]);
+          // }
 
           res.send({ message: "CreateUser" });
         } catch (err) {
