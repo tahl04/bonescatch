@@ -6,7 +6,6 @@ import axios from "axios";
 const ShopItems = ({ item, taekulrookTalk }) => {
   const { who, sessionWho, mine, sessionMine } = useContext(DataContext);
 
-  const reg = `/+${item.NAME}/g`;
   console.log(mine)
   async function purchase() {
     if (item.PRICE < who.SHELL) {
@@ -87,7 +86,7 @@ const ShopItems = ({ item, taekulrookTalk }) => {
     }
   }
 
-  if (!mine) return <div className="bonebone">
+  if (!mine && !item) return <div className="bonebone">
     돌 날카롭게 깎는중...
   </div>
   return (

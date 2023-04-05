@@ -1,5 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
-@import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+// @import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+// @import url('https://cdn.jsdelivr.net/npm/galmuri@latest/dist/galmuri.css');
+@font-face {
+    font-family: 'Galmuri14';
+    src: url('/font/Galmuri14.woff') format('woff');
+}
 *{
     box-sizing: border-box;
     // font-family: 'DotGothic16', sans-serif;
