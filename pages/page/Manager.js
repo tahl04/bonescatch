@@ -20,17 +20,17 @@ console.log(data)
         <h1>신고 리스트</h1>
         <div className={sin.report}>
           {
-              data["MANAGER"].map((res) => {
+              data["MANAGER"].map((res,key) => {
                 // data["POST"].map((resw) => {
                 //   return <h1>asd</h1>
                 // })
-                return <div className={sin.reList}>
+                return <div key={key} className={sin.reList}>
                   <div className={sin.reLwrap}>
                     <h2>신고 받은 아이디 {`:`} {res.REPORT_CODENAME}</h2>
                       {
-                        data["POST"].map((resw) => {
+                        data["POST"].map((resw,keyw) => {
                           if(res.REPORT_POST == resw.ID){
-                            return <img src={resw.DRAW}></img>
+                            return <img  key={keyw} src={resw.DRAW}></img>
                           }
                         })
                       }

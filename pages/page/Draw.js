@@ -323,7 +323,7 @@ const Draw = () => {
           <nav>
             <div></div>
             <div>
-              <h2>정답은 : '' {inputValue.TITLE == "" ? "?" : inputValue.TITLE} ''</h2>
+              <h2>정답은 : {`"`} {inputValue.TITLE == "" ? "?" : inputValue.TITLE} {`"`}</h2>
               {popCheck && <span style={{ backgroundImage: `url(${inputValue.DRAW})` }} className={wr.bonescatch}></span>}
               <ul>
                 <li onClick={uploadBonescatch}>올리기 !</li>

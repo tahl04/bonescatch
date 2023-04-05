@@ -99,7 +99,7 @@ function Header() {
                 : <>
                 </>
               }
-                <button onClick={ranking}>랭킹</button>
+                {/* <button onClick={ranking}>랭킹</button> */}
                 <button onClick={toshop}>상점</button>
                 <button onClick={() => signOut()}>로그아웃</button>
             </>

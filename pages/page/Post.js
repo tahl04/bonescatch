@@ -229,13 +229,13 @@ function Post() {
                             if (objs.POST == query.id) {
                               if (objs.USER == who.ID) {
                                 if (objs.COUNT == 1) {
-                                  return <p></p>
+                                  return <p key={key}></p>
                                 }
                                 if (objs.COUNT == 2) {
-                                  return <p></p>
+                                  return <p key={key}></p>
                                 }
                                 if (objs.COUNT == 3) {
-                                  return <p></p>
+                                  return <p key={key}></p>
                                 }
                               }
                             }
