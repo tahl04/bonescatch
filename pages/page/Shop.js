@@ -12,7 +12,7 @@ const Shop = () => {
 
   function getPenData() {
     axios
-      .get("/api/shop", {
+      .get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
         params: {
           type: "PEN",
         },
@@ -23,7 +23,7 @@ const Shop = () => {
   }
   function getPaintData() {
     axios
-      .get("/api/shop", {
+      .get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
         params: {
           type: "PAINT",
         },

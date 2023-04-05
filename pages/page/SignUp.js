@@ -95,7 +95,7 @@ function SignUp() {
 
     if (inputValue.CODENAME !== "" && inputValue.USER !== "" && inputValue.PASS !== "" && inputValue.TRIBE !== "") {
       let result = await axios
-        .post("/api/auth/signup", {
+        .post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/auth/signup", {
           data: inputValue,
         })
         .then((res) => {

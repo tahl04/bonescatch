@@ -21,7 +21,7 @@ const ShopItems = ({ item, taekulrookTalk }) => {
           } else {
             taekulrookTalk("조개는 잘 받았어.<br/>구매한 물건은 잘 쓰도록 해.<br/>고마워!");
             penArr.push(item.NAME);
-            await axios.put("/api/shop", {
+            await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
               id: who.ID,
               shell: who.SHELL - item.PRICE,
               pen: penArr.toString(),
@@ -37,7 +37,7 @@ const ShopItems = ({ item, taekulrookTalk }) => {
           } else {
             taekulrookTalk("조개는 잘 받았어.<br/>구매한 물건은 잘 쓰도록 해.<br/>고마워!");
             paintArr.push(item.NAME);
-            await axios.put("/api/shop", {
+            await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
               id: who.ID,
               shell: who.SHELL - item.PRICE,
               pen: penArr.toString(),
