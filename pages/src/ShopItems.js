@@ -8,7 +8,7 @@ const ShopItems = ({ item, taekulrookTalk }) => {
 
   console.log(mine)
   async function purchase() {
-    if (item.PRICE < who.SHELL) {
+    if (item.PRICE <= who.SHELL) {
       let penArr = mine.pen.split(",");
       let paintArr = mine.paint.split(",");
 
