@@ -292,15 +292,22 @@ const Draw = () => {
 
 
   const drawSave = () => {
-    setValue({
-      DRAW: canvasw.current.toDataURL("image/png"),
-      USER: who.ID,
-      STATE: "미점령",
-      USERCODE: who.CODENAME,
-      TITLE: titleVal.current.value,
-      RIGHTUSER: "없음",
-    });
-    setPop(!popCheck);
+    if(titleVal.current.value !== ""){
+
+      setValue({
+        DRAW: canvasw.current.toDataURL("image/png"),
+        USER: who.ID,
+        STATE: "미점령",
+        USERCODE: who.CODENAME,
+        TITLE: titleVal.current.value,
+        RIGHTUSER: "없음",
+      });
+      setPop(!popCheck);
+    }
+    else{
+      alert('제목을 입력해주세요')
+      return;
+    }
   };
 
   function reDraw() {
@@ -446,7 +453,7 @@ const Draw = () => {
         <div className={wr.rightWrap}>
           <div className={wr.textBox}>
             <nav>
-              <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" />
+              <input ref={titleVal} type="text" placeholder="본스케치  제목을 입력해 주세요." name="TITLE" maxLength={10}/>
               <div onClick={drawSave} />
             </nav>
           </div>

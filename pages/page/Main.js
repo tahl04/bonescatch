@@ -13,7 +13,7 @@ import Tutorial from "./Tutorial";
 
 function Main() {
   const router = useRouter();
-  const { data, who, reportPutData, dataPost } = useContext(DataContext);
+  const { data, who, reportPutData, dataPost, dataFun } = useContext(DataContext);
   const { data: session, status } = useSession();
   const [mainSwc, setSwc] = useState("전체");
   const [postReport, setReport] = useState("비활성");
@@ -85,7 +85,7 @@ function Main() {
   useEffect(()=>{
     if(repVal.REPORT_USER !== ''){
       reportPutData("post", repVal);
-      console.log(repVal);
+      dataFun("get");
     }
   },[repVal])
 
@@ -285,7 +285,7 @@ export default Main;
 
 // export async function getServerSideProps() {
 // export async function getStaticProps() {
-//     // const res = await axios.get(`https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api`);
+//     // const res = await axios.get(`/api`);
 //     const res = await axios.get(`http://localhost:3000/api`);
 //     const data = res.data;
 

@@ -262,7 +262,7 @@ function Post() {
                           </form>
                         </nav>
                       </div>
-                        : <></>
+                        : <div className={po.commentBox}>{who && obj.USER == who.ID ? "작성자는 정답을 맞출 수 없습니다." : "정답은 "+obj.TITLE+" 입니다."}</div>
                   }
                   
                   {data["COMMENT"].map((objw, key) => {

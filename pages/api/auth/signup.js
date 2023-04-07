@@ -50,13 +50,10 @@ async function handler(req, res) {
             default:
               return;
           }
-
+          // 신규 생성 시 아이템 지급
           if (createUser) {
             const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "3", color, -1]);
           }
-          // if (createUser) {
-          //   const userItem = await executeQuery("insert into TBL_MINE (ID,PEN,PAINT,SHELL) value (?,?,?,?)", [createUser.insertId, "3", color, -1]);
-          // }
 
           res.send({ message: "CreateUser" });
         } catch (err) {

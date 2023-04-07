@@ -17,6 +17,11 @@
         background-image: url('/img/list-body7.png');
     }
 }
+@keyframes po-trans1-1 {
+    50% {
+        background-image: url('/img/list-body3.png');
+    }
+}
 @keyframes po-trans2 {
     50% {
         background-image: url('/img/list-footer1.png');
@@ -460,6 +465,7 @@ $w-select-h : calc($w-select-w / 5.657);
     }
 }
 .commentBox{
+    font-size: 26px;
     @include body_c(){}
     @include flex(){
         flex-direction: column;

@@ -7,7 +7,7 @@ function Ranking() {
   const [data, setData] = useState();
 
   function getRank() {
-    axios.get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/rank").then((res) => {
+    axios.get("/api/rank").then((res) => {
       setData(res.data);
     });
   }

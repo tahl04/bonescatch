@@ -6,6 +6,8 @@ async function handler(req, res) {
 
   const { method, body, query } = req;
 
+
+  // ADD 댓글
   const commentPost = async () => {
     
     let {USER, COUNT, COMMENT, POST, CODENAME,TRIBE} = body;
@@ -13,10 +15,9 @@ async function handler(req, res) {
       'insert into TBL_COMMENT (USER,COUNT,COMMENT,POST,CODENAME,TRIBE) value (?,?,?,?,?,?)',
       [USER,COUNT,COMMENT,POST,CODENAME,TRIBE]
     );
-    // res.json({...USER, ...POST, COMMENT:data})
-    // res.json({...USER, ...POST, ...REPORT, COMMENT:data})
   }
 
+  //정답을 맞출 시 TBL_POST STATE 변경.
   const updateProduct = async () => {
     let {ID, STATE, RIGHTUSER} = body;
     executeQuery(`UPDATE TBL_POST SET RIGHTUSER='${RIGHTUSER}', STATE='${STATE}' WHERE ID=${ID}`);

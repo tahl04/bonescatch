@@ -18,7 +18,7 @@ const MyContext = ({ children }) => {
   async function dataShell(type, obj) {
     let transe;
     if (type == "put") {
-      transe = await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shell", obj);
+      transe = await axios.put("/api/shell", obj);
     }
     setData(transe);
   }
@@ -26,20 +26,27 @@ const MyContext = ({ children }) => {
   async function dataPost(type, obj) {
     let transw;
     if (type == "get") {
-      await axios.get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api").then((res) => (transw = res.data));
+      await axios.get("/api").then((res) => (transw = res.data));
     } else if (type == "post") {
-      transw = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/comment", obj);
+      transw = await axios.post("/api/comment", obj);
     } else if (type == "put") {
-      transw = await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/comment", obj);
+      transw = await axios.put("/api/comment", obj);
     }
     setData(transw);
   }
+
   async function reportPutData(type, obj) {
     let transq;
     if (type == "get") {
-      await axios.get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api").then((res) => (transq = res.data));
+      await axios.get("/api").then((res) => (transq = res.data));
     } else if (type == "post") {
-      transq = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/manager", obj);
+      transq = await axios.post("/api/manager", obj);
+    } else if (type == "delete"){
+      transq = await axios.delete("/api/manager", {
+        params:{
+          id: obj
+        }
+      });
     }
     setData(transq);
   }
@@ -47,11 +54,17 @@ const MyContext = ({ children }) => {
   async function dataFun(type, obj) {
     let trans;
     if (type == "get") {
-      await axios.get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api").then((res) => (trans = res.data));
+      await axios.get("/api").then((res) => (trans = res.data));
     } else if (type == "post") {
       // console.log(obj);
-      //   trans = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api", obj);
-      trans = await axios.post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api", obj);
+      //   trans = await axios.post("/api", obj);
+      trans = await axios.post("/api", obj);
+    }else if (type == "delete"){
+      trans = await axios.delete("/api", {
+        params:{
+          id: obj
+        }
+      });
     }
     setData(trans);
   }
@@ -65,7 +78,7 @@ const MyContext = ({ children }) => {
     console.log("정보갱신");
     if (session !== undefined && session !== null) {
       axios
-        .get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/who", {
+        .get("/api/who", {
           params: {
             id: session.user[0].ID,
           },
@@ -78,7 +91,7 @@ const MyContext = ({ children }) => {
   function sessionMine() {
     if (session != undefined && session !== null) {
       axios
-        .get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/mine", {
+        .get("/api/mine", {
           params: {
             id: session.user[0].ID,
           },

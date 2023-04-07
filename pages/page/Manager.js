@@ -1,12 +1,30 @@
 import sin from "@/styles/manager.module.scss";
 import React, { useContext, useEffect, useState } from "react";
 import { DataContext } from "../src/MyContext";
+import { useRouter } from "next/router";
 
 function Manager() {
-  const { data, who } = useContext(DataContext);
+  const { data, who, reportPutData, dataFun } = useContext(DataContext);
+  const router = useRouter();
 
 
 console.log(data)
+
+  function postDel(get){
+    dataFun("delete", get)
+
+    data && data["MANAGER"].map((res) => {
+      if(res.REPORT_POST == get){
+        reportPutData('delete', res.ID);
+      }
+    })
+    // reportPutData('delete', get)
+    router.reload();
+  }
+  function reportDel(get){
+    reportPutData('delete', get)
+    router.reload();
+  }
 
   if (!data) return <div className="bonebone">
     돌 날카롭게 깎는중...
@@ -38,8 +56,8 @@ console.log(data)
                       <h4>{res.REPORT_DETAIL}</h4>
                     </div>
                     <div className={sin.reRwrap}>
-                      <div className={sin.delBtn}>해당 게시물 삭제하기</div>
-                      <div className={sin.delBtn}>해당 신고 삭제하기</div>
+                      <div className={sin.delBtn} onClick={()=>{postDel(res.REPORT_POST, res.ID)}}>해당 게시물 삭제하기</div>
+                      <div className={sin.delBtn} onClick={()=>{reportDel(res.ID)}}>해당 신고 삭제하기</div>
                     </div>
                   </div>
               })
