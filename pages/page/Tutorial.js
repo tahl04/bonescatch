@@ -4,14 +4,18 @@ import { DataContext } from "../src/MyContext";
 import { useRouter } from "next/router";
 
 function Tutorial() {
-  const { data, who, dataPost, dataShell, sessionWho } = useContext(DataContext);
+  const { who, dataShell, sessionWho } = useContext(DataContext);
   const router = useRouter();
 
+  //말풍선 변경 스위치
   const [talkPage, setTalk] = useState("첫장");
   const [firstGet, setFirstGet] = useState("비활성");
   const [secondGet, setSecondGet] = useState("비활성");
   const [thirdGet, setThirdGet] = useState("비활성");
 
+
+  
+  //말풍선 변경 함수
   function page1() {
     setTalk("첫장");
   }
@@ -48,22 +52,23 @@ function Tutorial() {
   function page12() {
     setTalk("열두번째장");
   }
+  //마지막 대화가 끝난 뒤, 아이템 지급 팝업창을 띄운다.
   function completePage() {
     setFirstGet("활성");
   }
-
+  // 부족별 특산품 지급
   function firstClose(){
     setFirstGet("비활성");
     setSecondGet("활성");
   }
-
+  //조개 지급 팝업
   async function secondClose() {
     setSecondGet("비활성");
     setThirdGet("활성")
   }
+  // 마지막 팝업, 조개 지급 -1 > 20
   async function thirdClose() {
     setTalk("END");
-    // setBug("활성화")
     setSecondGet("비활성");
     dataShell("put", { SHELL: 20, ID: who.ID });
     await sessionWho();

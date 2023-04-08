@@ -1,31 +1,27 @@
-// import React,{ useRef, useEffect, useContext, useState } from 'react'
-// import axios from 'axios'
+
 import React, { useContext, useEffect, useState, useRef } from "react";
-import { useRouter } from "next/router";
 import m from "@/styles/main.module.scss";
 import Link from "next/link";
-import Manager from "./Manager";
-// import Detail from '/Detail';
-// import Item from '/[id]';
 import { DataContext } from "../src/MyContext";
-import { useSession } from "next-auth/react";
 import Tutorial from "./Tutorial";
 
 function Main() {
-  const router = useRouter();
-  const { data, who, reportPutData, dataPost, dataFun } = useContext(DataContext);
-  const { data: session, status } = useSession();
+
+  const { data, who, reportPutData, dataFun } = useContext(DataContext);
+  // 게시물 정렬 스위치
   const [mainSwc, setSwc] = useState("전체");
+  // 신고 팝업 스위치
   const [postReport, setReport] = useState("비활성");
+  // 신고 정보
   const resres = {ID:"",USER:"",CODENAME:""}
   const [getRes, setRes] = useState(resres);
   const [repVal, setReVal] = useState({
     REPORT_USER:"",
-    REPORT_DETAIL:"",
+    REPORT_DETAIL:"사유 없음",
     REPORT_POST:"",
     REPORT_CODENAME:"",
   });
-  const reportForm = useRef();
+  // 신고 사유
   const res1 = useRef();
   const res2 = useRef();
   const res3 = useRef();
@@ -34,6 +30,7 @@ function Main() {
   const res6 = useRef();
 
 
+  // 게시물 정렬 스위치 함수
   function stateAll(){
     setSwc("전체");
   }
@@ -44,27 +41,23 @@ function Main() {
     setSwc("점령");
   }
 
+  // 신고 팝업
   async function putReport(){
     let totalVal = [];
     if(res1.current.checked){
       totalVal.push("부적절한 언어가 포함된 게시물");
-      // totalVal = totalVal+"부적절한 언어가 포함된 게시물, "
     }
     if(res2.current.checked){
       totalVal.push("선정적인 게시물");
-      // totalVal = totalVal+"선정적인 게시물, "
     }
     if(res3.current.checked){
       totalVal.push("조개 획득을 위한 무분별한 게시물 포스팅");
-      // totalVal = totalVal+"조개 획득을 위한 무분별한 게시물 포스팅, "
     }
     if(res4.current.checked){
       totalVal.push("그림과 정답이 일치하지 않음");
-      // totalVal = totalVal+"그림과 정답이 일치하지 않음, "
     }
     if(res5.current.checked){
       totalVal.push(res6.current.value);
-      // totalVal = totalVal+"직접입력) "+res6.current.value;
     }
     setReVal({
       REPORT_USER:getRes.USER,
@@ -79,7 +72,6 @@ function Main() {
     res4.current.checked = false ;
     res5.current.checked = false ;
     res6.current.value = "";
-    // dataPost("get");
   }
 
   useEffect(()=>{
@@ -90,7 +82,6 @@ function Main() {
   },[repVal])
 
 
-  console.log(data);
   if (!data) return <div className="bonebone">
     돌 날카롭게 깎는중...
   </div>
@@ -102,20 +93,6 @@ function Main() {
           :
           <>
             
-
-            {/* <div className={secondGet == "활성" ? tu.addItemOne : tu.hideItem}>
-            <figure onClick={secondClose}>
-                    <nav className={tu.shellCoinGet}>
-                      <img></img>
-                      <div>
-                        <h6>&nbsp;- 화폐 <br/>모든 부족에게 통용된 화폐인 조개{`(`}10개{`)`}를 획득<br/> 했습니다.</h6>
-                      </div>
-                    </nav>
-              <h1>석판을 클릭하면 창이 닫힙니다.</h1>
-              </figure>
-            </div> */}
-
-
             <Link className={m.Write} href="/page/Draw"></Link>
             <div className={m.Mwrap}>
               <div className={m.titleBox}>
@@ -160,7 +137,6 @@ function Main() {
                           바로가기{" "}
                         </Link>
                       </nav>
-                      {/* <img className={m.underLine}></img> */}
                       <span></span>
                     </div>
                   );
@@ -177,7 +153,6 @@ function Main() {
                         {res.STATE == 2 && <img className={m.bawi}></img>}
                         {res.STATE == 3 && <img className={m.bam}></img>}
                       </div>
-                      {/* <Link href={}></Link> */}
                       {res.STATE == 0 && <p>뿌리족 점령</p>}
                       {res.STATE == 1 && <p>바다족 점령</p>}
                       {res.STATE == 2 && <p>바위족 점령</p>}
@@ -192,7 +167,6 @@ function Main() {
                           바로가기{" "}
                         </Link>
                       </nav>
-                      {/* <img className={m.underLine}></img> */}
                       <span></span>
                     </div>
                   );
@@ -219,7 +193,6 @@ function Main() {
                             바로가기{" "}
                           </Link>
                         </nav>
-                        {/* <img className={m.underLine}></img> */}
                       <span></span>
                       </div>
                     );
@@ -282,19 +255,3 @@ function Main() {
 }
 
 export default Main;
-
-// export async function getServerSideProps() {
-// export async function getStaticProps() {
-//     // const res = await axios.get(`/api`);
-//     const res = await axios.get(`http://localhost:3000/api`);
-//     const data = res.data;
-
-//     //db에 저장된 이미지코드를 src화 시키는 작업
-//     data['POST'] = data['POST'].map(obj =>{
-//         let buf = new Buffer(obj.DRAW);
-//         let base64String = buf.toString('utf-8');
-//         obj.DRAW = base64String;
-//         return obj;
-//     });
-//     return { props: { data } }
-// }

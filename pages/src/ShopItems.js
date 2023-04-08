@@ -6,8 +6,10 @@ import axios from "axios";
 const ShopItems = ({ item, taekulrookTalk }) => {
   const { who, sessionWho, mine, sessionMine } = useContext(DataContext);
 
-  console.log(mine)
+  // 아이템 클릭 시
   async function purchase() {
+
+    // 아이템 가격 <= 나의 코인 갯수
     if (item.PRICE <= who.SHELL) {
       let penArr = mine.pen.split(",");
       let paintArr = mine.paint.split(",");
@@ -16,12 +18,11 @@ const ShopItems = ({ item, taekulrookTalk }) => {
         case "PEN":
           if (penArr.includes(item.NAME)) {
             taekulrookTalk("상품을 준비중이야.<br/>나중에 다시 찾아줘!");
-            console.log("보유중인 아이템");
             return;
           } else {
             taekulrookTalk("조개는 잘 받았어.<br/>구매한 물건은 잘 쓰도록 해.<br/>고마워!");
             penArr.push(item.NAME);
-            await axios.put("/api/shop", {
+            await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
               id: who.ID,
               shell: who.SHELL - item.PRICE,
               pen: penArr.toString(),
@@ -32,12 +33,11 @@ const ShopItems = ({ item, taekulrookTalk }) => {
         case "PAINT":
           if (paintArr.includes(item.NAME)) {
             taekulrookTalk("상품을 준비중이야.<br/>나중에 다시 찾아줘!");
-            console.log("보유중인 아이템");
             return;
           } else {
             taekulrookTalk("조개는 잘 받았어.<br/>구매한 물건은 잘 쓰도록 해.<br/>고마워!");
             paintArr.push(item.NAME);
-            await axios.put("/api/shop", {
+            await axios.put("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/shop", {
               id: who.ID,
               shell: who.SHELL - item.PRICE,
               pen: penArr.toString(),
@@ -48,7 +48,6 @@ const ShopItems = ({ item, taekulrookTalk }) => {
         default:
           return;
       }
-
       sessionWho();
       sessionMine();
     } else {
@@ -59,30 +58,23 @@ const ShopItems = ({ item, taekulrookTalk }) => {
         case "PEN":
           if (penArr.includes(item.NAME)) {
             taekulrookTalk("상품을 준비중이야.<br/>나중에 다시 찾아줘!");
-            console.log("보유중인 아이템");
             return;
           } else {
             taekulrookTalk("응?...<br/>너 조개가 부족한거 같은데?<br/>...");
-            console.log("구매 불가", item);
           }
           break;
         case "PAINT":
           if (paintArr.includes(item.NAME)) {
             taekulrookTalk("상품을 준비중이야.<br/>나중에 다시 찾아줘!");
-            console.log("보유중인 아이템");
             return;
           } else {
             taekulrookTalk("응?...<br/>너 조개가 부족한거 같은데?<br/>...");
-            console.log("구매 불가", item);
           }
           break;
         default:
           return;
       }
 
-      
-      // taekulrookTalk("상품을 준비중이야.<br/>나중에 다시 찾아줘!");
-      console.log("구매 불가", item);
     }
   }
 
@@ -94,8 +86,6 @@ const ShopItems = ({ item, taekulrookTalk }) => {
       <div className={sh.shop_item_image_space}>
         {
         item.TYPE === "PEN" ? (
-          // <img src={`/img/draw/${item.IMG}-0.png`} alt="shop item image" />
-          // <img className={item.NAME == 1 && mine.pen.match(`/${item.NAME}/g`) == item.NAME ? sh.none : sh.tool0} alt="shop item image" />
           
           <img className={`
           ${item.NAME == 1 && sh.tool0} 

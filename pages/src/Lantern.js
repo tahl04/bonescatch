@@ -1,17 +1,22 @@
 import React from "react";
 import l from "@/styles/lantern.module.scss";
 import { useRouter } from "next/router";
-import { useRef, useEffect, useContext, useState } from "react";
+import { useRef, useEffect } from "react";
 
 function Lantern() {
+  const { pathname } = useRouter();
+  //반딫불이
   const torch = useRef();
   const torchLight = useRef();
   const lamp = useRef();
-  const { pathname } = useRouter();
+
+
   let delay = 300;
   let timer = null;
 
   useEffect(() => {
+
+    //반딫불이 위치 조정
     let torchWidth = torch.current.getBoundingClientRect().width;
     let torchHeight = torch.current.getBoundingClientRect().height;
 
@@ -19,7 +24,6 @@ function Lantern() {
     let lampWidth = lamp.current.getBoundingClientRect().width;
 
     const handleLampMove = (e) => {
-      // console.log(e)
       const torchPosX = e.clientX - torchWidth;
       const torchPosY = e.clientY - torchHeight;
 
@@ -39,7 +43,6 @@ function Lantern() {
     };
     torch.current.addEventListener("mousemove", handleLampMove);
   }, [pathname]);
-  console.log(pathname);
 
   return (
     <>

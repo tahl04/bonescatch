@@ -3,6 +3,8 @@ import { executeQuery } from "./db";
 async function handler(req, res) {
   const { method, body, query } = req;
 
+
+  //로그인 정보와 조개 갯수를 가져옴
   async function dataGet() {
     try {
       const signUser = await executeQuery("select * from TBL_USER where ID = ?", query.id);

@@ -1,3 +1,9 @@
+
+
+
+///////////////////////// 미오픈 ////////////////////////////
+
+
 import React, { useEffect, useState } from "react";
 import ra from "@/styles/rank.module.scss";
 import axios from "axios";
@@ -7,7 +13,7 @@ function Ranking() {
   const [data, setData] = useState();
 
   function getRank() {
-    axios.get("/api/rank").then((res) => {
+    axios.get("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/rank").then((res) => {
       setData(res.data);
     });
   }

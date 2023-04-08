@@ -8,11 +8,13 @@ import { signOut, useSession } from "next-auth/react";
 
 function Header() {
   const audio = useRef();
-  const { pageChange, setClose, dataFun, who} = useContext(DataContext);
-  const [audioPlay, setAudio] = useState(false);
   const router = useRouter();
+  const { pageChange, setClose, dataFun, who} = useContext(DataContext);
   const { status } = useSession();
+  // 오디오 스위치
+  const [audioPlay, setAudio] = useState(false);
 
+  //오디오 함수
   function togglePlay() {
     if (!audio.current.paused) {
       audio.current.pause();
@@ -23,10 +25,13 @@ function Header() {
     }
   }
 
+  // 메인으로 이동하는 함수 (헤더 로고 클릭 시)
   function pageChangeHead() {
+    //로그인 정보가 없을 시 main으로의 접근을 막는다.
     if (status === "unauthenticated") {
       router.push("/");
     } else {
+      //index.js -> Main.js , SignUp.js -> Main.js 애니메이션
       if (!pageChange) {
         setClose(true);
         let closed;
@@ -40,6 +45,8 @@ function Header() {
       }
     }
   }
+
+  // 상점으로 이동하는 함수
   function toshop() {
     if (!pageChange) {
       setClose(true);
@@ -52,14 +59,12 @@ function Header() {
     } else {
       router.push("/page/Shop");
     }
-    // router.push("/page/Shop");
   }
+  // 랭킹 미오픈
   function ranking() {
     router.push("/page/Ranking");
   }
-  function shhhhop(){
-    router.push("/page/Dong");
-  }
+  // 관리자 페이지
   function reportMana(){
     router.push("/page/Manager")
   }
@@ -70,40 +75,31 @@ function Header() {
         <audio loop ref={audio} src="/audio/bonescatch.mp3"></audio>
         <div className={`${hd.togglePlay} ${audioPlay && hd.active}`} onClick={togglePlay} />
       </div>
-
-      {/* {
-        who.SHELL === -1 ? 
-              <div className={hd.link}>
-                <img src="/img/element/logo0.png"></img>
-              </div>
-            :  */}
             <>
               <div className={hd.link} onClick={pageChangeHead}>
                 <img src="/img/element/logo0.png"></img>
               </div>
             </>
-      {/* } */}
 
       {/* 로그인시 로그아웃 띄움 / 로그아웃시 공백 */}
       {status === "unauthenticated" ? (
         <div className={hd.login}></div>
       ) : (
         <div className={hd.login}>
-          {/* {
-        who.SHELL === -1 ? <div className={hd.tyutyu}>튜토리얼 진행중</div> 
-            :  */}
             <>
               {
+                //관리자 로그인시 보여줌
                 who && who.ID == 1 ? 
                   <button onClick={reportMana}>신고</button>
                 : <>
                 </>
               }
-                {/* <button onClick={ranking}>랭킹</button> */}
+                {/* 
+                //랭킹 미오픈
+                <button onClick={ranking}>랭킹</button> */}
                 <button onClick={toshop}>상점</button>
                 <button onClick={() => signOut()}>로그아웃</button>
             </>
-          {/* } */}
         </div>
       )}
     </header>

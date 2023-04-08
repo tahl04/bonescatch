@@ -1,22 +1,26 @@
 import { useRouter } from "next/router";
 import { useRef, useEffect, useContext, useState } from "react";
-import MyContext, { DataContext } from "../src/MyContext";
+import { DataContext } from "../src/MyContext";
 import wr from "@/styles/draw.module.scss";
 
 const Draw = () => {
-  const { pathname } = useRouter();
 
+  // 그림과 제목을 확인하는 팝업창 스위치
   const [popCheck, setPop] = useState(false);
 
   //색 셋팅
+
   let strokeCol = "#754d22";
+
   const pallet = ["black", "#2951d4", "#d43d29", "#42ad27", "#982cca", "#e4d726", "#eeeeee", "#e48b26", strokeCol];
   const [parts, setParts] = useState([strokeCol, strokeCol, strokeCol, strokeCol]);
   const { mine } = useContext(DataContext);
 
+  // 보유하고 있는 도구와 재료
   const [pen, setPen] = useState();
   const [paint, setPaint] = useState();
 
+  // 내 소지품을 불러와 useState 훅에 넣어 사용
   useEffect(() => {
     if (mine !== undefined) {
       setPen(mine.pen.split(","));
@@ -24,8 +28,7 @@ const Draw = () => {
     }
   }, [mine]);
 
-  console.log(pen, paint);
-
+  //컬러 파레트
   const emp = useRef([]),
     bla = useRef([]),
     blu = useRef([]),
@@ -48,15 +51,16 @@ const Draw = () => {
   let index = -1;
   let saveIndex = index;
   let restore_array = [];
+  
   //디비
   const { dataFun, who } = useContext(DataContext);
   const router = useRouter();
   const initial = { USER: "", DRAW: "", TITLE: "", STATE: "", RIGHTUSER: "" };
   const [inputValue, setValue] = useState(initial);
 
-  //그림판
+
+  //그림판 구현
   useEffect(() => {
-    //시작 시
 
     //canvas 셋팅
     const canvas = canvasw.current;
@@ -82,7 +86,6 @@ const Draw = () => {
       obj.addEventListener("click", () => {
         strokeCol = parts[key];
         ctx.strokeStyle = strokeCol;
-        // console.log(parts, strokeCol);
       });
     });
     ctx.strokeStyle = strokeCol;
@@ -99,27 +102,9 @@ const Draw = () => {
     });
     ctx.strokeStyle = strokeCol;
 
-    //뒤로가기 버튼
-    //keycode 17 90
-    document.addEventListener("keydown", function (e) {
-      const keyCode = e.keyCode;
-      // console.log('pushed key ' + e.key);
-
-      if (keyCode == 17) {
-        // if(keyCode == 90){
-        //     console.log("gdasdsad");
-        // }
-      }
-      // else if(keyCode == 9){
-      //     // Tab key
-      // //   document.dispatchEvent(new KeyboardEvent('keydown', {key: 't'}));
-      //   // document.dispatchEvent(new KeyboardEvent('keyup', {key: 't'}));
-      // }
-    });
 
     //되돌리기
     backBtn.current.addEventListener("click", () => {
-      // const context = canvasw.current.getContext("2d");
       if (index <= 0) {
         ctx.fillStyle = start_background_color;
         ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -145,17 +130,12 @@ const Draw = () => {
     canvas.addEventListener(
       "mousedown",
       function (e) {
-        // if(index < 0){
-        //   index += 1;
-        // }
         index += 1;
         saveIndex = index;
         ctx.beginPath();
         ctx.moveTo(mouse.x, mouse.y);
         restore_array.push(ctx.getImageData(0, 0, canvas.width, canvas.height));
         canvas.addEventListener("mousemove", onPaint, false);
-        console.log(index);
-        console.log("셋인덱스" + saveIndex);
       },
       false
     );
@@ -172,15 +152,16 @@ const Draw = () => {
       ctx.lineTo(mouse.x, mouse.y);
       ctx.stroke();
     };
-    // setCtx(ctx);
   }, []);
 
-  //파츠 클릭시
+  // 재료 파츠 클릭 시 해당 색이 담긴 파레트를 가져오는 함수
   function colorChange(keyColor, index) {
     if (paint && paint.includes((index + 1).toString())) {
       const copyParts = parts;
       copyParts[keyColor] = pallet[index];
       canvasw.current.getContext("2d").strokeStyle = pallet[index];
+
+      //해당 색을 제외한 모든 것들을 display: none 처리를 한다.
       copyParts.map((obj, key) => {
         if (obj === "#754d22") {
           emp.current[key].style.display = "block";
@@ -284,16 +265,17 @@ const Draw = () => {
         }
       });
     } else {
-      console.log("미보유 색상");
+      return;
     }
 
-    // 그릇 변경
   }
 
 
   const drawSave = () => {
+    // 그림의 제목이 없을 시 반환한다.
     if(titleVal.current.value !== ""){
 
+      // 그림과 제목을 확인하는 팝업이다.
       setValue({
         DRAW: canvasw.current.toDataURL("image/png"),
         USER: who.ID,
@@ -310,11 +292,12 @@ const Draw = () => {
     }
   };
 
+  //다시 그리기 버튼 시 팝업창이 닫힌다.
   function reDraw() {
     setPop(!popCheck);
   }
 
-  //디비
+  // 팝업에서 올리기를 누르면 posting한다.
   async function uploadBonescatch() {
     dataFun("post", inputValue);
     dataFun("get");
@@ -324,7 +307,6 @@ const Draw = () => {
 
   return (
     <>
-      {/* <div style={{display:'none'}} className={popCheck && wr.checkPop}> */}
       <div className={popCheck ? `${wr.checkPop} ${wr.popActive} ` : wr.checkPop}>
         <figure>
           <nav>

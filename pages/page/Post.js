@@ -2,47 +2,31 @@ import React, { useContext, useState, useEffect, useRef } from "react";
 import { useRouter } from "next/router";
 import po from "@/styles/post.module.scss";
 import { DataContext } from "../src/MyContext";
-import axios from "axios";
-import { useSession } from "next-auth/react";
 
 function Post() {
-  // const [thisPost, setPost] = useState([]);
   const router = useRouter();
   const { data, who, dataPost, dataShell, sessionWho } = useContext(DataContext);
+  
+  // 해당 페이지 쿼리id 값은 게시물 고유번호이며 파라미터로 할당되어있다.
+  const { query } = useRouter();
+  
+  // 댓글
   const commentVal = useRef();
   const initial = { USER: "", COUNT: "", COMMENT: "", POST: "" };
-
-  const { query } = useRouter();
   const [inputValue, setValue] = useState(initial);
   
+  // 문제 정답, 미정답 팝업 스위치
   const [rightBtn, setRight] = useState(false);
   const [wrongBtn, setWrong] = useState(false);
+  // 조개 지급 팝업
   const [getShellPop, setShellPop] = useState("비활성");
+  // 조개갯수
   const [countShells, setCountShells] = useState(1);
-  
-  const { data: session, status } = useSession();
 
 
-  // async function countShell(){
-  //   let countCoin = 0;
-  //   if(data){
-  //     data["COMMENT"].forEach((obj, key) => {
-  //       if (obj.POST == query.id) {
-  //         countCoin++;
-  //       }
-  //     });
-  //   }
-  //   setCountShells(countCoin);
-  // }
 
-  // useEffect(()=>{
-  //   countShell();
-  // },[data])
-  
-
+  // 댓글 수의 따른 조개 카운터 댓글이 많아질수록 정답 시 가져갈 수 있는 조개의 갯수가 늘어난다.
   useEffect(() => {
-    let closed;
-    closed = setTimeout(function () {
         if (data) {
         let countCoin = 1;
         data["COMMENT"] ? data["COMMENT"].forEach((obj, key) => {
@@ -50,15 +34,13 @@ function Post() {
             countCoin++;
           }
         }) : countCoin = countShells;
-        ;
         setCountShells(countCoin);
         }
-      }, 4000);
   }, [data]);
 
-  function valueChange(e) {
-    let t = e.target;
 
+  //input 박스에 text 입력 시
+  function valueChange(e) {
     let countMap = 1;
     data["COMMENT"].forEach((obj, key) => {
       if (obj.POST == query.id) {
@@ -76,6 +58,7 @@ function Post() {
       }
     });
 
+    //관련 정보를 훅에 담는다.
     setValue({
       ...inputValue,
       COMMENT: commentVal.current.value,
@@ -85,59 +68,70 @@ function Post() {
       POST: query.id,
       TRIBE: who.TRIBE,
     });
-
-    console.log(inputValue);
   }
 
+  //확인 버튼 누를 시
   async function create(e) {
     e.preventDefault();
-    // console.log(data)
-    // console.log(inputValue.COUNT);
-    let ars = 0;
-    if (inputValue.COUNT < 4) {
-      dataPost("post", inputValue);
-      await dataPost("get");
-    } else {
-      alert("기회가 모두 소진되었습니다.");
-      return
-    }
-
-    data["POST"].forEach((obj, key) => {
-      if (obj.ID == query.id) {
-        if (inputValue.COMMENT == obj.TITLE) {
-          console.log("정답!");
-          ars = 3;
-          // dataPost("get");
-        }
-      }
-    });
-
-    if(ars === 3){
-      setRight(true);;
+    
+    // 팝업이벤트 시 중복 댓글이 올라감을 방지
+    if(rightBtn || wrongBtn){
+      return;
     }else{
-      setWrong(true);
+      //내용이 없다면 반환
+      if(inputValue.COMMENT !== ""){
+        let ars = 0;
+        // 댓글 횟수가 충족되면 더 이상 글을 작성할 수 없다.
+        if (inputValue.COUNT < 4) {
+          // 디비에 POST한다. 관련 함수는 useContext로 받아오며, MyContext.js에서 관리한다.
+          dataPost("post", inputValue);
+          await dataPost("get");
+          commentVal.current.value = "";
+        } else {
+          alert("기회가 모두 소진되었습니다.");
+          return
+        }
+    
+        //정답 시 ars에 상태값을 지정한다.
+        data["POST"].forEach(obj => {
+          if (obj.ID == query.id) {
+            if (inputValue.COMMENT == obj.TITLE) {
+              ars = 3;
+            }
+          }
+        });
+    
+        // 정답 미정답 팝업
+        if(ars === 3){
+          setRight(true);
+        }else{
+          setWrong(true);
+        }
+      }else{
+        alert("정답을 입력해 주세요.")
+        return;
+      }
     }
 
   }
   
+  //정답 유무 팝업
   async function closedPop(){
     if(rightBtn){
+      //정답 시 조개 지급 팝업도 활성화 시킴
       setRight(false);
       setShellPop("활성");
-      // dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID});
-      // await dataPost("get");
-      // router.push("/page/Main");
     }
     setWrong(false);
-    // router.reload();
   }
 
+  //조개 지급 팝업 
   async function outPost(){
     setShellPop("비활성")
+    //나의 조개 갯수를 다시 정의한다.
     dataPost("put", {STATE:who.TRIBE, ID:query.id, RIGHTUSER:who.ID});
     dataShell("put", {SHELL:who.SHELL+countShells, ID:who.ID});
     sessionWho();
-    // await sessionWho();
     await dataPost("get");
     router.push("/page/Main");
   }
@@ -245,7 +239,6 @@ function Post() {
                       </fieldset>
                       :<></>
                       }
-                      {/* <p>나의 남은 횟수 : {namDat}</p> */}
                     </nav>
                   </div>
                   <div className={po.boxBot}></div>
@@ -292,12 +285,6 @@ function Post() {
                       );
                     }
                   })}
-                  {/* <div className={po.commentBox}>
-                        <nav>
-                            <h4>댓글이 없습니다! 정답을 맞춰 보세요.</h4>
-                        </nav>
-                        <span></span>
-                    </div> */}
                   <div className={po.boxBot}></div>
                 </div>
               </div>

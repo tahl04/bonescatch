@@ -1,6 +1,4 @@
 import axios from "axios";
-// import React from 'react'
-
 import lo from "@/styles/login.module.scss";
 import React, { useRef, useEffect, useContext, useState } from "react";
 import { useRouter } from "next/router";
@@ -10,26 +8,31 @@ function SignUp() {
   const router = useRouter();
   const { pageChange, setClose } = useContext(DataContext);
   const { pathname } = useRouter();
-  const [accountresult, setAccountresult] = useState({ nick: "", id: "", tri: "" });
 
+
+  // 페이지 전환 시 횃불 애니메이션
   const fire0 = useRef();
   const fire1 = useRef();
+  // input 입력 값
   const CODEN = useRef();
   const USERN = useRef();
   const PASSN = useRef();
-  const bujok = useRef([]);
+  const [accountresult, setAccountresult] = useState({ nick: "", id: "", tri: "" });
   const initial = { CODENAME: "", USER: "", PASS: "", TRIBE: "" };
   const [inputValue, setValue] = useState(initial);
-  // const switch = useRef();
-  const [useCheckID, setId] = useState(false);
-
+  // 부족
+  const bujok = useRef([]);
+  // 부족 애니메이션 변경 및 선택
   const [bburi, setBburi] = useState(false);
   const [bada, setBada] = useState(false);
   const [bawi, setBawi] = useState(false);
   const [bam, setBam] = useState(false);
+  // 부족 텍스트
   const [BuName, setBuName] = useState("");
 
   useEffect(() => {
+
+    //부족 선택 함수
     bujok.current.map((obj, key) => {
       obj.addEventListener("click", () => {
         if (key === 0) {
@@ -65,34 +68,42 @@ function SignUp() {
     setClose(false);
   }, [pathname]);
 
+  // input에 입력 내용을 변수의 넣는다.
   function valueChange(e) {
     let t = e.target;
     setValue({ ...inputValue, [t.name]: t.value });
   }
 
+  // 아이디 생성 함수
   async function create(e) {
     e.preventDefault();
 
     let nick;
     let id;
     let tri;
+
+    //닉네임 미입력 시
     if (inputValue.CODENAME === "") {
       nick = "닉네임을 입력해주세요";
     } else {
       nick = "";
     }
+    //아이디 미입력 시
     if (inputValue.USER === "") {
       id = "아이디를 입력해주세요";
     } else {
       id = "";
     }
+    //부족 미선택 시
     if (inputValue.TRIBE === "") {
       tri = "부족을 선택해주세요";
     } else {
       tri = "";
     }
+    // 미충족 알림을 텍스트로 보여준다.
     setAccountresult({ nick: nick, id: id, tri: tri });
 
+    // 조건 모두 충족 시 아이디를 생성한다.
     if (inputValue.CODENAME !== "" && inputValue.USER !== "" && inputValue.PASS !== "" && inputValue.TRIBE !== "") {
       let result = await axios
         .post("https://port-0-bonescatch-nx562oleyykw6l.sel3.cloudtype.app/api/auth/signup", {
@@ -108,12 +119,11 @@ function SignUp() {
     }
   }
 
-  //페이지 전환
+  //페이지 전환 애니메이션
   function closeFire() {
     setClose(true);
     let closed;
     closed = setTimeout(function () {
-      // setClose(!pageChange);
       router.push("/");
     }, 1000);
   }

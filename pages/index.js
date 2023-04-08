@@ -12,10 +12,12 @@ export default function Home() {
   const fire1 = useRef();
   const { data: session, status } = useSession();
   const router = useRouter();
+  const [noneState, setState] = useState("");
 
+
+  // 로그인 정보가 세션에 있을 시 로그인 페이지의 접근을 막는 함수
   function authCheck(){
     if(status === 'authenticated'){
-      // router.replace('/page/Main')
       setClose(true);
       let closede;
       closede = setTimeout(function(){
@@ -26,9 +28,11 @@ export default function Home() {
       return;
     }
   }
+
+
+  // 로그인
   async function signin(e) {
     e.preventDefault();
-
     const result = await signIn("credentials", {
       redirect: false,
       NAME: e.target.USER.value,
@@ -36,23 +40,18 @@ export default function Home() {
     });
 
     if (!result.error) {
-      console.log("로그인 성공");
-      
-      // setClose(true);
-      // let closede;
-      // closede = setTimeout(function(){
-      //   router.push(("/page/Main"));
-      // }, 700);
     } else {
-      console.log(result.error);
+      setState("일치하는 로그인 정보가 없습니다.")
     }
   }
 
+  // 페이지 전환 시 초기값의 설정
   useEffect(() => {
     setClose(false);
   }, [pathname]);
 
 
+  // 페이지 전환 및 애니메이션
   function closeFire(){
     setClose(true);
     let closed;
@@ -61,6 +60,8 @@ export default function Home() {
       router.push(("/page/SignUp"));
     }, 1000);
   }
+
+  // 로그인 상태를 확인하여 함수 호출
   useEffect(()=>{
     authCheck();
   },[status])
@@ -84,6 +85,7 @@ export default function Home() {
 
               <input type="text" placeholder="아이디" name="USER" autoComplete="off" />
               <input type="password" placeholder="비밀번호" name="PASS" />
+              <p>{noneState}</p>
               <div className={lo.navDiv}>
                 <button type="submit" className={lo.submitBtn}>
                   로그인

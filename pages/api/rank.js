@@ -3,7 +3,6 @@ import { executeQuery } from "./db";
 export default function handler(req, res) {
   const { method, body, query } = req;
 
-  console.log(method);
 
   // 랭크 미오픈.. 게시예정
 

@@ -340,6 +340,8 @@ $re_foot_h : calc(600px / 10.8684);
     background-image: url('/img/list-footer0.png');
 }
 .footer{
+    z-index: -1;
+    pointer-events : none;
     @include footer(){};
     background-image: url('/img/footer0.png');
 }

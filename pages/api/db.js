@@ -9,11 +9,6 @@ const pool = createPool({
 });
 
 
-pool.getConnection(() => {
-    console.log('success')
-    
-});
-
 const executeQuery = async (query, arraParms) => {
     return await new Promise((resolve) => {
         pool.query(query, arraParms, (err, data) => {

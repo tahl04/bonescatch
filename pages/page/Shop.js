@@ -5,11 +5,20 @@ import axios from "axios";
 import { DataContext } from "../src/MyContext";
 
 const Shop = () => {
-  const [item, setItem] = useState("PEN");
-  const [data, setData] = useState([]);
-  const taekulrook = useRef();
-  const { mine, who } = useContext(DataContext);
+  // 나의 정보
+  const { who } = useContext(DataContext);
 
+  // 모든 물건을 담는 훅
+  const [data, setData] = useState([]);
+
+  // 물건 정렬 스위치
+  const [item, setItem] = useState("PEN");
+
+  // 말풍선
+  const taekulrook = useRef();
+
+
+  // 모든 물건들을 불러와 data변수에 담는다.
   function getPenData() {
     axios
       .get("/api/shop", {
@@ -33,6 +42,7 @@ const Shop = () => {
       });
   }
 
+  // 보러가기 버튼 누를 시 해당 아이템을 가져오며 나열한다.
   function itemSelect() {
     switch (item) {
       case "PEN":
@@ -45,7 +55,8 @@ const Shop = () => {
         return;
     }
   }
-  // 버튼 클릭시 아이템 리스트 전환
+
+  //초기 값 지정 밑 함수 호출
   useEffect(() => {
     switch (item) {
       case "PEN":
@@ -59,6 +70,8 @@ const Shop = () => {
     }
   }, [item]);
 
+
+  //말풍선 내용 함수
   function taekulrookTalk(www){
     taekulrook.current.innerHTML = www;
   }

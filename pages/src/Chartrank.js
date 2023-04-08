@@ -1,6 +1,12 @@
+
+
+
+/////////////////////////////////// 미오픈 ///////////////////////////////////////
+
+
+
 import { Chart as ChartJS, ArcElement, RadialLinearScale, PointElement, LineElement, Filler, Tooltip, Legend, registerables } from "chart.js";
 import { PolarArea } from "react-chartjs-2";
-
 ChartJS.register(RadialLinearScale, PointElement, LineElement, ArcElement, Filler, Tooltip, Legend);
 
 import React, { useEffect, useState } from "react";
