@@ -21,7 +21,7 @@ const handler = async (req, res) => {
       let datasss = await executeQuery("select * from TBL_MANAGER order by ID DESC", []);
 
 
-      //Blob파일이 암호화 되어있는데, 아래 코드로 엄호화에서 이미지 경로로 바꾸는 작업.
+      //RAW DATA를 Base64를 이용하여 이미지 경로로 바꾸는 작업.
       datas.map((obj) => {
         let buf = new Buffer(obj.DRAW);
         let base64String = buf.toString("utf-8");
